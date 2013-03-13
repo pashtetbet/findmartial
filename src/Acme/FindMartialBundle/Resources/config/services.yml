@@ -1,0 +1,7 @@
+parameters:
+#    acme_find_martial.example.class: Acme\FindMartialBundle\Example
+
+services:
+#    acme_find_martial.example:
+#        class: %acme_find_martial.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
