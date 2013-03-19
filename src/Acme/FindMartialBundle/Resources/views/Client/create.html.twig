@@ -1,0 +1,13 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+	<form action="{{ path('client_create') }}" {{ form_enctype(form) }} method="POST">
+		  {{ form_widget(form) }}
+		  <div class="form_field">
+		      <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+		  </div>
+	</form>
+{% endblock %}
+

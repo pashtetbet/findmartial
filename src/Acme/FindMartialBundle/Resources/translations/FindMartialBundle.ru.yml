@@ -1,0 +1,25 @@
+# Profile
+profile:
+    show:
+        getclient: Стать клиентом
+        name: Имя
+        family: Фамилия
+        estimateValue: Средняя оценка
+        estimateCount: Количество оценок
+        commentsNumber: Количество комментариев
+        about: О себе
+        avatar: Аватар
+    client:
+        show:
+            name: Имя
+            inn: ИНН
+            website: Website
+            mail: Email
+            phone: Телефон
+            status: Статус
+            money: Остаток средств
+            social: Тип
+            isIndividual: Индивидуальный тренер
+            logo: Лого
+            estimateValue: Средняя оценка
+            estimateNumber: Количество оценок

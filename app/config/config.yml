@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -24,6 +24,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+         resource: "AcmeFindMartialBundle:Form:fields.html.twig"
 
 # Assetic Configuration
 assetic:
@@ -51,6 +53,12 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
+        mapping_types:
+            enum: string
+        # этот способ не сработал на обновлении базы, поэтому использую mapping_types
+        #types:
+        #    enumstatus: Acme\FindMartialBundle\Types\EnumStatusType
+        #    enumsocial: Acme\FindMartialBundle\Types\EnumSocialType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -68,3 +76,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Acme\FindMartialBundle\Entity\User
+    registration:
+        form:
+            type: acme_find_martial_registration

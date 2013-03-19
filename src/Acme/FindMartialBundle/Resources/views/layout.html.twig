@@ -1,48 +1,72 @@
-{% extends "TwigBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block head %}
     <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+    {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
+    <link href="{{ asset('bundles/framework/css/structure.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{{ asset('bundles/framework/css/body.css') }}" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/acmefindmartial/css/main.css') }}" />
+    {% endblock %}
+    
 {% endblock %}
 
 {% block title 'Find Martial' %}
 
 {% block body %}
 
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        <div class="flash-message">
-            <em>Notice</em>: {{ flashMessage }}
-        </div>
-    {% endfor %}
 
-    {% block content_header %}
-        <ul id="menu">
-            {% block content_header_more %}
-                <li><a href="#">Menu1</a></li>
-            {% endblock %}
-        </ul>
+        <div id="content">
         
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
+						<div class="login_block">
+								{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+										<a href="{{ path('fos_user_profile_show') }}">
+											{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+										</a>
+										 |
+										<a href="{{ path('fos_user_security_logout') }}">
+										    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+										</a>
+								{% else %}
+										<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+								{% endif %}
+						</div>
+								
+            <div class="header clear-fix">
+                <div class="header-logo">
+                		<a href="/" alt="findmartial">
+                    	<img src="{{ asset('bundles/acmefindmartial/images/fm_logo.png') }}" />
+                    </a>
+                </div>
+
+								{% block content_header %}
+										<ul id="menu" class="menu">
+												{% block content_header_more %}
+														<li><a href="#">Menu1</a></li>
+												{% endblock %}
+										</ul>
+								{% endblock %}
+								
+            </div>
+
+            <div class="sf-reset">
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+												<div class="flash-message">
+														<em>Notice</em>: {{ flashMessage }}
+												</div>
+										{% endfor %}
+
+
+										<div class="block">
+												{% block content %}{% endblock %}
+										</div>
+
+										{% if code is defined %}
+												<h2>Code behind this page</h2>
+												<div class="block">
+														<div class="symfony-content">{{ code|raw }}</div>
+												</div>
+										{% endif %}
+            </div>
         </div>
-
-    {% endblock %}
-
-    <div class="block">
-        {% block content %}{% endblock %}
-    </div>
-
-    {% if code is defined %}
-        <h2>Code behind this page</h2>
-        <div class="block">
-            <div class="symfony-content">{{ code|raw }}</div>
-        </div>
-    {% endif %}
 {% endblock %}

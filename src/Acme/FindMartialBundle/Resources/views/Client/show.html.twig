@@ -1,0 +1,21 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+	<div>
+    <p>{{ 'profile.client.show.name'|trans({}, 'FindMartialBundle') }}: {{ client.name }}</p>
+    <p>{{ 'profile.client.show.inn'|trans({}, 'FindMartialBundle') }}: {{ client.inn }}</p>
+    <p>{{ 'profile.client.show.website'|trans({}, 'FindMartialBundle') }}: {{ client.website }}</p>
+		<p>{{ 'profile.client.show.mail'|trans({}, 'FindMartialBundle') }}: {{ client.mail }}</p>
+		<p>{{ 'profile.client.show.phone'|trans({}, 'FindMartialBundle') }}: {{ client.phone }}</p>
+		<p>{{ 'profile.client.show.status'|trans({}, 'FindMartialBundle') }}: {{ client.status }}</p>		
+		<p>{{ 'profile.client.show.money'|trans({}, 'FindMartialBundle') }}: {{ client.money }}</p>
+		<p>{{ 'profile.client.show.social'|trans({}, 'FindMartialBundle') }}: {{ client.social }}</p>
+		<p>{{ 'profile.client.show.isIndividual'|trans({}, 'FindMartialBundle') }}: {{ client.isIndividual }}</p>
+		<p>{{ 'profile.client.show.logo'|trans({}, 'FindMartialBundle') }}: {{ client.logo }}</p>
+		<p>{{ 'profile.client.show.estimateValue'|trans({}, 'FindMartialBundle') }}: {{ client.estimateValue }}</p>
+		<p>{{ 'profile.client.show.estimateNumber'|trans({}, 'FindMartialBundle') }}: {{ client.estimateNumber }}</p>
+	</div>
+{% endblock %}
+

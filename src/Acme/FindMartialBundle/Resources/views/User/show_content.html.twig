@@ -1,0 +1,14 @@
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+    <p>{{ 'profile.show.name'|trans({}, 'FindMartialBundle') }}: {{ user.name }}</p>
+		<p>{{ 'profile.show.family'|trans({}, 'FindMartialBundle') }}: {{ user.family }}</p>
+		<p>{{ 'profile.show.estimateValue'|trans({}, 'FindMartialBundle') }}: {{ user.estimateValue }}</p>
+		<p>{{ 'profile.show.estimateCount'|trans({}, 'FindMartialBundle') }}: {{ user.estimateCount }}</p>
+		<p>{{ 'profile.show.commentsNumber'|trans({}, 'FindMartialBundle') }}: {{ user.commentsNumber }}</p>
+		<p>{{ 'profile.show.about'|trans({}, 'FindMartialBundle') }}: {{ user.about }}</p>
+		<p>{{ 'profile.show.avatar'|trans({}, 'FindMartialBundle') }}: {{ user.avatar }}</p>
+		
+		
+		<a href="{{ path('client_create') }}">{{ 'profile.show.getclient'|trans({}, 'FindMartialBundle') }}</a>
+</div>
