@@ -1,0 +1,59 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>Club list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'field.description'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.address'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.indicpricemin'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.indicpricemax'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.onetrainingfree'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.visible'|trans({}, 'FindMartialBundle') }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('club_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.address }}</td>
+                <td>{{ entity.indicpricemin }}</td>
+                <td>{{ entity.indicpricemax }}</td>
+                <td>{{ entity.onetrainingfree }}</td>
+                <td>{{ entity.ischecked }}</td>
+                <td>
+                    {{ entity.visible }}
+                    {{ entity.latitude }}
+                    {{ entity.longitude }}
+                </td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('club_show', { 'id': entity.id }) }}">{{ 'field.show'|trans({}, 'FindMartialBundle') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('club_edit', { 'id': entity.id }) }}">{{ 'field.edit'|trans({}, 'FindMartialBundle') }}</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('club_new') }}">
+                {{ 'field.createnew'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

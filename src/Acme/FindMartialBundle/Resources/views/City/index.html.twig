@@ -1,0 +1,23 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>City list</h1>
+
+    <ul class="records_list_ul">
+        {% for entity in entities %}
+            <li>
+                <a href="{{ path('city_edit', { 'id': entity.id }) }}">{{ entity.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <li>
+            <a href="{{ path('city_new') }}">
+                {{ 'field.createnew'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

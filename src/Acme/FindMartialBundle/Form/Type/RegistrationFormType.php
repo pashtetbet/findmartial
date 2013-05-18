@@ -15,6 +15,7 @@ class RegistrationFormType extends BaseType
         $builder->add('family', null ,array('label' => 'form.family', 'translation_domain' => 'FOSUserBundle'));
         $builder->add('about', null ,array('label' => 'form.about', 'translation_domain' => 'FOSUserBundle'));
         $builder->add('avatar', null ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle'));
+        //$builder->add('roles' ,'choice' ,array('multiple' => 'true', 'choices'=>array('ROLE_USER' => 'пользователь', 'ROLE_CLIENT' => 'клиент', 'ROLE_MASTER' => 'мастер')));
     }
 
     public function getName()

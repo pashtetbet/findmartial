@@ -18,8 +18,7 @@ class User extends BaseUser
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     protected $client;
-    
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -35,37 +34,37 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=100)
      */
-		protected $family;
-		
-		/**
-     * @ORM\Column(type="decimal", scale=2, nullable = true)
-     */
-		protected $estimateValue;
-		
-		/**
-     * @ORM\Column(type="smallint", nullable = true)
-     */
-		protected $estimateCount;
-		
-		/**
-     * @ORM\Column(type="smallint", nullable = true)
-     */
-		protected $commentsNumber;
-		
-		/**
-     * @ORM\Column(type="text", nullable = true)
-     */
-		protected $about;
-		
+    protected $family;
+
     /**
-     * @ORM\Column(type="string", length=150, nullable = true)
-     */
-		protected $avatar;
-		
-		/**
-     * @ORM\Column(type="boolean")
-     */
-		protected $authorisedComments = 0;
+    * @ORM\Column(type="decimal", scale=2, nullable = true)
+    */
+    protected $estimate_value;
+
+    /**
+    * @ORM\Column(type="smallint", nullable = true)
+    */
+    protected $estimate_count;
+
+    /**
+    * @ORM\Column(type="smallint", nullable = true)
+    */
+    protected $comments_number;
+
+    /**
+    * @ORM\Column(type="text", nullable = true)
+    */
+    protected $about;
+
+    /**
+    * @ORM\Column(type="string", length=150, nullable = true)
+    */
+    protected $avatar;
+
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    protected $authorised_comments = 0;
 
     public function __construct()
     {
@@ -130,72 +129,72 @@ class User extends BaseUser
     }
 
     /**
-     * Set estimateValue
+     * Set estimate_value
      *
      * @param float $estimateValue
      * @return User
      */
     public function setEstimateValue($estimateValue)
     {
-        $this->estimateValue = $estimateValue;
+        $this->estimate_value = $estimateValue;
     
         return $this;
     }
 
     /**
-     * Get estimateValue
+     * Get estimate_value
      *
      * @return float 
      */
     public function getEstimateValue()
     {
-        return $this->estimateValue;
+        return $this->estimate_value;
     }
 
     /**
-     * Set estimateCount
+     * Set estimate_count
      *
      * @param integer $estimateCount
      * @return User
      */
     public function setEstimateCount($estimateCount)
     {
-        $this->estimateCount = $estimateCount;
+        $this->estimate_count = $estimateCount;
     
         return $this;
     }
 
     /**
-     * Get estimateCount
+     * Get estimate_count
      *
      * @return integer 
      */
     public function getEstimateCount()
     {
-        return $this->estimateCount;
+        return $this->estimate_count;
     }
 
     /**
-     * Set commentsNumber
+     * Set comments_number
      *
      * @param integer $commentsNumber
      * @return User
      */
     public function setCommentsNumber($commentsNumber)
     {
-        $this->commentsNumber = $commentsNumber;
+        $this->comments_number = $commentsNumber;
     
         return $this;
     }
 
     /**
-     * Get commentsNumber
+     * Get comments_number
      *
      * @return integer 
      */
     public function getCommentsNumber()
     {
-        return $this->commentsNumber;
+        return $this->comments_number;
     }
 
     /**
@@ -245,26 +244,26 @@ class User extends BaseUser
     }
 
     /**
-     * Set authorisedComments
+     * Set authorised_comments
      *
      * @param boolean $authorisedComments
      * @return User
      */
     public function setAuthorisedComments($authorisedComments)
     {
-        $this->authorisedComments = $authorisedComments;
+        $this->authorised_comments = $authorisedComments;
     
         return $this;
     }
 
     /**
-     * Get authorisedComments
+     * Get authorised_comments
      *
      * @return boolean 
      */
     public function getAuthorisedComments()
     {
-        return $this->authorisedComments;
+        return $this->authorised_comments;
     }
 
     /**

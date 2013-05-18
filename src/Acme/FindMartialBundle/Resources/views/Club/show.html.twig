@@ -1,0 +1,48 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>Club</h1>
+
+    <div class="fm_master_show">
+        <p>ID: {{ entity.id }}</p>
+        <p>{{ 'field.description'|trans({}, 'FindMartialBundle') }}: {{ entity.description }}</p>
+        <p>{{ 'field.address'|trans({}, 'FindMartialBundle') }}: {{ entity.address }}</p>
+        <p>{{ 'field.addresscomment'|trans({}, 'FindMartialBundle') }}: {{ entity.addresscomment }}</p>
+        <p>{{ 'field.latitude'|trans({}, 'FindMartialBundle') }}: {{ entity.latitude }}</p>
+        <p>{{ 'field.longitude'|trans({}, 'FindMartialBundle') }}: {{ entity.longitude }}</p>
+        <p>{{ 'field.mail'|trans({}, 'FindMartialBundle') }}: {{ entity.mail }}</p>
+        <p>{{ 'field.phone'|trans({}, 'FindMartialBundle') }}: {{ entity.phone }}</p>
+        <p>{{ 'field.indicpricemin'|trans({}, 'FindMartialBundle') }}: {{ entity.indicpricemin }}</p>
+        <p>{{ 'field.indicpricemax'|trans({}, 'FindMartialBundle') }}: {{ entity.indicpricemax }}</p>
+        <p>{{ 'field.agetype'|trans({}, 'FindMartialBundle') }}: {{ entity.age_type }}</p>
+        <p>{{ 'field.sex'|trans({}, 'FindMartialBundle') }}: {{ entity.sex }}</p>
+        <p>{{ 'field.estimatevalue'|trans({}, 'FindMartialBundle') }}: {{ entity.estimatevalue }}</p>
+        <p>{{ 'field.estimatenumber'|trans({}, 'FindMartialBundle') }}: {{ entity.estimatenumber }}</p>
+        <p>{{ 'field.onetrainingfree'|trans({}, 'FindMartialBundle') }}: {{ entity.onetrainingfree }}</p>
+        <p>{{ 'field.photo'|trans({}, 'FindMartialBundle') }}: {{ entity.photo }}</p>
+        <p>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}: {{ entity.ischecked }}</p>
+        <p>{{ 'field.visible'|trans({}, 'FindMartialBundle') }}: {{ entity.visible }}</p>
+    </div>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('club') }}">
+                {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('club_edit', { 'id': entity.id }) }}">
+                {{ 'field.edit'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('club_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">{{ 'field.delete'|trans({}, 'FindMartialBundle') }}</button>
+            </form>
+        </li>
+    </ul>
+{% endblock %}

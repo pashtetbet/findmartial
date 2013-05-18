@@ -42,7 +42,26 @@
 								{% block content_header %}
 										<ul id="menu" class="menu">
 												{% block content_header_more %}
-														<li><a href="#">Menu1</a></li>
+													<li>
+														<a href="{{path('master')}}">
+															{{'master.index'|trans({}, 'FindMartialBundle')}}
+														</a>
+													</li>
+													<li>
+														<a href="{{path('club')}}">
+															{{'club.index'|trans({}, 'FindMartialBundle')}}
+														</a>
+													</li>
+													<li>
+														<a href="{{path('art')}}">
+															{{'art.index'|trans({}, 'FindMartialBundle')}}
+														</a>
+													</li>
+													<li>
+														<a href="{{path('city')}}">
+															{{'city.index'|trans({}, 'FindMartialBundle')}}
+														</a>
+													</li>
 												{% endblock %}
 										</ul>
 								{% endblock %}
@@ -63,7 +82,7 @@
 
 										{% if code is defined %}
 												<h2>Code behind this page</h2>
-												<div class="block">
+												<div class="block">trans
 														<div class="symfony-content">{{ code|raw }}</div>
 												</div>
 										{% endif %}

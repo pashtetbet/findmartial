@@ -135,3 +135,18 @@ div.form_field{
     white-space: pre;
     font-family: monospace;
 }
+
+
+
+
+/*FindMartial Styles*/
+.margtop15px{
+    margin-top:15px !important;
+}
+.records_list{
+    width:100%;
+
+}
+.records_list th, .records_list td {
+    padding: 3px 5px;
+}

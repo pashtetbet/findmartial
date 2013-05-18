@@ -1,6 +1,6 @@
 acme_find_martial:
-    resource: "@AcmeFindMartialBundle/Resources/config/routing.yml"
-    prefix:   /
+    resource: "@AcmeFindMartialBundle/Controller"
+    type:     annotation
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -20,3 +20,7 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+fos_group_management:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /um

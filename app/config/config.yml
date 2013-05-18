@@ -79,3 +79,8 @@ fos_user:
     registration:
         form:
             type: acme_find_martial_registration
+    group:
+        group_class:    Acme\FindMartialBundle\Entity\Group
+        group_manager:  fos_user.group_manager.default
+        form:
+            type:               fos_user_group

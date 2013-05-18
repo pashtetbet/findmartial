@@ -1,9 +1,12 @@
-acme_find_martial_homepage:
-    pattern:  /
-    defaults: { _controller: AcmeFindMartialBundle:Default:index }
-client_create:
-    pattern:  /client_create
-    defaults: { _controller: AcmeFindMartialBundle:Client:create }
-client_success:
-    pattern:  /client_success
-    defaults: { _controller: AcmeFindMartialBundle:Client:success }
+#acme_find_martial_homepage:
+#    pattern:  /
+#    defaults: { _controller: AcmeFindMartialBundle:Default:index }
+#client_create:
+#    pattern:  /client_create
+#    defaults: { _controller: AcmeFindMartialBundle:Client:create }
+#master_create:
+#    pattern:  /master_create
+#    defaults: { _controller: AcmeFindMartialBundle:Default:createMaster }
+#client_success:
+#    pattern:  /client_success
+#    defaults: { _controller: AcmeFindMartialBundle:Client:success }

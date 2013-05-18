@@ -3,7 +3,6 @@
 
 namespace Acme\FindMartialBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,6 +16,33 @@ class Client
      * @ORM\OneToOne(targetEntity="User", mappedBy="client")
      */
     protected $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Master", inversedBy="client")
+     * @ORM\JoinColumn(name="master_id", referencedColumnName="id")
+     */
+    protected $master;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="MasterClient", mappedBy="client")
+     **/
+    protected $masters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Club", mappedBy="client")
+     **/
+    private $clubs;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="check")
+     **/
+    private $duplicates;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="duplicates")
+     * @ORM\JoinColumn(name="check_id", referencedColumnName="id")
+     **/
+    private $check;
   
     /**
      * @ORM\Id
@@ -33,82 +59,71 @@ class Client
     /**
      * @ORM\Column(type="string", unique=true, length=100, nullable = true)
      */
-		protected $inn;
-		
-		/**
-     * @ORM\Column(type="string", length=100, nullable = true)
-     */
-		protected $website;
-		
-		/**
-     * @ORM\Column(type="string", length=150, nullable = true)
-     */
-		protected $mail;
-		
-		/**
-     * @ORM\Column(type="string", length=100, nullable = true)
-     */
-		protected $phone;
-		
-		//перечисления
-		/**
-     * @ORM\Column(type="string", columnDefinition="ENUM('active', 'notactive')", nullable = true)
-     */
-		protected $status;
-		
-		/**
-     * @ORM\Column(type="decimal", scale=2)
-     */
-		protected $money = 0;
-		
-		//перечисления
-		/**
-		* @ORM\Column(type="string", columnDefinition="ENUM('social', 'municipal')", nullable = true)
-     */
-		protected $social;
-		
-		/**
-     * @ORM\Column(type="boolean")
-     */
-		protected $isIndividual = false;
-		//Individual_ID
-		
-		/**
-     * @ORM\Column(type="string", length=150, nullable = true)
-     */
-		protected $logo;
-		
-		/**
-     * @ORM\Column(type="decimal", scale=2)
-     */
-		protected $estimateValue = 0;
-		
-		/**
-     * @ORM\Column(type="smallint")
-     */
-		protected $estimateNumber = 0;
-		
-		/**
-     * @ORM\Column(type="boolean")
-     */
-		protected $newsOn = false;
+    protected $inn;
 
-		/**
-     * @ORM\Column(type="boolean")
-     */
-		protected $isChecked = false;
-		
-		/**
-     * @ORM\Column(type="integer", nullable = true)
-     */
-		protected $checkRef;
+    /**
+    * @ORM\Column(type="string", length=100, nullable = true)
+    */
+    protected $website;
+
+    /**
+    * @ORM\Column(type="string", length=150, nullable = true)
+    */
+    protected $mail;
+
+    /**
+    * @ORM\Column(type="string", length=100, nullable = true)
+    */
+    protected $phone;
+
+    //перечисления
+    /**
+    * @ORM\Column(type="string", columnDefinition="ENUM('active', 'notactive')", nullable = true)
+    */
+    protected $status;
+
+    /**
+    * @ORM\Column(type="decimal", scale=2)
+    */
+    protected $money = 0;
+
+    //перечисления
+    /**
+    * @ORM\Column(type="string", columnDefinition="ENUM('social', 'municipal')", nullable = true)
+    */
+    protected $social;
+
+    /**
+    * @ORM\Column(type="string", length=150, nullable = true)
+    */
+    protected $logo;
+
+    /**
+    * @ORM\Column(type="decimal", scale=2)
+    */
+    protected $estimate_value = 0;
+
+    /**
+    * @ORM\Column(type="smallint")
+    */
+    protected $estimate_number = 0;
+
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    protected $news_on = false;
+
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    protected $is_checked = false;
 
     public function __construct()
     {
-        //parent::__construct();
-        // your own logic
+        $this->masters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->clubs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -305,29 +320,6 @@ class Client
     }
 
     /**
-     * Set isIndividual
-     *
-     * @param boolean $isIndividual
-     * @return Client
-     */
-    public function setIsIndividual($isIndividual)
-    {
-        $this->isIndividual = $isIndividual;
-    
-        return $this;
-    }
-
-    /**
-     * Get isIndividual
-     *
-     * @return boolean 
-     */
-    public function getIsIndividual()
-    {
-        return $this->isIndividual;
-    }
-
-    /**
      * Set logo
      *
      * @param string $logo
@@ -351,118 +343,95 @@ class Client
     }
 
     /**
-     * Set estimateValue
+     * Set estimate_value
      *
      * @param float $estimateValue
      * @return Client
      */
     public function setEstimateValue($estimateValue)
     {
-        $this->estimateValue = $estimateValue;
+        $this->estimate_value = $estimateValue;
     
         return $this;
     }
 
     /**
-     * Get estimateValue
+     * Get estimate_value
      *
      * @return float 
      */
     public function getEstimateValue()
     {
-        return $this->estimateValue;
+        return $this->estimate_value;
     }
 
     /**
-     * Set estimateNumber
+     * Set estimate_number
      *
      * @param integer $estimateNumber
      * @return Client
      */
     public function setEstimateNumber($estimateNumber)
     {
-        $this->estimateNumber = $estimateNumber;
+        $this->estimate_number = $estimateNumber;
     
         return $this;
     }
 
     /**
-     * Get estimateNumber
+     * Get estimate_number
      *
      * @return integer 
      */
     public function getEstimateNumber()
     {
-        return $this->estimateNumber;
+        return $this->estimate_number;
     }
 
     /**
-     * Set newsOn
+     * Set news_on
      *
      * @param boolean $newsOn
      * @return Client
      */
     public function setNewsOn($newsOn)
     {
-        $this->newsOn = $newsOn;
+        $this->news_on = $newsOn;
     
         return $this;
     }
 
     /**
-     * Get newsOn
+     * Get news_on
      *
      * @return boolean 
      */
     public function getNewsOn()
     {
-        return $this->newsOn;
+        return $this->news_on;
     }
 
     /**
-     * Set isChecked
+     * Set is_checked
      *
      * @param boolean $isChecked
      * @return Client
      */
     public function setIsChecked($isChecked)
     {
-        $this->isChecked = $isChecked;
+        $this->is_checked = $isChecked;
     
         return $this;
     }
 
     /**
-     * Get isChecked
+     * Get is_checked
      *
      * @return boolean 
      */
     public function getIsChecked()
     {
-        return $this->isChecked;
-    }
-
-    /**
-     * Set checkRef
-     *
-     * @param integer $checkRef
-     * @return Client
-     */
-    public function setCheckRef($checkRef)
-    {
-        $this->checkRef = $checkRef;
-    
-        return $this;
-    }
-
-    /**
-     * Get checkRef
-     *
-     * @return integer 
-     */
-    public function getCheckRef()
-    {
-        return $this->checkRef;
+        return $this->is_checked;
     }
 
     /**
@@ -486,5 +455,150 @@ class Client
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set master
+     *
+     * @param \Acme\FindMartialBundle\Entity\Master $master
+     * @return Client
+     */
+    public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
+    {
+        $this->master = $master;
+    
+        return $this;
+    }
+
+    /**
+     * Get master
+     *
+     * @return \Acme\FindMartialBundle\Entity\Master 
+     */
+    public function getMaster()
+    {
+        return $this->master;
+    }
+
+    /**
+     * Add masters
+     *
+     * @param \Acme\FindMartialBundle\Entity\MasterClient $masters
+     * @return Client
+     */
+    public function addMaster(\Acme\FindMartialBundle\Entity\MasterClient $masters)
+    {
+        $this->masters[] = $masters;
+    
+        return $this;
+    }
+
+    /**
+     * Remove masters
+     *
+     * @param \Acme\FindMartialBundle\Entity\MasterClient $masters
+     */
+    public function removeMaster(\Acme\FindMartialBundle\Entity\MasterClient $masters)
+    {
+        $this->masters->removeElement($masters);
+    }
+
+    /**
+     * Get masters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMasters()
+    {
+        return $this->masters;
+    }
+
+    /**
+     * Add clubs
+     *
+     * @param \Acme\FindMartialBundle\Entity\Club $clubs
+     * @return Client
+     */
+    public function addClub(\Acme\FindMartialBundle\Entity\Club $clubs)
+    {
+        $this->clubs[] = $clubs;
+    
+        return $this;
+    }
+
+    /**
+     * Remove clubs
+     *
+     * @param \Acme\FindMartialBundle\Entity\Club $clubs
+     */
+    public function removeClub(\Acme\FindMartialBundle\Entity\Club $clubs)
+    {
+        $this->clubs->removeElement($clubs);
+    }
+
+    /**
+     * Get clubs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getClubs()
+    {
+        return $this->clubs;
+    }
+
+    /**
+     * Add duplicates
+     *
+     * @param \Acme\FindMartialBundle\Entity\Client $duplicates
+     * @return Client
+     */
+    public function addDuplicate(\Acme\FindMartialBundle\Entity\Client $duplicates)
+    {
+        $this->duplicates[] = $duplicates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove duplicates
+     *
+     * @param \Acme\FindMartialBundle\Entity\Client $duplicates
+     */
+    public function removeDuplicate(\Acme\FindMartialBundle\Entity\Client $duplicates)
+    {
+        $this->duplicates->removeElement($duplicates);
+    }
+
+    /**
+     * Get duplicates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDuplicates()
+    {
+        return $this->duplicates;
+    }
+
+    /**
+     * Set check
+     *
+     * @param \Acme\FindMartialBundle\Entity\Client $check
+     * @return Client
+     */
+    public function setCheck(\Acme\FindMartialBundle\Entity\Client $check = null)
+    {
+        $this->check = $check;
+    
+        return $this;
+    }
+
+    /**
+     * Get check
+     *
+     * @return \Acme\FindMartialBundle\Entity\Client 
+     */
+    public function getCheck()
+    {
+        return $this->check;
     }
 }

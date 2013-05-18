@@ -1,7 +1,50 @@
 # Profile
+field:
+    club: Клуб
+    name: Имя
+    family: Фамилия
+    patronym: Отчество
+    fio: ФИО
+    hightlights: Насколько крут
+    description: Описание
+    sex: Пол
+    photo: Фото
+    slave: Принадлежит клубу
+    visible: Видимость
+    experience: Опыт личный
+    trainingexp: Опыт тренера
+    art: Вид единоборств
+    arts: Виды единоборств
+    address: Адрес
+    addresscomment: Комментарий к адресу
+    latitude: latitude
+    longitude: longitude
+    mail: Email
+    phone: Телефон
+    indicpricemin: Max стоимость посещения
+    indicpricemax: Min стоимость посещения
+    agetype: Возрастные категории
+    onetrainingfree: Бесплатное занятие
+    ischecked: Проверено
+    visible: Видимость
+    city: Город
+    servises: Доп услуги
+    master: Тренер
+    masters: Тренера
+    type: Тип
+    agelow: Возраст Min
+    agemax: Возраст Max
+    price: Цена
+    backtolist: назад к списку
+    edit: Редактировать
+    delete: Удалить
+    create: Создать
+    createnew: Новый
+    show: Показать
 profile:
     show:
         getclient: Стать клиентом
+        getmaster: Стать мастером
         name: Имя
         family: Фамилия
         estimateValue: Средняя оценка
@@ -23,3 +66,12 @@ profile:
             logo: Лого
             estimateValue: Средняя оценка
             estimateNumber: Количество оценок
+master:
+    index: Тренера
+club:
+    index: Клубы
+art:
+    index: Искусства
+city:
+    index: Города
+

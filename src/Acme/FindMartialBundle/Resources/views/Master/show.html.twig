@@ -1,0 +1,46 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>Master</h1>
+    <div class="fm_master_show">
+        <p>ID: {{ entity.id }}</p>
+        <p>{{ 'field.name'|trans({}, 'FindMartialBundle') }}: {{ entity.name }}</p>
+        <p>{{ 'field.family'|trans({}, 'FindMartialBundle') }}: {{ entity.family }}</p>
+        <p>{{ 'field.patronym'|trans({}, 'FindMartialBundle') }}: {{ entity.patronym }}</p>
+        <p>{{ 'field.hightlights'|trans({}, 'FindMartialBundle') }}: {{ entity.hightlights }}</p>
+        <p>{{ 'field.description'|trans({}, 'FindMartialBundle') }}: {{ entity.description }}</p>
+        <p>{{ 'field.sex'|trans({}, 'FindMartialBundle') }}: {{ entity.sex }}</p>
+        <p>{{ 'field.photo'|trans({}, 'FindMartialBundle') }}: {{ entity.photo }}</p>
+        <p>{{ 'field.slave'|trans({}, 'FindMartialBundle') }}: {{ entity.slave }}</p>
+        <p>{{ 'field.estimatevalue'|trans({}, 'FindMartialBundle') }}: {{ entity.estimatevalue }}</p>
+        <p>{{ 'field.estimatenumber'|trans({}, 'FindMartialBundle') }}: {{ entity.estimatenumber }}</p>
+        <p>{{ 'field.visible'|trans({}, 'FindMartialBundle') }}: {{ entity.visible }}</p>
+        <p>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}: {{ entity.ischecked }}</p>
+        <p>{{ 'field.experience'|trans({}, 'FindMartialBundle') }}: {{ entity.experiencefull }}</p>
+        <p>{{ 'field.trainingexp'|trans({}, 'FindMartialBundle') }}: {{ entity.trainingexpfull }}</p>
+    </div>
+
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('master') }}">
+                {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('master_edit', { 'id': entity.id }) }}">
+                {{ 'field.edit'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('master_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">{{ 'field.delete'|trans({}, 'FindMartialBundle') }}</button>
+            </form>
+        </li>
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>Club edit</h1>
+
+    <form action="{{ path('club_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit"> {{ 'field.edit'|trans({}, 'FindMartialBundle') }}</button>
+        </p>
+    </form>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('club') }}">
+             {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('club_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit"> {{ 'field.delete'|trans({}, 'FindMartialBundle') }}</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

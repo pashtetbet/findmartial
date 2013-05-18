@@ -1,0 +1,32 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>Art</h1>
+    <div class="fm_master_show">
+        <p>ID: {{ entity.id }}</p>
+        <p>{{ 'field.name'|trans({}, 'FindMartialBundle') }}: {{ entity.name }}</p>
+        <p>{{ 'field.type'|trans({}, 'FindMartialBundle') }}: {{ entity.type }}</p>
+    </div>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('art') }}">
+                {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('art_edit', { 'id': entity.id }) }}">
+                {{ 'field.edit'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+        <li>
+            <form action="{{ path('art_delete', { 'id': entity.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">{{ 'field.delete'|trans({}, 'FindMartialBundle') }}</button>
+            </form>
+        </li>
+    </ul>
+{% endblock %}
