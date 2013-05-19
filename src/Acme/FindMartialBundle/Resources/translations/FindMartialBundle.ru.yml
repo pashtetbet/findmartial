@@ -74,4 +74,6 @@ art:
     index: Искусства
 city:
     index: Города
+addserv:
+    index: Доп. сервисы
 

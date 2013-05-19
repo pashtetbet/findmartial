@@ -19,19 +19,16 @@ class Master
 
     /**
      * @ORM\ManyToMany(targetEntity="Client", inversedBy="masters")
-     * @ORM\JoinTable(name="fm_master_client")
      **/
     protected $clients;
 
     /**
      * @ORM\ManyToMany(targetEntity="Art", inversedBy="masters")
-     * @ORM\JoinTable(name="fm_master_art")
      **/
     protected $arts;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club", inversedBy="master")
-     * @ORM\JoinTable(name="fm_master_club")
+     * @ORM\ManyToMany(targetEntity="Club", inversedBy="masters")
      **/
     protected $clubs;
 
@@ -146,7 +143,6 @@ class Master
     {
       return $this->getName();
     }
-
 
 
     /**

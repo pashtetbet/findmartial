@@ -13,7 +13,7 @@ class Art
 {
 
     /**
-     * @ORM\OneToMany(targetEntity="MasterArt", mappedBy="art")
+     * @ORM\ManyToMany(targetEntity="Master", mappedBy="arts")
      **/
     protected $masters;
   
@@ -103,10 +103,10 @@ class Art
     /**
      * Add masters
      *
-     * @param \Acme\FindMartialBundle\Entity\MasterArt $masters
+     * @param \Acme\FindMartialBundle\Entity\Master $masters
      * @return Art
      */
-    public function addMaster(\Acme\FindMartialBundle\Entity\MasterArt $masters)
+    public function addMaster(\Acme\FindMartialBundle\Entity\Master $masters)
     {
         $this->masters[] = $masters;
 
@@ -116,9 +116,9 @@ class Art
     /**
      * Remove masters
      *
-     * @param \Acme\FindMartialBundle\Entity\MasterArt $masters
+     * @param \Acme\FindMartialBundle\Entity\Master $masters
      */
-    public function removeMaster(\Acme\FindMartialBundle\Entity\MasterArt $masters)
+    public function removeMaster(\Acme\FindMartialBundle\Entity\Master $masters)
     {
         $this->masters->removeElement($masters);
     }

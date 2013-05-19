@@ -1,0 +1,32 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>AddServ list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{ 'field.name'|trans({}, 'FindMartialBundle') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('addserv_edit', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('addserv_new') }}">
+                {{ 'field.createnew'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

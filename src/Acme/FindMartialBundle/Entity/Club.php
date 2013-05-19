@@ -26,12 +26,11 @@ class Club
 
     /**
      * @ORM\ManyToMany(targetEntity="AddServ", inversedBy="clubs")
-     * @ORM\JoinTable(name="fm_club_servise")
      **/
     protected $servises;
 
     /**
-     * @ORM\OneToMany(targetEntity="MasterClub", mappedBy="club")
+     * @ORM\ManyToMany(targetEntity="Master", mappedBy="clubs")
      **/
     protected $masters;
 
@@ -653,10 +652,10 @@ class Club
     /**
      * Add masters
      *
-     * @param \Acme\FindMartialBundle\Entity\MasterClub $masters
+     * @param \Acme\FindMartialBundle\Entity\Master $masters
      * @return Club
      */
-    public function addMaster(\Acme\FindMartialBundle\Entity\MasterClub $masters)
+    public function addMaster(\Acme\FindMartialBundle\Entity\Master $masters)
     {
         $this->masters[] = $masters;
 
@@ -666,9 +665,9 @@ class Club
     /**
      * Remove masters
      *
-     * @param \Acme\FindMartialBundle\Entity\MasterClub $masters
+     * @param \Acme\FindMartialBundle\Entity\Master $masters
      */
-    public function removeMaster(\Acme\FindMartialBundle\Entity\MasterClub $masters)
+    public function removeMaster(\Acme\FindMartialBundle\Entity\Master $masters)
     {
         $this->masters->removeElement($masters);
     }

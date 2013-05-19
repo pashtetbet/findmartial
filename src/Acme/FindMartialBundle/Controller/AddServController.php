@@ -7,20 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Acme\FindMartialBundle\Entity\City;
-use Acme\FindMartialBundle\Form\CityType;
+use Acme\FindMartialBundle\Entity\AddServ;
+use Acme\FindMartialBundle\Form\AddServType;
 
 /**
- * City controller.
+ * AddServ controller.
  *
- * @Route("/city")
+ * @Route("/addserv")
  */
-class CityController extends Controller
+class AddServController extends Controller
 {
     /**
-     * Lists all City entities.
+     * Lists all AddServ entities.
      *
-     * @Route("/", name="city")
+     * @Route("/", name="addserv")
      * @Method("GET")
      * @Template()
      */
@@ -28,7 +28,7 @@ class CityController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AcmeFindMartialBundle:City')->findAll();
+        $entities = $em->getRepository('AcmeFindMartialBundle:AddServ')->findAll();
 
         return array(
             'entities' => $entities,
@@ -36,16 +36,16 @@ class CityController extends Controller
     }
 
     /**
-     * Creates a new City entity.
+     * Creates a new AddServ entity.
      *
-     * @Route("/", name="city_create")
+     * @Route("/", name="addserv_create")
      * @Method("POST")
-     * @Template("AcmeFindMartialBundle:City:new.html.twig")
+     * @Template("AcmeFindMartialBundle:AddServ:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new City();
-        $form = $this->createForm(new CityType(), $entity);
+        $entity  = new AddServ();
+        $form = $this->createForm(new AddServType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -53,7 +53,7 @@ class CityController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('city'));
+            return $this->redirect($this->generateUrl('addserv', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,16 +63,16 @@ class CityController extends Controller
     }
 
     /**
-     * Displays a form to create a new City entity.
+     * Displays a form to create a new AddServ entity.
      *
-     * @Route("/new", name="city_new")
+     * @Route("/new", name="addserv_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new City();
-        $form   = $this->createForm(new CityType(), $entity);
+        $entity = new AddServ();
+        $form   = $this->createForm(new AddServType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -81,9 +81,9 @@ class CityController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing City entity.
+     * Displays a form to edit an existing AddServ entity.
      *
-     * @Route("/{id}/edit", name="city_edit")
+     * @Route("/{id}/edit", name="addserv_edit")
      * @Method("GET")
      * @Template()
      */
@@ -91,13 +91,13 @@ class CityController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AcmeFindMartialBundle:City')->find($id);
+        $entity = $em->getRepository('AcmeFindMartialBundle:AddServ')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find City entity.');
+            throw $this->createNotFoundException('Unable to find AddServ entity.');
         }
 
-        $editForm = $this->createForm(new CityType(), $entity);
+        $editForm = $this->createForm(new AddServType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -108,31 +108,31 @@ class CityController extends Controller
     }
 
     /**
-     * Edits an existing City entity.
+     * Edits an existing AddServ entity.
      *
-     * @Route("/{id}", name="city_update")
+     * @Route("/{id}", name="addserv_update")
      * @Method("PUT")
-     * @Template("AcmeFindMartialBundle:City:edit.html.twig")
+     * @Template("AcmeFindMartialBundle:AddServ:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AcmeFindMartialBundle:City')->find($id);
+        $entity = $em->getRepository('AcmeFindMartialBundle:AddServ')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find City entity.');
+            throw $this->createNotFoundException('Unable to find AddServ entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new CityType(), $entity);
+        $editForm = $this->createForm(new AddServType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('city_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('addserv_edit', array('id' => $id)));
         }
 
         return array(
@@ -143,9 +143,9 @@ class CityController extends Controller
     }
 
     /**
-     * Deletes a City entity.
+     * Deletes a AddServ entity.
      *
-     * @Route("/{id}", name="city_delete")
+     * @Route("/{id}", name="addserv_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -155,21 +155,21 @@ class CityController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AcmeFindMartialBundle:City')->find($id);
+            $entity = $em->getRepository('AcmeFindMartialBundle:AddServ')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find City entity.');
+                throw $this->createNotFoundException('Unable to find AddServ entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('city'));
+        return $this->redirect($this->generateUrl('addserv'));
     }
 
     /**
-     * Creates a form to delete a City entity by id.
+     * Creates a form to delete a AddServ entity by id.
      *
      * @param mixed $id The entity id
      *

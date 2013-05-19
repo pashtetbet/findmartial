@@ -24,7 +24,7 @@ class Client
     protected $master;
 
     /**
-     * @ORM\OneToMany(targetEntity="MasterClient", mappedBy="client")
+     * @ORM\ManyToMany(targetEntity="Master", mappedBy="clients")
      **/
     protected $masters;
 
@@ -484,10 +484,10 @@ class Client
     /**
      * Add masters
      *
-     * @param \Acme\FindMartialBundle\Entity\MasterClient $masters
+     * @param \Acme\FindMartialBundle\Entity\Master $masters
      * @return Client
      */
-    public function addMaster(\Acme\FindMartialBundle\Entity\MasterClient $masters)
+    public function addMaster(\Acme\FindMartialBundle\Entity\Master $masters)
     {
         $this->masters[] = $masters;
 
@@ -497,9 +497,9 @@ class Client
     /**
      * Remove masters
      *
-     * @param \Acme\FindMartialBundle\Entity\MasterClient $masters
+     * @param \Acme\FindMartialBundle\Entity\Master $masters
      */
-    public function removeMaster(\Acme\FindMartialBundle\Entity\MasterClient $masters)
+    public function removeMaster(\Acme\FindMartialBundle\Entity\Master $masters)
     {
         $this->masters->removeElement($masters);
     }

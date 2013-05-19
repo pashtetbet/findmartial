@@ -40,6 +40,7 @@ class MasterClient
 
     }
 
+
     /**
      * Set master_approve
      *
