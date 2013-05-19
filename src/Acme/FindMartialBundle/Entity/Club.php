@@ -31,7 +31,7 @@ class Club
     protected $servises;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MasterClub", mappedBy="club")
+     * @ORM\OneToMany(targetEntity="MasterClub", mappedBy="club")
      **/
     protected $masters;
 
@@ -169,6 +169,7 @@ class Club
         $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
      * Get id
      *
@@ -188,7 +189,7 @@ class Club
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -211,7 +212,7 @@ class Club
     public function setAddress($address)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
@@ -234,7 +235,7 @@ class Club
     public function setAddressComment($addressComment)
     {
         $this->address_comment = $addressComment;
-    
+
         return $this;
     }
 
@@ -257,7 +258,7 @@ class Club
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
-    
+
         return $this;
     }
 
@@ -280,7 +281,7 @@ class Club
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
-    
+
         return $this;
     }
 
@@ -303,7 +304,7 @@ class Club
     public function setMail($mail)
     {
         $this->mail = $mail;
-    
+
         return $this;
     }
 
@@ -326,7 +327,7 @@ class Club
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
@@ -349,7 +350,7 @@ class Club
     public function setIndicPriceMin($indicPriceMin)
     {
         $this->indic_price_min = $indicPriceMin;
-    
+
         return $this;
     }
 
@@ -372,7 +373,7 @@ class Club
     public function setIndicPriceMax($indicPriceMax)
     {
         $this->indic_price_max = $indicPriceMax;
-    
+
         return $this;
     }
 
@@ -395,7 +396,7 @@ class Club
     public function setAgeType($ageType)
     {
         $this->age_type = $ageType;
-    
+
         return $this;
     }
 
@@ -418,7 +419,7 @@ class Club
     public function setSex($sex)
     {
         $this->sex = $sex;
-    
+
         return $this;
     }
 
@@ -441,7 +442,7 @@ class Club
     public function setEstimateValue($estimateValue)
     {
         $this->estimate_value = $estimateValue;
-    
+
         return $this;
     }
 
@@ -464,7 +465,7 @@ class Club
     public function setEstimateNumber($estimateNumber)
     {
         $this->estimate_number = $estimateNumber;
-    
+
         return $this;
     }
 
@@ -487,7 +488,7 @@ class Club
     public function setOneTrainingFree($oneTrainingFree)
     {
         $this->one_training_free = $oneTrainingFree;
-    
+
         return $this;
     }
 
@@ -510,7 +511,7 @@ class Club
     public function setPhoto($photo)
     {
         $this->photo = $photo;
-    
+
         return $this;
     }
 
@@ -533,7 +534,7 @@ class Club
     public function setIsChecked($isChecked)
     {
         $this->is_checked = $isChecked;
-    
+
         return $this;
     }
 
@@ -556,7 +557,7 @@ class Club
     public function setVisible($visible)
     {
         $this->visible = $visible;
-    
+
         return $this;
     }
 
@@ -579,7 +580,7 @@ class Club
     public function setClient(\Acme\FindMartialBundle\Entity\Client $client = null)
     {
         $this->client = $client;
-    
+
         return $this;
     }
 
@@ -602,7 +603,7 @@ class Club
     public function setCity(\Acme\FindMartialBundle\Entity\City $city = null)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
@@ -625,7 +626,7 @@ class Club
     public function addServise(\Acme\FindMartialBundle\Entity\AddServ $servises)
     {
         $this->servises[] = $servises;
-    
+
         return $this;
     }
 
@@ -658,7 +659,7 @@ class Club
     public function addMaster(\Acme\FindMartialBundle\Entity\MasterClub $masters)
     {
         $this->masters[] = $masters;
-    
+
         return $this;
     }
 
@@ -691,7 +692,7 @@ class Club
     public function addTraining(\Acme\FindMartialBundle\Entity\Training $trainings)
     {
         $this->trainings[] = $trainings;
-    
+
         return $this;
     }
 
@@ -724,7 +725,7 @@ class Club
     public function addType(\Acme\FindMartialBundle\Entity\ClubType $types)
     {
         $this->types[] = $types;
-    
+
         return $this;
     }
 
@@ -757,7 +758,7 @@ class Club
     public function addLevel(\Acme\FindMartialBundle\Entity\ClubLevel $levels)
     {
         $this->levels[] = $levels;
-    
+
         return $this;
     }
 
@@ -782,6 +783,39 @@ class Club
     }
 
     /**
+     * Add arts
+     *
+     * @param \Acme\FindMartialBundle\Entity\ClubArt $arts
+     * @return Club
+     */
+    public function addArt(\Acme\FindMartialBundle\Entity\ClubArt $arts)
+    {
+        $this->arts[] = $arts;
+
+        return $this;
+    }
+
+    /**
+     * Remove arts
+     *
+     * @param \Acme\FindMartialBundle\Entity\ClubArt $arts
+     */
+    public function removeArt(\Acme\FindMartialBundle\Entity\ClubArt $arts)
+    {
+        $this->arts->removeElement($arts);
+    }
+
+    /**
+     * Get arts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArts()
+    {
+        return $this->arts;
+    }
+
+    /**
      * Add duplicates
      *
      * @param \Acme\FindMartialBundle\Entity\Club $duplicates
@@ -790,7 +824,7 @@ class Club
     public function addDuplicate(\Acme\FindMartialBundle\Entity\Club $duplicates)
     {
         $this->duplicates[] = $duplicates;
-    
+
         return $this;
     }
 
@@ -823,7 +857,7 @@ class Club
     public function setCheck(\Acme\FindMartialBundle\Entity\Club $check = null)
     {
         $this->check = $check;
-    
+
         return $this;
     }
 
@@ -835,38 +869,5 @@ class Club
     public function getCheck()
     {
         return $this->check;
-    }
-
-    /**
-     * Add arts
-     *
-     * @param \Acme\FindMartialBundle\Entity\ClubArt $arts
-     * @return Club
-     */
-    public function addArt(\Acme\FindMartialBundle\Entity\ClubArt $arts)
-    {
-        $this->arts[] = $arts;
-    
-        return $this;
-    }
-
-    /**
-     * Remove arts
-     *
-     * @param \Acme\FindMartialBundle\Entity\ClubArt $arts
-     */
-    public function removeArt(\Acme\FindMartialBundle\Entity\ClubArt $arts)
-    {
-        $this->arts->removeElement($arts);
-    }
-
-    /**
-     * Get arts
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getArts()
-    {
-        return $this->arts;
     }
 }

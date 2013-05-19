@@ -18,17 +18,20 @@ class Master
     protected $client;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Client", mappedBy="masters")
+     * @ORM\ManyToMany(targetEntity="Client", inversedBy="masters")
+     * @ORM\JoinTable(name="fm_master_client")
      **/
     protected $clients;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Art", mappedBy="masters")
+     * @ORM\ManyToMany(targetEntity="Art", inversedBy="masters")
+     * @ORM\JoinTable(name="fm_master_art")
      **/
     protected $arts;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club", mappedBy="masters")
+     * @ORM\ManyToMany(targetEntity="Club", inversedBy="master")
+     * @ORM\JoinTable(name="fm_master_club")
      **/
     protected $clubs;
 
@@ -132,14 +135,18 @@ class Master
 
     public function __construct()
     {
-        //parent::__construct();
-        // your own logic
         $this->clients  = new \Doctrine\Common\Collections\ArrayCollection();
         $this->arts     = new \Doctrine\Common\Collections\ArrayCollection();
         $this->clubs     = new \Doctrine\Common\Collections\ArrayCollection();
         $this->trainings = new \Doctrine\Common\Collections\ArrayCollection();
         $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    function __toString()
+    {
+      return $this->getName();
+    }
+
 
 
     /**
@@ -161,7 +168,7 @@ class Master
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -184,7 +191,7 @@ class Master
     public function setFamily($family)
     {
         $this->family = $family;
-    
+
         return $this;
     }
 
@@ -207,7 +214,7 @@ class Master
     public function setPatronym($patronym)
     {
         $this->patronym = $patronym;
-    
+
         return $this;
     }
 
@@ -230,7 +237,7 @@ class Master
     public function setHightlights($hightlights)
     {
         $this->hightlights = $hightlights;
-    
+
         return $this;
     }
 
@@ -253,7 +260,7 @@ class Master
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
@@ -276,7 +283,7 @@ class Master
     public function setSex($sex)
     {
         $this->sex = $sex;
-    
+
         return $this;
     }
 
@@ -299,7 +306,7 @@ class Master
     public function setPhoto($photo)
     {
         $this->photo = $photo;
-    
+
         return $this;
     }
 
@@ -322,7 +329,7 @@ class Master
     public function setSlave($slave)
     {
         $this->slave = $slave;
-    
+
         return $this;
     }
 
@@ -345,7 +352,7 @@ class Master
     public function setEstimateValue($estimateValue)
     {
         $this->estimate_value = $estimateValue;
-    
+
         return $this;
     }
 
@@ -368,7 +375,7 @@ class Master
     public function setEstimateNumber($estimateNumber)
     {
         $this->estimate_number = $estimateNumber;
-    
+
         return $this;
     }
 
@@ -391,7 +398,7 @@ class Master
     public function setVisible($visible)
     {
         $this->visible = $visible;
-    
+
         return $this;
     }
 
@@ -414,7 +421,7 @@ class Master
     public function setIsChecked($isChecked)
     {
         $this->is_checked = $isChecked;
-    
+
         return $this;
     }
 
@@ -437,7 +444,7 @@ class Master
     public function setExperienceFull($experienceFull)
     {
         $this->experience_full = $experienceFull;
-    
+
         return $this;
     }
 
@@ -460,7 +467,7 @@ class Master
     public function setTrainingExpFull($trainingExpFull)
     {
         $this->training_exp_full = $trainingExpFull;
-    
+
         return $this;
     }
 
@@ -483,7 +490,7 @@ class Master
     public function setClient(\Acme\FindMartialBundle\Entity\Client $client = null)
     {
         $this->client = $client;
-    
+
         return $this;
     }
 
@@ -506,7 +513,7 @@ class Master
     public function addClient(\Acme\FindMartialBundle\Entity\Client $clients)
     {
         $this->clients[] = $clients;
-    
+
         return $this;
     }
 
@@ -539,7 +546,7 @@ class Master
     public function addArt(\Acme\FindMartialBundle\Entity\Art $arts)
     {
         $this->arts[] = $arts;
-    
+
         return $this;
     }
 
@@ -572,7 +579,7 @@ class Master
     public function addClub(\Acme\FindMartialBundle\Entity\Club $clubs)
     {
         $this->clubs[] = $clubs;
-    
+
         return $this;
     }
 
@@ -605,7 +612,7 @@ class Master
     public function addTraining(\Acme\FindMartialBundle\Entity\Training $trainings)
     {
         $this->trainings[] = $trainings;
-    
+
         return $this;
     }
 
@@ -638,7 +645,7 @@ class Master
     public function addDuplicate(\Acme\FindMartialBundle\Entity\Master $duplicates)
     {
         $this->duplicates[] = $duplicates;
-    
+
         return $this;
     }
 
@@ -671,7 +678,7 @@ class Master
     public function setCheck(\Acme\FindMartialBundle\Entity\Master $check = null)
     {
         $this->check = $check;
-    
+
         return $this;
     }
 

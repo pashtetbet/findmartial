@@ -24,7 +24,7 @@ class Client
     protected $master;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MasterClient", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="MasterClient", mappedBy="client")
      **/
     protected $masters;
 
@@ -125,6 +125,7 @@ class Client
         $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+
     /**
      * Get id
      *
@@ -144,7 +145,7 @@ class Client
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -167,7 +168,7 @@ class Client
     public function setInn($inn)
     {
         $this->inn = $inn;
-    
+
         return $this;
     }
 
@@ -190,7 +191,7 @@ class Client
     public function setWebsite($website)
     {
         $this->website = $website;
-    
+
         return $this;
     }
 
@@ -213,7 +214,7 @@ class Client
     public function setMail($mail)
     {
         $this->mail = $mail;
-    
+
         return $this;
     }
 
@@ -236,7 +237,7 @@ class Client
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
@@ -259,7 +260,7 @@ class Client
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
@@ -282,7 +283,7 @@ class Client
     public function setMoney($money)
     {
         $this->money = $money;
-    
+
         return $this;
     }
 
@@ -305,7 +306,7 @@ class Client
     public function setSocial($social)
     {
         $this->social = $social;
-    
+
         return $this;
     }
 
@@ -328,7 +329,7 @@ class Client
     public function setLogo($logo)
     {
         $this->logo = $logo;
-    
+
         return $this;
     }
 
@@ -351,7 +352,7 @@ class Client
     public function setEstimateValue($estimateValue)
     {
         $this->estimate_value = $estimateValue;
-    
+
         return $this;
     }
 
@@ -374,7 +375,7 @@ class Client
     public function setEstimateNumber($estimateNumber)
     {
         $this->estimate_number = $estimateNumber;
-    
+
         return $this;
     }
 
@@ -397,7 +398,7 @@ class Client
     public function setNewsOn($newsOn)
     {
         $this->news_on = $newsOn;
-    
+
         return $this;
     }
 
@@ -420,7 +421,7 @@ class Client
     public function setIsChecked($isChecked)
     {
         $this->is_checked = $isChecked;
-    
+
         return $this;
     }
 
@@ -443,7 +444,7 @@ class Client
     public function setUser(\Acme\FindMartialBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -466,7 +467,7 @@ class Client
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
     {
         $this->master = $master;
-    
+
         return $this;
     }
 
@@ -489,7 +490,7 @@ class Client
     public function addMaster(\Acme\FindMartialBundle\Entity\MasterClient $masters)
     {
         $this->masters[] = $masters;
-    
+
         return $this;
     }
 
@@ -522,7 +523,7 @@ class Client
     public function addClub(\Acme\FindMartialBundle\Entity\Club $clubs)
     {
         $this->clubs[] = $clubs;
-    
+
         return $this;
     }
 
@@ -555,7 +556,7 @@ class Client
     public function addDuplicate(\Acme\FindMartialBundle\Entity\Client $duplicates)
     {
         $this->duplicates[] = $duplicates;
-    
+
         return $this;
     }
 
@@ -588,7 +589,7 @@ class Client
     public function setCheck(\Acme\FindMartialBundle\Entity\Client $check = null)
     {
         $this->check = $check;
-    
+
         return $this;
     }
 

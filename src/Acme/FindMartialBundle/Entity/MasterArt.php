@@ -64,7 +64,7 @@ class MasterArt
     public function setExpirience($expirience)
     {
         $this->expirience = $expirience;
-    
+
         return $this;
     }
 
@@ -87,7 +87,7 @@ class MasterArt
     public function setTrainingExp($trainingExp)
     {
         $this->training_exp = $trainingExp;
-    
+
         return $this;
     }
 
@@ -110,7 +110,7 @@ class MasterArt
     public function setIsChecked($isChecked)
     {
         $this->is_checked = $isChecked;
-    
+
         return $this;
     }
 
@@ -133,7 +133,7 @@ class MasterArt
     public function setMasterApprove($masterApprove)
     {
         $this->master_approve = $masterApprove;
-    
+
         return $this;
     }
 
@@ -156,7 +156,7 @@ class MasterArt
     public function setClubApprove($clubApprove)
     {
         $this->club_approve = $clubApprove;
-    
+
         return $this;
     }
 
@@ -179,7 +179,7 @@ class MasterArt
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master)
     {
         $this->master = $master;
-    
+
         return $this;
     }
 
@@ -202,7 +202,7 @@ class MasterArt
     public function setArt(\Acme\FindMartialBundle\Entity\Art $art)
     {
         $this->art = $art;
-    
+
         return $this;
     }
 

@@ -13,7 +13,7 @@ class Art
 {
 
     /**
-     * @ORM\ManyToMany(targetEntity="MasterArt", mappedBy="art")
+     * @ORM\OneToMany(targetEntity="MasterArt", mappedBy="art")
      **/
     protected $masters;
   
@@ -39,6 +39,11 @@ class Art
 		$this->masters     = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    function __toString()
+    {
+      return $this->getName();
+    }
+
     /**
      * Get id
      *
@@ -58,7 +63,7 @@ class Art
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -81,7 +86,7 @@ class Art
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
@@ -104,7 +109,7 @@ class Art
     public function addMaster(\Acme\FindMartialBundle\Entity\MasterArt $masters)
     {
         $this->masters[] = $masters;
-    
+
         return $this;
     }
 

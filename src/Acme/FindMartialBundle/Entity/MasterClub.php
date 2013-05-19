@@ -49,7 +49,7 @@ class MasterClub
     public function setMasterApprove($masterApprove)
     {
         $this->master_approve = $masterApprove;
-    
+
         return $this;
     }
 
@@ -72,7 +72,7 @@ class MasterClub
     public function setClubApprove($clubApprove)
     {
         $this->club_approve = $clubApprove;
-    
+
         return $this;
     }
 
@@ -95,7 +95,7 @@ class MasterClub
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master)
     {
         $this->master = $master;
-    
+
         return $this;
     }
 
@@ -118,7 +118,7 @@ class MasterClub
     public function setClub(\Acme\FindMartialBundle\Entity\Club $club)
     {
         $this->club = $club;
-    
+
         return $this;
     }
 

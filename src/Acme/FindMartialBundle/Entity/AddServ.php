@@ -33,7 +33,11 @@ class AddServ
     {
 		$this->clubs     = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
+    
+    function __toString()
+    {
+      return $this->getName();
+    }
 
     /**
      * Get id

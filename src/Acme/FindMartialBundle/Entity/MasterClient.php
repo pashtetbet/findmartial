@@ -49,7 +49,7 @@ class MasterClient
     public function setMasterApprove($masterApprove)
     {
         $this->master_approve = $masterApprove;
-    
+
         return $this;
     }
 
@@ -72,7 +72,7 @@ class MasterClient
     public function setClientApprove($clientApprove)
     {
         $this->client_approve = $clientApprove;
-    
+
         return $this;
     }
 
@@ -95,7 +95,7 @@ class MasterClient
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master)
     {
         $this->master = $master;
-    
+
         return $this;
     }
 
@@ -118,7 +118,7 @@ class MasterClient
     public function setClient(\Acme\FindMartialBundle\Entity\Client $client)
     {
         $this->client = $client;
-    
+
         return $this;
     }
 
