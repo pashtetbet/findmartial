@@ -13,13 +13,13 @@ class MasterClub
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master")
+     * @ORM\ManyToOne(targetEntity="Master", inversedBy="clubs")
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="masters")
      */
     protected $club;
 
@@ -39,6 +39,7 @@ class MasterClub
 		$this->club 	= $club;
 
     }
+
 
     /**
      * Set master_approve

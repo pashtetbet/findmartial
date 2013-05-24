@@ -22,7 +22,7 @@ class MasterType extends AbstractType
             ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle'))
             ->add('experience_full', null ,array('label' => 'field.experience', 'translation_domain' => 'FindMartialBundle'))
             ->add('training_exp_full', null ,array('label' => 'field.trainingexp', 'translation_domain' => 'FindMartialBundle'))
-            ->add('arts', null ,array('label' => 'field.arts', 'translation_domain' => 'FindMartialBundle'))
+            ->add('arts', null ,array('label' => 'field.arts', 'translation_domain' => 'FindMartialBundle', 'required' => false))
         ;
     }
 

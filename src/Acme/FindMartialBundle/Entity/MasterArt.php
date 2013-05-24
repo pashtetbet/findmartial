@@ -13,13 +13,13 @@ class MasterArt
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master")
+     * @ORM\ManyToOne(targetEntity="Master", inversedBy="arts")
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Art")
+     * @ORM\ManyToOne(targetEntity="Art", inversedBy="masters")
      */
     protected $art;
 
@@ -54,6 +54,7 @@ class MasterArt
 		$this->art 	= $art;
 
     }
+
 
     /**
      * Set expirience

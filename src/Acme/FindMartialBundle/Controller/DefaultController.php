@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Acme\FindMartialBundle\Entity\Master;
+use Acme\FindMartialBundle\Entity\Client;
+use Acme\FindMartialBundle\Form\MasterType;
+use Acme\FindMartialBundle\Form\ClientType;
 
 class DefaultController extends Controller
 {
@@ -22,29 +26,126 @@ class DefaultController extends Controller
     }
  
      /**
-     * @Route("/master_create", name="master_create")
-     * @Method("GET")
-     * @Template()
+     * @Route("/regmaster_create", name="reg_master_create")
+     * @Method("POST")
+     * @Template("AcmeFindMartialBundle:Default:regMaster.html.twig")
      */
-    public function createMasterAction()
+    public function createMasterAction(Request $request)
     {
-    	return $this->render('AcmeFindMartialBundle:Default:actionSuccess.html.twig');
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if($user->getClient() !== null && ($entityMaster=$user->getClient()->getMaster()) !== null)
+            return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
+
+        $entityMaster = new Master();
+        $form = $this->createForm(new MasterType(), $entityMaster);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entityMaster);
+            $entityClient  = new Client();
+            $entityClient->setMaster($entityMaster);
+            $entityClient->setName($entityMaster->getName());
+            $em->persist($entityClient);
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $user->setClient($entityClient);
+            $user->setRoles(array('ROLE_MASTER'));
+            $em->flush();
+            return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
+        }
+
+        return array(
+            'entity' => $entityMaster,
+            'form'   => $form->createView(),
+        );
+
+    	//return $this->render('AcmeFindMartialBundle:Default:actionSuccess.html.twig');
     	//$user = $this->container->get('security.context')->getToken()->getUser();
     	//$user->addRole('ROLE_MASTER');
         //return $this->render('AcmeFindMartialBundle:Default:index.html.twig');
     }
 
-     /**
-     * @Route("/client_create", name="client_create")
+    /**
+     * Displays a form to create a new Master entity.
+     *
+     * @Route("/regmaster", name="reg_master")
      * @Method("GET")
-     * @Template()
+     * @Template("AcmeFindMartialBundle:Default:regMaster.html.twig")
      */
-    public function createClientAction()
+    public function newMasterAction()
     {
-        return $this->render('AcmeFindMartialBundle:Default:actionSuccess.html.twig');
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if($user->getClient() !== null && ($entityMaster=$user->getClient()->getMaster()) !== null)
+            return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
+
+        $entityMaster = new Master();
+        $form   = $this->createForm(new MasterType(), $entityMaster);
+
+        return array(
+            'entity' => $entityMaster,
+            'form'   => $form->createView(),
+        );
+    }
+
+     /**
+     * @Route("/regclient_create", name="reg_client_create")
+     * @Method("POST")
+     * @Template("AcmeFindMartialBundle:Default:regClient.html.twig")
+     */
+    public function createClientAction(Request $request)
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if($user->getClient() !== null)
+            return $this->redirect($this->generateUrl('client_show', array('id' => $user->getClient()->getId())));
+
+        $entityClient  = new Client();
+        $form = $this->createForm(new ClientType(), $entityClient);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entityClient);
+            $user->setClient($entityClient);
+            $user->setRoles(array('ROLE_CLIENT'));
+            $em->flush();
+            return $this->redirect($this->generateUrl('client_show', array('id' => $entityClient->getId())));
+        }
+
+        return array(
+            'entity' => $entityClient,
+            'form'   => $form->createView(),
+        );
+
+        //return $this->render('AcmeFindMartialBundle:Default:actionSuccess.html.twig');
     	//$user = $this->container->get('security.context')->getToken()->getUser();
     	//$user->addRole('ROLE_CLIENT');
         //return $this->render('AcmeFindMartialBundle:Default:index.html.twig');
+    }
+
+    /**
+     * Displays a form to create a new Master entity.
+     *
+     * @Route("/regclient", name="reg_client")
+     * @Method("GET")
+     * @Template("AcmeFindMartialBundle:Default:regClient.html.twig")
+     */
+    public function newClientAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        if($user->getClient() !== null)
+            return $this->redirect($this->generateUrl('client_show', array('id' => $user->getClient()->getId())));
+
+        $entityClient  = new Client();
+        $form   = $this->createForm(new ClientType(), $entityClient);
+
+        return array(
+            'entity' => $entityClient,
+            'form'   => $form->createView(),
+        );
     }
 
 }

@@ -3,19 +3,41 @@
 {% block title "FindMartial" %}
 
 {% block content %}
-	<div>
-	    <p>{{ 'profile.client.show.name'|trans({}, 'FindMartialBundle') }}: {{ client.name }}</p>
-	    <p>{{ 'profile.client.show.inn'|trans({}, 'FindMartialBundle') }}: {{ client.inn }}</p>
-	    <p>{{ 'profile.client.show.website'|trans({}, 'FindMartialBundle') }}: {{ client.website }}</p>
-		<p>{{ 'profile.client.show.mail'|trans({}, 'FindMartialBundle') }}: {{ client.mail }}</p>
-		<p>{{ 'profile.client.show.phone'|trans({}, 'FindMartialBundle') }}: {{ client.phone }}</p>
-		<p>{{ 'profile.client.show.status'|trans({}, 'FindMartialBundle') }}: {{ client.status }}</p>		
-		<p>{{ 'profile.client.show.money'|trans({}, 'FindMartialBundle') }}: {{ client.money }}</p>
-		<p>{{ 'profile.client.show.social'|trans({}, 'FindMartialBundle') }}: {{ client.social }}</p>
-		<p>{{ 'profile.client.show.isIndividual'|trans({}, 'FindMartialBundle') }}: {{ client.isIndividual }}</p>
-		<p>{{ 'profile.client.show.logo'|trans({}, 'FindMartialBundle') }}: {{ client.logo }}</p>
-		<p>{{ 'profile.client.show.estimateValue'|trans({}, 'FindMartialBundle') }}: {{ client.estimateValue }}</p>
-		<p>{{ 'profile.client.show.estimateNumber'|trans({}, 'FindMartialBundle') }}: {{ client.estimateNumber }}</p>
-	</div>
-{% endblock %}
+    <h1>Client</h1>
+    <div class="fm_master_show">
+        <p>ID: {{ entity.id }}</p>
+        <p>{{ 'field.name'|trans({}, 'FindMartialBundle') }}: {{ entity.name }}</p>
+        <p>{{ 'field.inn'|trans({}, 'FindMartialBundle') }}: {{ entity.inn }}</p>
+        <p>{{ 'field.website'|trans({}, 'FindMartialBundle') }}: {{ entity.website }}</p>
+        <p>{{ 'field.mail'|trans({}, 'FindMartialBundle') }}: {{ entity.mail }}</p>
+        <p>{{ 'field.phone'|trans({}, 'FindMartialBundle') }}: {{ entity.phone }}</p>
+        <p>{{ 'field.status'|trans({}, 'FindMartialBundle') }}: {{ entity.status }}</p>
+        <p>{{ 'field.money'|trans({}, 'FindMartialBundle') }}: {{ entity.money }}</p>
+        <p>{{ 'field.social'|trans({}, 'FindMartialBundle') }}: {{ entity.social }}</p>
+        <p>{{ 'field.logo'|trans({}, 'FindMartialBundle') }}: {{ entity.logo }}</p>
+        <p>{{ 'field.estimatevalue'|trans({}, 'FindMartialBundle') }}: {{ entity.estimatevalue }}</p>
+        <p>{{ 'field.estimatenumber'|trans({}, 'FindMartialBundle') }}: {{ entity.estimatenumber }}</p>
+        <p>{{ 'field.newson'|trans({}, 'FindMartialBundle') }}: {{ entity.newson }}</p>
+        <p>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}: {{ entity.ischecked }}</p>
+    </div>
 
+    <ul class="record_actions">
+    <li>
+        <a href="{{ path('client') }}">
+            {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('client_edit', { 'id': entity.id }) }}">
+            {{ 'field.edit'|trans({}, 'FindMartialBundle') }}
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('client_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">{{ 'field.delete'|trans({}, 'FindMartialBundle') }}</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

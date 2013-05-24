@@ -26,6 +26,7 @@ class Club
 
     /**
      * @ORM\ManyToMany(targetEntity="AddServ", inversedBy="clubs")
+     * @ORM\JoinTable(name="fm_club_addserv")
      **/
     protected $servises;
 

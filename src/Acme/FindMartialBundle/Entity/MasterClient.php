@@ -13,13 +13,13 @@ class MasterClient
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master")
+     * @ORM\ManyToOne(targetEntity="Master", inversedBy="clients")
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="masters")
      */
     protected $client;
 
@@ -37,7 +37,6 @@ class MasterClient
     {
 		$this->master 	= $master;
 		$this->client 	= $client;
-
     }
 
 

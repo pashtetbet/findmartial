@@ -21,6 +21,7 @@ field:
     longitude: longitude
     mail: Email
     phone: Телефон
+    indicprice: Стоимость посещения
     indicpricemin: Max стоимость посещения
     indicpricemax: Min стоимость посещения
     agetype: Возрастные категории
@@ -41,6 +42,16 @@ field:
     create: Создать
     createnew: Новый
     show: Показать
+    newson: включить новости
+    inn: ИНН
+    website: Website
+    status: Статус
+    money: Остаток средств
+    social: Тип
+    isindividual: Индивидуальный тренер
+    logo: Лого
+    estimatevalue: Средняя оценка
+    estimatenumber: Количество оценок
 profile:
     show:
         getclient: Стать клиентом
@@ -52,22 +63,11 @@ profile:
         commentsNumber: Количество комментариев
         about: О себе
         avatar: Аватар
-    client:
-        show:
-            name: Имя
-            inn: ИНН
-            website: Website
-            mail: Email
-            phone: Телефон
-            status: Статус
-            money: Остаток средств
-            social: Тип
-            isIndividual: Индивидуальный тренер
-            logo: Лого
-            estimateValue: Средняя оценка
-            estimateNumber: Количество оценок
+        urclient: Вы зарегистрированы как обычный клиент
+        urmaster: Вы зарегистрированы как мастер
 master:
     index: Тренера
+    register: Регистрация мастера
 club:
     index: Клубы
 art:
@@ -76,4 +76,7 @@ city:
     index: Города
 addserv:
     index: Доп. сервисы
+client:
+    index: Клиенты
+    register: Регистрация клиента
 

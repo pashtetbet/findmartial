@@ -125,7 +125,6 @@ class Client
         $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
      * Get id
      *

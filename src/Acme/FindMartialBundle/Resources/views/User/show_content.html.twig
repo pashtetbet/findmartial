@@ -1,7 +1,22 @@
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
-    <p>{{ 'profile.show.name'|trans({}, 'FindMartialBundle') }}: {{ user.name }}</p>
+
+		{% if is_granted('ROLE_MASTER') %}
+
+		<p><strong>{{ 'profile.show.urmaster'|trans({}, 'FindMartialBundle') }}</strong></p>
+
+		{%elseif is_granted('ROLE_CLIENT') %}
+
+		<p><strong>{{ 'profile.show.urclient'|trans({}, 'FindMartialBundle') }}</strong></p>
+
+		{%else %}
+			<p><a href="{{ path('reg_client') }}">{{ 'profile.show.getclient'|trans({}, 'FindMartialBundle') }}</a></p>
+			<p><a href="{{ path('reg_master') }}">{{ 'profile.show.getmaster'|trans({}, 'FindMartialBundle') }}</a></p>
+		{% endif %}
+
+
+		<p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+		<p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+		<p>{{ 'profile.show.name'|trans({}, 'FindMartialBundle') }}: {{ user.name }}</p>
 		<p>{{ 'profile.show.family'|trans({}, 'FindMartialBundle') }}: {{ user.family }}</p>
 		<p>{{ 'profile.show.estimateValue'|trans({}, 'FindMartialBundle') }}: {{ user.estimateValue }}</p>
 		<p>{{ 'profile.show.estimateCount'|trans({}, 'FindMartialBundle') }}: {{ user.estimateCount }}</p>
@@ -9,7 +24,4 @@
 		<p>{{ 'profile.show.about'|trans({}, 'FindMartialBundle') }}: {{ user.about }}</p>
 		<p>{{ 'profile.show.avatar'|trans({}, 'FindMartialBundle') }}: {{ user.avatar }}</p>
 		
-		
-		<a href="{{ path('client_create') }}">{{ 'profile.show.getclient'|trans({}, 'FindMartialBundle') }}</a>
-		<a href="{{ path('master_create') }}">{{ 'profile.show.getmaster'|trans({}, 'FindMartialBundle') }}</a>
 </div>

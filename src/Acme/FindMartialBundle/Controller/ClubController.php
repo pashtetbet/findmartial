@@ -4,11 +4,15 @@ namespace Acme\FindMartialBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Acme\FindMartialBundle\Entity\Club;
 use Acme\FindMartialBundle\Form\ClubType;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * Club controller.
@@ -52,6 +56,20 @@ class ClubController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            // creating the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($entity);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // retrieving the security identity of the currently logged-in user
+            $securityContext = $this->get('security.context');
+            $user = $securityContext->getToken()->getUser();
+            $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+            // grant owner access
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
 
             return $this->redirect($this->generateUrl('club_show', array('id' => $entity->getId())));
         }
@@ -120,6 +138,13 @@ class ClubController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Club entity.');
+        }
+
+        $securityContext = $this->get('security.context');
+        
+        // check for edit access
+        if (false === $securityContext->isGranted('EDIT', $entity)) {
+            throw new AccessDeniedException();
         }
 
         $editForm = $this->createForm(new ClubType(), $entity);
