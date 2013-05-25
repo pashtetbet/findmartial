@@ -4,6 +4,7 @@
 /app/logs/*
 /build/
 /vendor/
+/backup/
 /bin/
 /composer.phar
 /app/config/parameters.yml

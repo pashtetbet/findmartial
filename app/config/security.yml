@@ -38,16 +38,16 @@ security:
             anonymous:    true
 
     access_control:
+        - { path: ^/$,                          role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/login$,     role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register,   role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting,  role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        # почему профайл обработывается несмотря на то что эта строка закомментирована?
-        #- { path: ^/profile,                   role: [ROLE_USER, ROLE_CLIENT, ROLE_MASTER] }
-
-
-
+        - { path: ^/profile,                    role: ROLE_USER }
+        - { path: ^/regclient,                  role: ROLE_USER }
+        - { path: ^/regmaster,                  role: ROLE_USER }
+        - { path: ^/regclient_create,           role: ROLE_USER }
+        - { path: ^/regmaster_create,           role: ROLE_USER }
 
         - { path: ^/master/new,                 role: [ROLE_CLIENT, ROLE_MASTER] }
         - { path: '^/master/([0-9]*)/edit$',    role: [ROLE_CLIENT, ROLE_MASTER] }
@@ -60,9 +60,6 @@ security:
         - { path: ^/client,                     role: ROLE_ADMIN }
         - { path: ^/city,                       role: ROLE_ADMIN }
 
-        #- { path: ^/master/new, 				role: [ROLE_CLIENT, ROLE_MASTER] }
-        #- { path: ^/master/delete, 			role: [ROLE_CLIENT, ROLE_MASTER] }
-        #- { path: ^/master/edit, 				role: [ROLE_CLIENT, ROLE_MASTER] }
         #- { path: ^/master_client/assign,		role: [ROLE_CLIENT, ROLE_MASTER] }
         #- { path: ^/master_client/resign,		role: [ROLE_CLIENT, ROLE_MASTER] }
         #- { path: ^/master_client/approve, 	role: [ROLE_CLIENT, ROLE_MASTER] }
@@ -75,10 +72,12 @@ security:
         - { path: ^/master/$,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/master/([0-9]*)$',         role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/club/$,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: '^/club/([0-9]*)$',       role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/club/([0-9]*)$',           role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/art/$,                      role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: '^/art/([0-9]*)$',        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/art/([0-9]*)$',            role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/addserv/$,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: '^/addserv/([0-9]*)$',    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/addserv/([0-9]*)$',        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/client/$,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/client/([0-9]*)$',         role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/, role: ROLE_ADMIN }
+        - { path: ^/,                           role: ROLE_ADMIN }
