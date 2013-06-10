@@ -1,22 +1,5 @@
 {% form_theme form _self %}
 
-
-{% block collection_widget %}
-{% spaceless %}
-    {% if prototype is defined %}
-        {% set attr = attr|merge({'data-prototype': form_row(prototype) }) %}
-    {% endif %}
-    {{ block('form_widget') }}
-{% endspaceless %}
-{% endblock collection_widget %}
-
-{% block _acme_findmartialbundle_mastertype_masterArts_1_art_widget %}
-    <div class="text_widget">
-        {{ block('form_widget_simple') }}
-    </div>
-{% endblock %}
-
-
 <script language="JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 
 <form class="ajax-form_" action="{{ entity.id  ? path('master_update', { 'id': entity.id }) : path('master_create') }}" method="post" {{ form_enctype(form) }}>
