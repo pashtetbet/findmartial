@@ -11,12 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Art
 {
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Master", mappedBy="arts")
+ 
+     /**
+     * @ORM\OneToMany(targetEntity="MasterArt", mappedBy="art", cascade={"persist", "remove"})
      **/
-    protected $masters;
-  
+    protected $masterArts;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -34,16 +34,10 @@ class Art
     */
     protected $type;
 
-    public function __construct()
-    {
-		$this->masters     = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     function __toString()
     {
       return $this->getName();
     }
-
 
     /**
      * Get id
@@ -101,36 +95,44 @@ class Art
         return $this->type;
     }
 
+
+    public function __construct()
+    {
+        $this->masterArts     = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
-     * Add masters
+     * Add masterArts
      *
-     * @param \Acme\FindMartialBundle\Entity\Master $masters
+     * @param \Acme\FindMartialBundle\Entity\MasterArt $masterArts
      * @return Art
      */
-    public function addMaster(\Acme\FindMartialBundle\Entity\Master $masters)
+    public function addMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
-        $this->masters[] = $masters;
+        $masterArts->setArt($this);
+
+        $this->masterArts[] = $masterArts;
 
         return $this;
     }
 
     /**
-     * Remove masters
+     * Remove masterArts
      *
-     * @param \Acme\FindMartialBundle\Entity\Master $masters
+     * @param \Acme\FindMartialBundle\Entity\MasterArt $masterArts
      */
-    public function removeMaster(\Acme\FindMartialBundle\Entity\Master $masters)
+    public function removeMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
-        $this->masters->removeElement($masters);
+        $this->masterArts->removeElement($masterArts);
     }
 
     /**
-     * Get masters
+     * Get masterArts
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getMasters()
+    public function getMasterArts()
     {
-        return $this->masters;
+        return $this->masterArts;
     }
 }

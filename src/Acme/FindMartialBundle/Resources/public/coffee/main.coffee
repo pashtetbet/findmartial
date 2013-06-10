@@ -1,0 +1,1 @@
+new App.AjaxForm.Default '.ajax-form'

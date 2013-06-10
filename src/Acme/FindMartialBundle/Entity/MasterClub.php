@@ -13,13 +13,13 @@ class MasterClub
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master", inversedBy="clubs")
+     * @ORM\ManyToOne(targetEntity="Master")
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Club", inversedBy="masters")
+     * @ORM\ManyToOne(targetEntity="Club")
      */
     protected $club;
 
@@ -39,6 +39,7 @@ class MasterClub
 		$this->club 	= $club;
 
     }
+
 
 
     /**

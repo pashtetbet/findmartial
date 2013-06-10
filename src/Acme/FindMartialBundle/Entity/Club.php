@@ -160,8 +160,8 @@ class Club
 
     public function __construct()
     {
-        $this->servises = new \Doctrine\Common\Collections\ArrayCollection();
         $this->masters = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->servises = new \Doctrine\Common\Collections\ArrayCollection();
         $this->trainings = new \Doctrine\Common\Collections\ArrayCollection();
         $this->types = new \Doctrine\Common\Collections\ArrayCollection();
         $this->levels = new \Doctrine\Common\Collections\ArrayCollection();

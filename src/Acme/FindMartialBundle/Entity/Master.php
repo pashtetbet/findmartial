@@ -18,20 +18,12 @@ class Master
     protected $client;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Client", inversedBy="masters")
-     * @ORM\JoinTable(name="fm_master_client")
+     * @ORM\OneToMany(targetEntity="MasterArt", mappedBy="master", cascade={"persist", "remove"})
      **/
-    protected $clients;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Art", inversedBy="masters")
-     * @ORM\JoinTable(name="fm_master_art")
-     **/
-    protected $arts;
+    protected $masterArts;
 
     /**
      * @ORM\ManyToMany(targetEntity="Club", inversedBy="masters")
-     * @ORM\JoinTable(name="fm_master_club")
      **/
     protected $clubs;
 
@@ -53,8 +45,10 @@ class Master
   
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="bigint", nullable=true)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Acme\FindMartialBundle\Extension\IdGenerator")
      */
     protected $id;
     
@@ -135,17 +129,18 @@ class Master
 
     public function __construct()
     {
-        $this->clients  = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->arts     = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->clubs     = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->trainings = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->clients        = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->masterArts     = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->clubs          = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trainings      = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->duplicates     = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     function __toString()
     {
-      return $this->getName();
+        return $this->getName();
     }
+
 
     /**
      * Get id
@@ -536,36 +531,38 @@ class Master
     }
 
     /**
-     * Add arts
+     * Add masterArts
      *
-     * @param \Acme\FindMartialBundle\Entity\Art $arts
+     * @param \Acme\FindMartialBundle\Entity\MasterArt $masterArts
      * @return Master
      */
-    public function addArt(\Acme\FindMartialBundle\Entity\Art $arts)
+    public function addMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
-        $this->arts[] = $arts;
+        $masterArts->setMaster($this);
+
+        $this->masterArts[] = $masterArts;
 
         return $this;
     }
 
     /**
-     * Remove arts
+     * Remove masterArts
      *
-     * @param \Acme\FindMartialBundle\Entity\Art $arts
+     * @param \Acme\FindMartialBundle\Entity\MasterArt $masterArts
      */
-    public function removeArt(\Acme\FindMartialBundle\Entity\Art $arts)
+    public function removeMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
-        $this->arts->removeElement($arts);
+        $this->masterArts->removeElement($masterArts);
     }
 
     /**
-     * Get arts
+     * Get masterArts
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getArts()
+    public function getMasterArts()
     {
-        return $this->arts;
+        return $this->masterArts;
     }
 
     /**

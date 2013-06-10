@@ -13,13 +13,13 @@ class MasterClient
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master", inversedBy="clients")
+     * @ORM\ManyToOne(targetEntity="Master")
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Client", inversedBy="masters")
+     * @ORM\ManyToOne(targetEntity="Client")
      */
     protected $client;
 

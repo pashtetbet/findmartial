@@ -24,11 +24,6 @@ class Client
     protected $master;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Master", mappedBy="clients")
-     **/
-    protected $masters;
-
-    /**
      * @ORM\OneToMany(targetEntity="Club", mappedBy="client")
      **/
     private $clubs;
@@ -124,6 +119,7 @@ class Client
         $this->clubs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Get id

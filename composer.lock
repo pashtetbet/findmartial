@@ -1,5 +1,9 @@
 {
-    "hash": "a1da8d660ee557ea497c103036f4e890",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "8c89fcaabac436840a13de4745d226d4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -202,16 +206,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "2.4.0-RC2",
+            "version": "2.4.0-RC3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "2.4.0-RC2"
+                "reference": "2.4.0-RC3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/2.4.0-RC2",
-                "reference": "2.4.0-RC2",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/2.4.0-RC3",
+                "reference": "2.4.0-RC3",
                 "shasum": ""
             },
             "require": {
@@ -257,9 +261,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -272,7 +276,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2013-05-09 21:35:24"
+            "time": "2013-05-27 19:11:46"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -317,16 +321,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "2.4.0-BETA2",
+            "version": "2.4.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2.4.0-BETA2"
+                "reference": "2.4.0-RC1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2.4.0-BETA2",
-                "reference": "2.4.0-BETA2",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2.4.0-RC1",
+                "reference": "2.4.0-RC1",
                 "shasum": ""
             },
             "require": {
@@ -383,7 +387,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-11 08:21:40"
+            "time": "2013-05-27 19:17:11"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -738,16 +742,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.4.0-BETA2",
+            "version": "2.4.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "2.4.0-BETA2"
+                "reference": "2.4.0-RC1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2.4.0-BETA2",
-                "reference": "2.4.0-BETA2",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2.4.0-RC1",
+                "reference": "2.4.0-RC1",
                 "shasum": ""
             },
             "require": {
@@ -808,35 +812,38 @@
                 "database",
                 "orm"
             ],
-            "time": "2013-05-10 21:31:27"
+            "time": "2013-05-27 19:47:16"
         },
         {
             "name": "friendsofsymfony/user-bundle",
-            "version": "v1.3.1",
+            "version": "v1.3.2",
             "target-dir": "FOS/UserBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
-                "reference": "v1.3.1"
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+                "reference": "v1.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/archive/v1.3.1.zip",
-                "reference": "v1.3.1",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/v1.3.2",
+                "reference": "v1.3.2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": ">=2.1,<2.3-dev",
-                "symfony/security-bundle": ">=2.1,<2.3-dev"
+                "symfony/framework-bundle": ">=2.1,<3.0",
+                "symfony/security-bundle": ">=2.1,<3.0"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "*",
-                "swiftmailer/swiftmailer": "*",
-                "symfony/validator": "2.1.*",
-                "symfony/yaml": "2.1.*",
-                "twig/twig": "*",
+                "swiftmailer/swiftmailer": ">=4.3,<5.0",
+                "symfony/validator": ">=2.1,<3.0",
+                "symfony/yaml": ">=2.1,<3.0",
+                "twig/twig": ">=1.5,<2.0",
                 "willdurand/propel-typehintable-behavior": "dev-master"
+            },
+            "suggest": {
+                "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -873,7 +880,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2012-12-22 15:09:34"
+            "time": "2013-05-25 12:08:24"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2015,15 +2022,64 @@
                 "templating"
             ],
             "time": "2013-05-10 15:12:43"
+        },
+        {
+            "name": "xi/ajax-bundle",
+            "version": "dev-master",
+            "target-dir": "Xi/Bundle/AjaxBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xi-project/xi-bundle-ajax.git",
+                "reference": "ba9b6183ef5603a7d29c40b8b1f767c3248e4182"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xi-project/xi-bundle-ajax/zipball/ba9b6183ef5603a7d29c40b8b1f767c3248e4182",
+                "reference": "ba9b6183ef5603a7d29c40b8b1f767c3248e4182",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/form": "2.2.*",
+                "symfony/framework-bundle": "2.2.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Xi\\Bundle\\AjaxBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "xi-project",
+                    "email": "xi.devs@gmail.com"
+                }
+            ],
+            "description": "Xi Ajax Bundle for basic ajax functionality with forms and elements. Includes customizable loading animations and error handler stack",
+            "keywords": [
+                "ajax",
+                "json"
+            ],
+            "time": "2013-05-28 14:01:24"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
     "minimum-stability": "alpha",
     "stability-flags": {
         "doctrine/doctrine-fixtures-bundle": 20,
-        "doctrine/doctrine-migrations-bundle": 20
-    }
+        "doctrine/doctrine-migrations-bundle": 20,
+        "xi/ajax-bundle": 20
+    },
+    "platform": {
+        "php": ">=5.3.3"
+    },
+    "platform-dev": [
+
+    ]
 }

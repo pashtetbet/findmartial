@@ -5,17 +5,12 @@
 {% block content %}
     <h1>Master creation</h1>
 
-    <form action="{{ path('master_create') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <p>
-            <button type="submit">{{ 'field.create'|trans({}, 'FindMartialBundle') }}</button>
-        </p>
-    </form>
+    {% include 'AcmeFindMartialBundle:Master:form.html.twig' %}
 
     <ul class="record_actions">
         <li>
             <a href="{{ path('master') }}">
-                {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
+                Back to the list
             </a>
         </li>
     </ul>

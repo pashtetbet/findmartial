@@ -14,12 +14,14 @@ use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
+use Xi\Bundle\AjaxBundle\Controller\JsonResponseController;
+
 /**
  * Master controller.
  *
  * @Route("/master")
  */
-class MasterController extends Controller
+class MasterController extends JsonResponseController
 {
     /**
      * Lists all Master entities.
@@ -39,6 +41,10 @@ class MasterController extends Controller
         );
     }
 
+    public function saveAction(Request $request)
+    {
+        return $this->createJsonSuccessResponse('your response text');
+    }
     /**
      * Creates a new Master entity.
      *
@@ -51,7 +57,6 @@ class MasterController extends Controller
         $entity  = new Master();
         $form = $this->createForm(new MasterType(), $entity);
         $form->bind($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -71,13 +76,17 @@ class MasterController extends Controller
             $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
             $aclProvider->updateAcl($acl);
 
-            return $this->redirect($this->generateUrl('master_show', array('id' => $entity->getId())));
+            return $this->createJsonSuccessResponse('your response text');
+            //return $this->createJsonSuccessResponse('your response text');
+            //return $this->redirect($this->generateUrl('master_show', array('id' => $entity->getId())));
         }
 
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
         );
+
+
     }
 
     /**

@@ -28,7 +28,7 @@ class ClubType extends AbstractType
             ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle'))
             ->add('city', null ,array('label' => 'field.city', 'translation_domain' => 'FindMartialBundle'))
             ->add('servises', null ,array('label' => 'field.servises', 'translation_domain' => 'FindMartialBundle'))
-            ->add('masters', null ,array('label' => 'field.masters', 'translation_domain' => 'FindMartialBundle'))
+            ->add('masters', 'entity' ,array('class' => 'AcmeFindMartialBundle:Master', 'expanded' => true, 'multiple' => true, 'label' => 'field.masters', 'translation_domain' => 'FindMartialBundle'))
         ;
     }
 

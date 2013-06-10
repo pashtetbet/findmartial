@@ -13,13 +13,13 @@ class MasterArt
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master", inversedBy="arts")
+     * @ORM\ManyToOne(targetEntity="Master", inversedBy="masterArts")
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Art", inversedBy="masters")
+     * @ORM\ManyToOne(targetEntity="Art", inversedBy="masterArts")
      */
     protected $art;
 
@@ -38,23 +38,12 @@ class MasterArt
     */
     protected $is_checked = false;
 
-    /**
-    * @ORM\Column(type="boolean")
-    */
-    protected $master_approve = false;
-
-    /**
-    * @ORM\Column(type="boolean")
-    */
-    protected $club_approve = false;
-
-    public function __construct($master, $art)
+    public function __construct($master = null, $art = null)
     {
 		$this->master 	= $master;
 		$this->art 	= $art;
 
     }
-
 
     /**
      * Set expirience
@@ -179,6 +168,11 @@ class MasterArt
      */
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master)
     {
+
+        /*if ($this->master != $master) {
+            $this->master = $master;
+        }*/
+
         $this->master = $master;
 
         return $this;

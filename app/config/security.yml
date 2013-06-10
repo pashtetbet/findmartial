@@ -57,8 +57,6 @@ security:
         - { path: '^/art/([0-9]*)/edit$',       role: [ROLE_CLIENT, ROLE_MASTER] }
         - { path: ^/addserv/new,                role: [ROLE_CLIENT, ROLE_MASTER] }
         - { path: '^/addserv/([0-9]*)/edit$',   role: [ROLE_CLIENT, ROLE_MASTER] }
-        - { path: ^/client,                     role: ROLE_ADMIN }
-        - { path: ^/city,                       role: ROLE_ADMIN }
 
         #- { path: ^/master_client/assign,		role: [ROLE_CLIENT, ROLE_MASTER] }
         #- { path: ^/master_client/resign,		role: [ROLE_CLIENT, ROLE_MASTER] }
