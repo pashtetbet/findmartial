@@ -24,6 +24,7 @@ class Master
 
     /**
      * @ORM\ManyToMany(targetEntity="Club", inversedBy="masters")
+     * @ORM\JoinTable(name="fm_master_club")
      **/
     protected $clubs;
 
