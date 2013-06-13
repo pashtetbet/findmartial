@@ -21,7 +21,7 @@ class Master
      * @ORM\OneToMany(targetEntity="MasterArt", mappedBy="master", cascade={"persist", "remove"})
      **/
     protected $masterArts;
-//
+
     /**
      * @ORM\ManyToMany(targetEntity="Club", inversedBy="masters")
      **/
