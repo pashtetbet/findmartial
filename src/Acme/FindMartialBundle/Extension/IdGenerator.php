@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 
 class IdGenerator extends AbstractIdGenerator {
 
-	private $allocate = 1; //0x10;
+	private $allocate = 0; //0x10;
 	private $currentId = 0;
 	private $maxId = 0;
 	
