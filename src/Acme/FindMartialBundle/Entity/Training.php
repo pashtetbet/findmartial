@@ -41,13 +41,13 @@ class Training
     private $check;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Master")
+     * @ORM\ManyToOne(targetEntity="Master", inversedBy="trainings")
      * @ORM\JoinColumn(name="master_id", referencedColumnName="id")
      **/
     protected $master;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Club")
+     * @ORM\ManyToOne(targetEntity="Club", inversedBy="trainings")
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id")
      **/
     protected $club;

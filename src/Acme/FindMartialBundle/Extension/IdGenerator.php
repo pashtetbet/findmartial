@@ -7,19 +7,19 @@ use Doctrine\ORM\EntityManager;
 
 class IdGenerator extends AbstractIdGenerator {
 
-	private $allocate = 0; //0x10;
+	private $allocate = 1; //0x10;
 	private $currentId = 0;
 	private $maxId = 0;
 	
 	public function generate(EntityManager $em, $entity) {
 		if ($this->currentId >= $this->maxId ) {
+
 			$driver = $em->getConnection();
-			$query = $driver->query("UPDATE `seq` SET value = (@cur_value := value) + ".($this->allocate));
-			$res = $query->execute();
-	
-			$query = $driver->query("SELECT @cur_value;");
-			$query->execute();
-			$this->currentId = $query->fetchColumn(0);
+
+			$driver->query('UPDATE seq SET value = LAST_INSERT_ID(value)+'.$this->allocate);
+			
+			$this->currentId = $driver->fetchColumn('SELECT LAST_INSERT_ID();', array(0), 0);
+
 			$this->maxId = $this->currentId + $this->allocate;
 		} else {
 			$this->currentId++;

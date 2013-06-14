@@ -29,7 +29,7 @@ class Master
     protected $clubs;
 
     /**
-     * @ORM\OneToMany(targetEntity="Training", mappedBy="club")
+     * @ORM\OneToMany(targetEntity="Training", mappedBy="master")
      **/
     private $trainings;
 
