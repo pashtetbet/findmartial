@@ -41,8 +41,8 @@ assetic:
         #yui_css:
         #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
         coffee:
-            bin: /home/syniy/bin/coffee
-            node: /home/syniy/bin/node
+            bin: %path_coffee%
+            node: %path_node%
             apply_to: "\.coffee$"
 
 # Doctrine Configuration
