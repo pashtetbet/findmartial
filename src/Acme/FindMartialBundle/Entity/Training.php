@@ -109,7 +109,7 @@ class Training
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
@@ -132,7 +132,7 @@ class Training
     public function setAgeLow($ageLow)
     {
         $this->age_low = $ageLow;
-    
+
         return $this;
     }
 
@@ -155,7 +155,7 @@ class Training
     public function setAgeMax($ageMax)
     {
         $this->age_max = $ageMax;
-    
+
         return $this;
     }
 
@@ -178,7 +178,7 @@ class Training
     public function setIsChecked($isChecked)
     {
         $this->is_checked = $isChecked;
-    
+
         return $this;
     }
 
@@ -201,7 +201,7 @@ class Training
     public function setVisible($visible)
     {
         $this->visible = $visible;
-    
+
         return $this;
     }
 
@@ -224,7 +224,7 @@ class Training
     public function setPrice(\Acme\FindMartialBundle\Entity\Price $price = null)
     {
         $this->price = $price;
-    
+
         return $this;
     }
 
@@ -247,7 +247,7 @@ class Training
     public function addSchedule(\Acme\FindMartialBundle\Entity\Schedule $schedules)
     {
         $this->schedules[] = $schedules;
-    
+
         return $this;
     }
 
@@ -280,7 +280,7 @@ class Training
     public function setArt(\Acme\FindMartialBundle\Entity\Art $art = null)
     {
         $this->art = $art;
-    
+
         return $this;
     }
 
@@ -303,7 +303,7 @@ class Training
     public function addDuplicate(\Acme\FindMartialBundle\Entity\Training $duplicates)
     {
         $this->duplicates[] = $duplicates;
-    
+
         return $this;
     }
 
@@ -336,7 +336,7 @@ class Training
     public function setCheck(\Acme\FindMartialBundle\Entity\Training $check = null)
     {
         $this->check = $check;
-    
+
         return $this;
     }
 
@@ -359,7 +359,7 @@ class Training
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
     {
         $this->master = $master;
-    
+
         return $this;
     }
 
@@ -376,46 +376,23 @@ class Training
     /**
      * Set club
      *
-     * @param \Acme\FindMartialBundle\Entity\Master $club
+     * @param \Acme\FindMartialBundle\Entity\Club $club
      * @return Training
      */
-    public function setClub(\Acme\FindMartialBundle\Entity\Master $club = null)
+    public function setClub(\Acme\FindMartialBundle\Entity\Club $club = null)
     {
         $this->club = $club;
-    
+
         return $this;
     }
 
     /**
      * Get club
      *
-     * @return \Acme\FindMartialBundle\Entity\Master 
+     * @return \Acme\FindMartialBundle\Entity\Club 
      */
     public function getClub()
     {
         return $this->club;
-    }
-
-    /**
-     * Set master_club
-     *
-     * @param \Acme\FindMartialBundle\Entity\MasterClub $masterClub
-     * @return Training
-     */
-    public function setMasterClub(\Acme\FindMartialBundle\Entity\MasterClub $masterClub = null)
-    {
-        $this->master_club = $masterClub;
-    
-        return $this;
-    }
-
-    /**
-     * Get master_club
-     *
-     * @return \Acme\FindMartialBundle\Entity\MasterClub 
-     */
-    public function getMasterClub()
-    {
-        return $this->master_club;
     }
 }

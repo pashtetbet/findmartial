@@ -41,7 +41,6 @@ class MasterClub
     }
 
 
-
     /**
      * Set master_approve
      *

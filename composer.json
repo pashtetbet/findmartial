@@ -21,7 +21,12 @@
         "friendsofsymfony/user-bundle": "*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "xi/ajax-bundle": "dev-master"
+        "xi/ajax-bundle": "dev-master",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/intl-bundle": "dev-master",
+        "sonata-project/cache-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [

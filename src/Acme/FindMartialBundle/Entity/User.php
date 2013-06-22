@@ -72,6 +72,7 @@ class User extends BaseUser
         // your own logic
     }
 
+
     /**
      * Get id
      *
@@ -91,7 +92,7 @@ class User extends BaseUser
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -114,7 +115,7 @@ class User extends BaseUser
     public function setFamily($family)
     {
         $this->family = $family;
-    
+
         return $this;
     }
 
@@ -137,7 +138,7 @@ class User extends BaseUser
     public function setEstimateValue($estimateValue)
     {
         $this->estimate_value = $estimateValue;
-    
+
         return $this;
     }
 
@@ -160,7 +161,7 @@ class User extends BaseUser
     public function setEstimateCount($estimateCount)
     {
         $this->estimate_count = $estimateCount;
-    
+
         return $this;
     }
 
@@ -183,7 +184,7 @@ class User extends BaseUser
     public function setCommentsNumber($commentsNumber)
     {
         $this->comments_number = $commentsNumber;
-    
+
         return $this;
     }
 
@@ -206,7 +207,7 @@ class User extends BaseUser
     public function setAbout($about)
     {
         $this->about = $about;
-    
+
         return $this;
     }
 
@@ -229,7 +230,7 @@ class User extends BaseUser
     public function setAvatar($avatar)
     {
         $this->avatar = $avatar;
-    
+
         return $this;
     }
 
@@ -252,7 +253,7 @@ class User extends BaseUser
     public function setAuthorisedComments($authorisedComments)
     {
         $this->authorised_comments = $authorisedComments;
-    
+
         return $this;
     }
 
@@ -275,7 +276,7 @@ class User extends BaseUser
     public function setClient(\Acme\FindMartialBundle\Entity\Client $client = null)
     {
         $this->client = $client;
-    
+
         return $this;
     }
 

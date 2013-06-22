@@ -36,6 +36,7 @@ class ClubArt
 		//
     }
 
+
     /**
      * Get id
      *
@@ -55,7 +56,7 @@ class ClubArt
     public function setClub(\Acme\FindMartialBundle\Entity\club $club = null)
     {
         $this->club = $club;
-    
+
         return $this;
     }
 
@@ -78,7 +79,7 @@ class ClubArt
     public function setArt(\Acme\FindMartialBundle\Entity\art $art = null)
     {
         $this->art = $art;
-    
+
         return $this;
     }
 

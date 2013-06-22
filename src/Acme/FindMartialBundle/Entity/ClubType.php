@@ -35,6 +35,7 @@ class ClubType
 		//
     }
 
+
     /**
      * Get id
      *
@@ -54,7 +55,7 @@ class ClubType
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
@@ -77,7 +78,7 @@ class ClubType
     public function setClub(\Acme\FindMartialBundle\Entity\club $club = null)
     {
         $this->club = $club;
-    
+
         return $this;
     }
 

@@ -40,6 +40,14 @@ class Art
     }
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->masterArts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -95,12 +103,6 @@ class Art
         return $this->type;
     }
 
-
-    public function __construct()
-    {
-        $this->masterArts     = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     /**
      * Add masterArts
      *
@@ -109,8 +111,6 @@ class Art
      */
     public function addMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
-        $masterArts->setArt($this);
-
         $this->masterArts[] = $masterArts;
 
         return $this;

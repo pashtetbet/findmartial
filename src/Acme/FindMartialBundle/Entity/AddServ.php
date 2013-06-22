@@ -39,6 +39,7 @@ class AddServ
       return $this->getName();
     }
 
+
     /**
      * Get id
      *
@@ -58,7 +59,7 @@ class AddServ
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -81,7 +82,7 @@ class AddServ
     public function addClub(\Acme\FindMartialBundle\Entity\Club $clubs)
     {
         $this->clubs[] = $clubs;
-    
+
         return $this;
     }
 

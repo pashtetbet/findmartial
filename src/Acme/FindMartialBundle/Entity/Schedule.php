@@ -46,6 +46,7 @@ class Schedule
     }
 
 
+
     /**
      * Get id
      *
@@ -65,7 +66,7 @@ class Schedule
     public function setWeekday($weekday)
     {
         $this->weekday = $weekday;
-    
+
         return $this;
     }
 
@@ -88,7 +89,7 @@ class Schedule
     public function setStartTime($startTime)
     {
         $this->start_time = $startTime;
-    
+
         return $this;
     }
 
@@ -111,7 +112,7 @@ class Schedule
     public function setTraining(\Acme\FindMartialBundle\Entity\Training $training = null)
     {
         $this->training = $training;
-    
+
         return $this;
     }
 

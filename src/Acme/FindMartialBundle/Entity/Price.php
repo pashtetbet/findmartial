@@ -89,7 +89,7 @@ class Price
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -112,7 +112,7 @@ class Price
     public function setIsTypical($isTypical)
     {
         $this->is_typical = $isTypical;
-    
+
         return $this;
     }
 
@@ -135,7 +135,7 @@ class Price
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
@@ -158,7 +158,7 @@ class Price
     public function setNumberCount($numberCount)
     {
         $this->number_count = $numberCount;
-    
+
         return $this;
     }
 
@@ -181,7 +181,7 @@ class Price
     public function setNumberCost($numberCost)
     {
         $this->number_cost = $numberCost;
-    
+
         return $this;
     }
 
@@ -204,7 +204,7 @@ class Price
     public function setPeriodCount($periodCount)
     {
         $this->period_count = $periodCount;
-    
+
         return $this;
     }
 
@@ -227,7 +227,7 @@ class Price
     public function setPeriodCost($periodCost)
     {
         $this->period_cost = $periodCost;
-    
+
         return $this;
     }
 
@@ -250,7 +250,7 @@ class Price
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
@@ -273,7 +273,7 @@ class Price
     public function setTraining(\Acme\FindMartialBundle\Entity\Training $training = null)
     {
         $this->training = $training;
-    
+
         return $this;
     }
 

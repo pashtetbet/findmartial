@@ -139,7 +139,7 @@ class Master
 
     function __toString()
     {
-        return $this->getName();
+        return (string)$this->getName();
     }
 
 
@@ -499,39 +499,6 @@ class Master
     }
 
     /**
-     * Add clients
-     *
-     * @param \Acme\FindMartialBundle\Entity\Client $clients
-     * @return Master
-     */
-    public function addClient(\Acme\FindMartialBundle\Entity\Client $clients)
-    {
-        $this->clients[] = $clients;
-
-        return $this;
-    }
-
-    /**
-     * Remove clients
-     *
-     * @param \Acme\FindMartialBundle\Entity\Client $clients
-     */
-    public function removeClient(\Acme\FindMartialBundle\Entity\Client $clients)
-    {
-        $this->clients->removeElement($clients);
-    }
-
-    /**
-     * Get clients
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getClients()
-    {
-        return $this->clients;
-    }
-
-    /**
      * Add masterArts
      *
      * @param \Acme\FindMartialBundle\Entity\MasterArt $masterArts
@@ -539,8 +506,6 @@ class Master
      */
     public function addMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
-        $masterArts->setMaster($this);
-
         $this->masterArts[] = $masterArts;
 
         return $this;

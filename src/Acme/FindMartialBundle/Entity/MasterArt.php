@@ -45,6 +45,7 @@ class MasterArt
 
     }
 
+
     /**
      * Set expirience
      *
@@ -115,52 +116,6 @@ class MasterArt
     }
 
     /**
-     * Set master_approve
-     *
-     * @param boolean $masterApprove
-     * @return MasterArt
-     */
-    public function setMasterApprove($masterApprove)
-    {
-        $this->master_approve = $masterApprove;
-
-        return $this;
-    }
-
-    /**
-     * Get master_approve
-     *
-     * @return boolean 
-     */
-    public function getMasterApprove()
-    {
-        return $this->master_approve;
-    }
-
-    /**
-     * Set club_approve
-     *
-     * @param boolean $clubApprove
-     * @return MasterArt
-     */
-    public function setClubApprove($clubApprove)
-    {
-        $this->club_approve = $clubApprove;
-
-        return $this;
-    }
-
-    /**
-     * Get club_approve
-     *
-     * @return boolean 
-     */
-    public function getClubApprove()
-    {
-        return $this->club_approve;
-    }
-
-    /**
      * Set master
      *
      * @param \Acme\FindMartialBundle\Entity\Master $master
@@ -168,11 +123,6 @@ class MasterArt
      */
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master)
     {
-
-        /*if ($this->master != $master) {
-            $this->master = $master;
-        }*/
-
         $this->master = $master;
 
         return $this;
