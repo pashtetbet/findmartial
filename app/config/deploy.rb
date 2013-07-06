@@ -52,6 +52,8 @@ set :webserver_user,      "www-data"
 set :permission_method,   :chown
 set :use_set_permissions, true
 
+set :keep_releases,     3
+
 #depend :local, :command, "get"
 
 # Be more verbose by uncommenting the following line

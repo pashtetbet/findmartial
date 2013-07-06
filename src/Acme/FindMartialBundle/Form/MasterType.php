@@ -19,7 +19,6 @@ class MasterType extends AbstractType
             ->add('sex', null ,array('label' => 'field.sex', 'translation_domain' => 'FindMartialBundle'))
             ->add('photo', null ,array('label' => 'field.photo', 'translation_domain' => 'FindMartialBundle'))
             ->add('slave', null ,array('label' => 'field.slave', 'translation_domain' => 'FindMartialBundle', 'required' => false))
-            ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle', 'required' => false))
             ->add('experience_full', null ,array('label' => 'field.experience', 'translation_domain' => 'FindMartialBundle'))
             ->add('training_exp_full', null ,array('label' => 'field.trainingexp', 'translation_domain' => 'FindMartialBundle'))
             ->add('masterArts', 'collection', array(

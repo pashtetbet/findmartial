@@ -52,6 +52,22 @@ class DefaultController extends Controller
             $user->setClient($entityClient);
             $user->setRoles(array('ROLE_MASTER'));
             $em->flush();
+            
+            /**
+            * чтобы новая роль учитывалась
+            */
+            $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+                        $user,
+                        null,
+                        'main',
+                        $user->getRoles()
+            );
+            $this->container->get('security.context')->setToken($token);
+            $this->get('fos_user.user_manager')->refreshUser($user);
+
+            $translated = $this->get('translator')->trans('text.regmaster', array(), 'FindMartialBundle');
+            $this->get('session')->getFlashBag()->add('notice', $translated);
+
             return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
         }
 
@@ -111,6 +127,22 @@ class DefaultController extends Controller
             $user->setClient($entityClient);
             $user->setRoles(array('ROLE_CLIENT'));
             $em->flush();
+
+            /**
+            * чтобы новая роль учитывалась
+            */
+            $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken(
+                        $user,
+                        null,
+                        'main',
+                        $user->getRoles()
+            );
+            $this->container->get('security.context')->setToken($token);
+            $this->get('fos_user.user_manager')->refreshUser($user);
+
+            $translated = $this->get('translator')->trans('text.regclient', array(), 'FindMartialBundle');
+            $this->get('session')->getFlashBag()->add('notice', $translated);
+
             return $this->redirect($this->generateUrl('client_show', array('id' => $entityClient->getId())));
         }
 

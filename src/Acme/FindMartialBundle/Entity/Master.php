@@ -162,7 +162,7 @@ class Master
     public function setName($name)
     {
         $this->name = $name;
-
+    
         return $this;
     }
 
@@ -185,7 +185,7 @@ class Master
     public function setFamily($family)
     {
         $this->family = $family;
-
+    
         return $this;
     }
 
@@ -208,7 +208,7 @@ class Master
     public function setPatronym($patronym)
     {
         $this->patronym = $patronym;
-
+    
         return $this;
     }
 
@@ -231,7 +231,7 @@ class Master
     public function setHightlights($hightlights)
     {
         $this->hightlights = $hightlights;
-
+    
         return $this;
     }
 
@@ -254,7 +254,7 @@ class Master
     public function setDescription($description)
     {
         $this->description = $description;
-
+    
         return $this;
     }
 
@@ -277,7 +277,7 @@ class Master
     public function setSex($sex)
     {
         $this->sex = $sex;
-
+    
         return $this;
     }
 
@@ -300,7 +300,7 @@ class Master
     public function setPhoto($photo)
     {
         $this->photo = $photo;
-
+    
         return $this;
     }
 
@@ -323,7 +323,7 @@ class Master
     public function setSlave($slave)
     {
         $this->slave = $slave;
-
+    
         return $this;
     }
 
@@ -346,7 +346,7 @@ class Master
     public function setEstimateValue($estimateValue)
     {
         $this->estimate_value = $estimateValue;
-
+    
         return $this;
     }
 
@@ -369,7 +369,7 @@ class Master
     public function setEstimateNumber($estimateNumber)
     {
         $this->estimate_number = $estimateNumber;
-
+    
         return $this;
     }
 
@@ -392,7 +392,7 @@ class Master
     public function setVisible($visible)
     {
         $this->visible = $visible;
-
+    
         return $this;
     }
 
@@ -415,7 +415,7 @@ class Master
     public function setIsChecked($isChecked)
     {
         $this->is_checked = $isChecked;
-
+    
         return $this;
     }
 
@@ -438,7 +438,7 @@ class Master
     public function setExperienceFull($experienceFull)
     {
         $this->experience_full = $experienceFull;
-
+    
         return $this;
     }
 
@@ -461,7 +461,7 @@ class Master
     public function setTrainingExpFull($trainingExpFull)
     {
         $this->training_exp_full = $trainingExpFull;
-
+    
         return $this;
     }
 
@@ -484,7 +484,7 @@ class Master
     public function setClient(\Acme\FindMartialBundle\Entity\Client $client = null)
     {
         $this->client = $client;
-
+    
         return $this;
     }
 
@@ -507,7 +507,7 @@ class Master
     public function addMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
         $this->masterArts[] = $masterArts;
-
+    
         return $this;
     }
 
@@ -540,7 +540,7 @@ class Master
     public function addClub(\Acme\FindMartialBundle\Entity\Club $clubs)
     {
         $this->clubs[] = $clubs;
-
+    
         return $this;
     }
 
@@ -573,7 +573,7 @@ class Master
     public function addTraining(\Acme\FindMartialBundle\Entity\Training $trainings)
     {
         $this->trainings[] = $trainings;
-
+    
         return $this;
     }
 
@@ -606,7 +606,7 @@ class Master
     public function addDuplicate(\Acme\FindMartialBundle\Entity\Master $duplicates)
     {
         $this->duplicates[] = $duplicates;
-
+    
         return $this;
     }
 
@@ -639,7 +639,7 @@ class Master
     public function setCheck(\Acme\FindMartialBundle\Entity\Master $check = null)
     {
         $this->check = $check;
-
+    
         return $this;
     }
 

@@ -157,12 +157,12 @@ class MasterController extends JsonResponseController
             throw new AccessDeniedException();
         }
 
-        $editForm = $this->createForm(new MasterType(), $entity);
+        $form = $this->createForm(new MasterType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $form->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -185,10 +185,10 @@ class MasterController extends JsonResponseController
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new MasterType(), $entity);
-        $editForm->bind($request);
+        $form = $this->createForm(new MasterType(), $entity);
+        $form->bind($request);
 
-        if ($editForm->isValid()) {
+        if ($form->isValid()) {
             $em->persist($entity);
             $em->flush();
 
@@ -197,7 +197,7 @@ class MasterController extends JsonResponseController
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $form->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

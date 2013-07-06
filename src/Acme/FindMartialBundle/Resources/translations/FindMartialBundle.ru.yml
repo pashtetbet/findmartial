@@ -79,4 +79,6 @@ addserv:
 client:
     index: Клиенты
     register: Регистрация клиента
-
+text:
+    regclient: Вы теперь клиент
+    regmaster: Вы теперь мастер

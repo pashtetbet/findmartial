@@ -13,3 +13,6 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    path_coffee:        /usr/local/bin/coffee
+    path_node:          /usr/bin/node

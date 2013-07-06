@@ -20,8 +20,7 @@ class ClientType extends AbstractType
             ->add('money', null ,array('label' => 'field.money', 'translation_domain' => 'FindMartialBundle'))
             ->add('social', null ,array('label' => 'field.social', 'translation_domain' => 'FindMartialBundle'))
             ->add('logo', null ,array('label' => 'field.logo', 'translation_domain' => 'FindMartialBundle'))
-            ->add('news_on', null ,array('label' => 'field.newson', 'translation_domain' => 'FindMartialBundle'))
-            ->add('is_checked', null ,array('label' => 'field.ischecked', 'translation_domain' => 'FindMartialBundle'))
+            ->add('news_on', null ,array('label' => 'field.newson', 'translation_domain' => 'FindMartialBundle', 'required' => false))
         ;
     }
 

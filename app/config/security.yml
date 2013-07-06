@@ -40,14 +40,15 @@ security:
     access_control:
         - { path: ^/$,                          role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$,                     role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register/?$,                access: "isAnonymous()" }
+        - { path: ^/register/confirmed,         role: ROLE_USER }
         - { path: ^/resetting,                  role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         - { path: ^/profile,                    role: ROLE_USER }
-        - { path: ^/regclient,                  role: ROLE_USER }
-        - { path: ^/regmaster,                  role: ROLE_USER }
-        - { path: ^/regclient_create,           role: ROLE_USER }
-        - { path: ^/regmaster_create,           role: ROLE_USER }
+        - { path: ^/regclient,                  access: "hasRole('ROLE_USER') and not hasAnyRole('ROLE_CLIENT', 'ROLE_MASTER')" }
+        - { path: ^/regmaster,                  access: "hasRole('ROLE_USER') and not hasAnyRole('ROLE_CLIENT', 'ROLE_MASTER')" }
+        - { path: ^/regclient_create,           access: "hasRole('ROLE_USER') and not hasAnyRole('ROLE_CLIENT', 'ROLE_MASTER')" }
+        - { path: ^/regmaster_create,           access: "hasRole('ROLE_USER') and not hasAnyRole('ROLE_CLIENT', 'ROLE_MASTER')" }
 
         - { path: ^/master/new,                 role: [ROLE_CLIENT, ROLE_MASTER] }
         - { path: '^/master/([0-9]*)/edit$',    role: [ROLE_CLIENT, ROLE_MASTER] }
