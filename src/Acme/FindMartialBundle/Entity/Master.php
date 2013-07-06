@@ -506,6 +506,9 @@ class Master
      */
     public function addMasterArt(\Acme\FindMartialBundle\Entity\MasterArt $masterArts)
     {
+        //pashtet **for embed forms robust
+        $masterArts->setMaster($this);
+
         $this->masterArts[] = $masterArts;
     
         return $this;
