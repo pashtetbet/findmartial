@@ -30,15 +30,12 @@
 
   <ul id="arts-fields-list" data-prototype="{{ _self.artRow(form.masterArts.vars.prototype) | e }}">
     {% for artField in form.masterArts %}
-        <li>
-            {{ form_errors(artField) }}
-            {{ form_widget(artField) }}
-            {% for key, art in form.masterArts %}
-               {{ _self.artRow(art) }}
-            {% endfor %}
-        </li>
+      {{ _self.artRow(artField) }}
     {% endfor %}
   </ul>
+
+  {{ form_widget(form.arts) }}
+
 
   {{ form_rest(form) }}
 
@@ -52,25 +49,35 @@
     var artsForm = $('#arts-fields-list');
 
     $(document).ready(function() {
-      artsList.hide();
+
+      workwin = $('<div />', {'class': 'workwin', id:'workwin'});
+      blackLayer = $('<div />', {'class': 'blackLayer', id:'blackLayer', onclick: 'workwin.hide(); blackLayer.hide();'});
+
+      artsList.wrap(workwin);
+      //ссылка на элемент дум, а то после wrap он не указывает на элемент
+      workwin = $('#workwin');
+
+      $('body').append(blackLayer);
+
       $('form').on('click', '#add-another-art', function() {
-            artsList.show();
+            workwin.show();
+            blackLayer.show();
             return false; 
       });
-      artsList.append(
+      workwin.append(
             $('<a>', {
               href:'#', 
               id:'save_arts_list', 
               text: "{{ 'field.save'|trans({}, 'FindMartialBundle') }}",
-              onclick: 'setArts(); artsList.hide(); return false;'
+              onclick: 'setArts(); workwin.hide(); blackLayer.hide(); return false;'
             }
       ));
-      artsList.append(
+      workwin.append(
             $('<a>', {
               href:'#', 
               id:'close_arts_list', 
               text: "{{ 'field.close'|trans({}, 'FindMartialBundle') }}",
-              onclick: 'artsList.hide(); return false;'
+              onclick: 'workwin.hide(); blackLayer.hide(); return false;'
             }
       ));
 
