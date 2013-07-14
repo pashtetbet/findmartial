@@ -23,8 +23,7 @@ class Master
     protected $masterArts;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Club", inversedBy="masters")
-     * @ORM\JoinTable(name="fm_master_club")
+     * @ORM\ManyToMany(targetEntity="Club", mappedBy="masters", cascade={"persist", "remove"})
      **/
     protected $clubs;
 

@@ -204,3 +204,9 @@ div.form_field{
     position:           absolute;
     display:            block;
 }
+
+/****************Clubform**********************/
+.map{
+    width:100%;
+    height:300px;
+}

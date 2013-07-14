@@ -14,13 +14,13 @@ class Club
 
     /**
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="clubs")
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable = false)
      */
     protected $client;
 
     /**
      * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id", nullable = false)
      */
     protected $city;
 
@@ -31,7 +31,8 @@ class Club
     protected $servises;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Master", mappedBy="clubs")
+     * @ORM\ManyToMany(targetEntity="Master", inversedBy="clubs", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="fm_master_club")
      **/
     protected $masters;
 
@@ -74,7 +75,7 @@ class Club
     protected $id;
     
     /**
-     * @ORM\Column(type="string", length=255, nullable = true)
+     * @ORM\Column(type="string", length=255, nullable = false)
      */
     protected $description;
 

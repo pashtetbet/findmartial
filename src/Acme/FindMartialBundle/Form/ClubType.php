@@ -24,11 +24,10 @@ class ClubType extends AbstractType
             ->add('sex', null ,array('label' => 'field.sex', 'translation_domain' => 'FindMartialBundle'))
             ->add('one_training_free', null ,array('label' => 'field.onetrainingfree', 'translation_domain' => 'FindMartialBundle'))
             ->add('photo', null ,array('label' => 'field.photo', 'translation_domain' => 'FindMartialBundle'))
-            ->add('is_checked', null ,array('label' => 'field.ischecked', 'translation_domain' => 'FindMartialBundle'))
-            ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle'))
-            ->add('city', null ,array('label' => 'field.city', 'translation_domain' => 'FindMartialBundle'))
-            ->add('servises', null ,array('label' => 'field.servises', 'translation_domain' => 'FindMartialBundle'))
-            ->add('masters', 'entity' ,array('class' => 'AcmeFindMartialBundle:Master', 'expanded' => true, 'multiple' => true, 'label' => 'field.masters', 'translation_domain' => 'FindMartialBundle'))
+            ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle', 'required' => false))
+            ->add('city', null ,array('label' => 'field.city', 'empty_value' => 'field.citylabel', 'translation_domain' => 'FindMartialBundle', 'required' => true))
+            ->add('servises', null ,array('label' => 'field.servises', 'expanded' => true, 'translation_domain' => 'FindMartialBundle', 'required' => false))
+            ->add('masters', 'entity' ,array('class' => 'AcmeFindMartialBundle:Master', 'expanded' => true, 'multiple' => true, 'label' => 'field.masters', 'translation_domain' => 'FindMartialBundle', 'required' => false))
         ;
     }
 

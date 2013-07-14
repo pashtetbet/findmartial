@@ -52,12 +52,10 @@ security:
 
         - { path: ^/master/new,                 role: [ROLE_CLIENT, ROLE_MASTER] }
         - { path: '^/master/([0-9]*)/edit$',    role: [ROLE_CLIENT, ROLE_MASTER] }
-        - { path: ^/club/new,                   role: [ROLE_CLIENT, ROLE_MASTER] }
-        - { path: '^/club/([0-9]*)/edit$',      role: [ROLE_CLIENT, ROLE_MASTER] }
+        - { path: ^/club/new,                   role: [ROLE_CLIENT] }
+        - { path: '^/club/([0-9]*)/edit$',      role: [ROLE_CLIENT] }
         - { path: ^/art/new,                    role: [ROLE_CLIENT, ROLE_MASTER] }
         - { path: '^/art/([0-9]*)/edit$',       role: [ROLE_CLIENT, ROLE_MASTER] }
-        - { path: ^/addserv/new,                role: [ROLE_CLIENT, ROLE_MASTER] }
-        - { path: '^/addserv/([0-9]*)/edit$',   role: [ROLE_CLIENT, ROLE_MASTER] }
 
         #- { path: ^/master_client/assign,		role: [ROLE_CLIENT, ROLE_MASTER] }
         #- { path: ^/master_client/resign,		role: [ROLE_CLIENT, ROLE_MASTER] }

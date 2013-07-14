@@ -49,12 +49,23 @@ class ClubController extends Controller
     public function createAction(Request $request)
     {
         $entity  = new Club();
+
+
         $form = $this->createForm(new ClubType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            if($user->getClient() === null)
+                throw new NotFoundHttpException('exceptionmess.provideclient');
+
+            $entity->setClient($user->getClient());
+
+
             $em->persist($entity);
+
             $em->flush();
 
             // creating the ACL
@@ -63,8 +74,6 @@ class ClubController extends Controller
             $acl = $aclProvider->createAcl($objectIdentity);
 
             // retrieving the security identity of the currently logged-in user
-            $securityContext = $this->get('security.context');
-            $user = $securityContext->getToken()->getUser();
             $securityIdentity = UserSecurityIdentity::fromAccount($user);
 
             // grant owner access
