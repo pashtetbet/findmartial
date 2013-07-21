@@ -1,0 +1,19 @@
+{% form_theme form _self %}
+
+<form class="ajax-form_" action="{{ entity.id  ? path('club_update', { 'id': entity.id }) : path('club_create') }}" method="post" {{ form_enctype(form) }}>
+
+  {% if entity.id %}
+      <input type="hidden" name="_method" value="PUT" />
+  {% endif %}
+  
+
+  <div class="mapsearch">{{ form_row (form.address) }}</div>
+      <div id="map" class="map"></div>
+
+  {{ form_rest(form) }}
+
+  <p>
+      <button type="submit">{{ 'field.save'|trans({}, 'FindMartialBundle') }}</button>
+  </p>
+
+</form>

@@ -1,7 +1,5 @@
 {% form_theme form _self %}
 
-<script language="JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-
 <form class="ajax-form_" action="{{ entity.id  ? path('master_update', { 'id': entity.id }) : path('master_create') }}" method="post" {{ form_enctype(form) }}>
 
   {% if entity.id %}
