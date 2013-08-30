@@ -118,3 +118,13 @@ sonata_block:
 
         sonata.block.service.text:
         sonata.block.service.rss:
+
+iphp_file_store:
+    mappings:
+       photo:
+           upload_dir:  %kernel.root_dir%/../web/photo
+           upload_path: /photo
+           directory_namer:
+               date:
+                  params: { field : date, depth : month }
+           namer: ~

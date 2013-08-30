@@ -74,6 +74,8 @@ art:
     index: Искусства
 city:
     index: Города
+client:
+    index: Клиенты
 addserv:
     index: Доп. сервисы
 client:

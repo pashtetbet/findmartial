@@ -30,7 +30,7 @@ class Art
     protected $name;
 
     /**
-    * @ORM\Column(type="string", columnDefinition="ENUM('classic', 'pervert')", nullable = true)
+    * @ORM\Column(type="string", columnDefinition="ENUM('classic', 'pervert', 'support')", nullable = true)
     */
     protected $type;
 

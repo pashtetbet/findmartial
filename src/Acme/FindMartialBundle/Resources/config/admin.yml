@@ -1,12 +1,52 @@
 # FindMartialBundle/Resources/config/admin.yml
 services:
-    sonata.admin.tag:
+    sonata.admin.master:
         class: Acme\FindMartialBundle\Admin\MasterAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: masters, label: "Master" }
+            - { name: sonata.admin, manager_type: orm, group: Основные, label: "Тренера" }
         arguments:
             - ~
             - Acme\FindMartialBundle\Entity\Master
             - 'AcmeFindMartialBundle:MasterAdmin'
         calls:
             - [ setTranslationDomain, [AcmeFindMartialBundle]]
+
+    acme_find_martial.admin.art:
+        class: Acme\FindMartialBundle\Admin\ArtAdmin
+        arguments: [~, Acme\FindMartialBundle\Entity\Art, AcmeFindMartialBundle:ArtAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Основные, label: "Виды единоборств"}
+        calls:
+            - [ setTranslationDomain, [AcmeFindMartialBundle]]
+
+    acme_find_martial.admin.club:
+        class: Acme\FindMartialBundle\Admin\ClubAdmin
+        arguments: [~, Acme\FindMartialBundle\Entity\Club, AcmeFindMartialBundle:ClubAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Основные, label: Клубы}
+
+    acme_find_martial.admin.add_serv:
+        class: Acme\FindMartialBundle\Admin\AddServAdmin
+        arguments: [~, Acme\FindMartialBundle\Entity\AddServ, AcmeFindMartialBundle:AddServAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Основные, label: Доп. Сервисы}
+
+    acme_find_martial.admin.city:
+        class: Acme\FindMartialBundle\Admin\CityAdmin
+        arguments: [~, Acme\FindMartialBundle\Entity\City, AcmeFindMartialBundle:CityAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Основные, label: Города}
+
+    acme_find_martial.admin.client:
+        class: Acme\FindMartialBundle\Admin\ClientAdmin
+        arguments: [~, Acme\FindMartialBundle\Entity\Client, AcmeFindMartialBundle:ClientAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Основные, label: Клиенты}
+        calls:
+            - [ setTranslationDomain, [AcmeFindMartialBundle]]
+
+    acme_find_martial.admin.club_photo:
+        class: Acme\FindMartialBundle\Admin\ClubPhotoAdmin
+        arguments: [~, Acme\FindMartialBundle\Entity\ClubPhoto, AcmeFindMartialBundle:ClubPhotoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: Основные, label: Фотки клубов}

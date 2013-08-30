@@ -77,5 +77,6 @@ security:
         - { path: ^/client/$,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/client/([0-9]*)$',         role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: '^/client/([0-9]*)$',         role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin,                      role: ROLE_ADMIN }
+
         #- { path: ^/,                           role: ROLE_ADMIN }

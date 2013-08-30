@@ -24,14 +24,6 @@ class MasterAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
-            ->add('is_checked')
-            ->add('visible')
-            ->add('family')
-            ->add('patronym')
-            ->add('hightlights')
-            ->add('slave')
-            ->add('experience_full')
-            ->add('training_exp_full')
         ;
     }
 

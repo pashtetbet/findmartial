@@ -23,7 +23,16 @@ class ClubType extends AbstractType
             ->add('age_type', null ,array('label' => 'field.agetype', 'translation_domain' => 'FindMartialBundle'))
             ->add('sex', null ,array('label' => 'field.sex', 'translation_domain' => 'FindMartialBundle'))
             ->add('one_training_free', null ,array('label' => 'field.onetrainingfree', 'translation_domain' => 'FindMartialBundle'))
-            ->add('photo', null ,array('label' => 'field.photo', 'translation_domain' => 'FindMartialBundle'))
+            //->add('photo', 'iphp_file' ,array('label' => 'field.photo', 'translation_domain' => 'FindMartialBundle'))
+            ->add('clubPhotos', 'collection', array(
+                                   'label' => '',
+                                   'translation_domain' => 'FindMartialBundle',
+                                   'type' => new ClubPhotoType(),
+                                   'allow_add' => true,
+                                   'allow_delete' => true,
+                                   'prototype' => true,
+                                   'by_reference' => false,
+                                  ))
             ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle', 'required' => false))
             ->add('city', null ,array('label' => 'field.city', 'empty_value' => 'field.citylabel', 'translation_domain' => 'FindMartialBundle', 'required' => true))
             ->add('servises', null ,array('label' => 'field.servises', 'expanded' => true, 'translation_domain' => 'FindMartialBundle', 'required' => false))

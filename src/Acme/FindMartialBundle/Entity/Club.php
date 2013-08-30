@@ -4,23 +4,26 @@
 namespace Acme\FindMartialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fm_club")
+ * @FileStore\Uploadable
  */
 class Club
 {
 
     /**
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="clubs")
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable = false)
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable = true)
      */
     protected $client;
 
     /**
      * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id", nullable = false)
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id", nullable = true)
      */
     protected $city;
 
@@ -32,9 +35,13 @@ class Club
 
     /**
      * @ORM\ManyToMany(targetEntity="Master", inversedBy="clubs", cascade={"persist", "remove"})
-     * @ORM\JoinTable(name="fm_master_club")
      **/
     protected $masters;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ClubPhoto", mappedBy="club", cascade={"persist", "remove"})
+     **/
+    private $clubPhotos;
 
     /**
      * @ORM\OneToMany(targetEntity="Training", mappedBy="club")
@@ -145,11 +152,6 @@ class Club
     protected $one_training_free;
 
     /**
-    * @ORM\Column(type="string", length=150, nullable = true)
-    */
-    protected $photo; 
-
-    /**
     * @ORM\Column(type="boolean")
     */
     protected $is_checked = false;
@@ -163,6 +165,7 @@ class Club
     {
         $this->masters = new \Doctrine\Common\Collections\ArrayCollection();
         $this->servises = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->clubPhotos = new \Doctrine\Common\Collections\ArrayCollection();
         $this->trainings = new \Doctrine\Common\Collections\ArrayCollection();
         $this->types = new \Doctrine\Common\Collections\ArrayCollection();
         $this->levels = new \Doctrine\Common\Collections\ArrayCollection();
@@ -501,29 +504,6 @@ class Club
     public function getOneTrainingFree()
     {
         return $this->one_training_free;
-    }
-
-    /**
-     * Set photo
-     *
-     * @param string $photo
-     * @return Club
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return string 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
     }
 
     /**
@@ -870,5 +850,39 @@ class Club
     public function getCheck()
     {
         return $this->check;
+    }
+
+    /**
+     * Add clubPhotos
+     *
+     * @param \Acme\FindMartialBundle\Entity\ClubPhoto $clubPhotos
+     * @return Club
+     */
+    public function addClubPhoto(\Acme\FindMartialBundle\Entity\ClubPhoto $clubPhotos)
+    {
+        $clubPhotos->setClub($this);
+        $this->clubPhotos[] = $clubPhotos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove clubPhotos
+     *
+     * @param \Acme\FindMartialBundle\Entity\ClubPhoto $clubPhotos
+     */
+    public function removeClubPhoto(\Acme\FindMartialBundle\Entity\ClubPhoto $clubPhotos)
+    {
+        $this->clubPhotos->removeElement($clubPhotos);
+    }
+
+    /**
+     * Get clubPhotos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getClubPhotos()
+    {
+        return $this->clubPhotos;
     }
 }
