@@ -41,6 +41,50 @@ class MasterController extends JsonResponseController
         );
     }
 
+    /**
+     * Lists my Masters entities.
+     *
+     * @Route("/my", name="my_masters")
+     * @Method("GET")
+     * @Template("AcmeFindMartialBundle:Master:index.html.twig")
+     */
+    public function myMastersAction()
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->createQueryBuilder();
+        $securityContext = $this->get('security.context');
+        $user = $securityContext->getToken()->getUser();
+
+        // Кастомный aclProvider с фильтрацией объектов по владельцу
+        $aclProvider = $this->get('security.acl.provider');
+
+        $identifier = 'Acme\FindMartialBundle\Entity\User-'.$user->getUsername();
+
+        $ids = $aclProvider->getAllowedEntitiesIds('Acme\FindMartialBundle\Entity\Master', array($identifier), MaskBuilder::MASK_OWNER, true);
+
+        $queryBuilder->select(array('m'))
+           ->from('Acme\FindMartialBundle\Entity\Master', 'm')
+        ;
+        if (is_string($ids)) {
+           $queryBuilder->andWhere("m.id IN ($ids)");
+        }
+        elseif ($ids===false) {
+           $queryBuilder->andWhere("m.id = 0");
+        }
+        elseif ($ids===true) {
+           // Global-class permission: allow all
+        }
+
+        $entities = $queryBuilder->getQuery()->getResult();
+
+        //$entities = $em->getRepository('AcmeFindMartialBundle:Master')->findAllByUser($userId);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
     public function saveAction(Request $request)
     {
         return $this->createJsonSuccessResponse('your response text');

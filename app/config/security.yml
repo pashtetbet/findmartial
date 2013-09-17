@@ -21,6 +21,7 @@ security:
 
     acl:
         connection: default
+        provider: fm.acl.provider
 
     firewalls:
         dev:

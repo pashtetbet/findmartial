@@ -68,8 +68,10 @@ profile:
 master:
     index: Тренера
     register: Регистрация мастера
+    my: Мои тренера
 club:
     index: Клубы
+    my: Мои клубы
 art:
     index: Искусства
 city:
@@ -84,3 +86,5 @@ client:
 text:
     regclient: Вы теперь клиент
     regmaster: Вы теперь мастер
+user:
+    messages: Сообщения

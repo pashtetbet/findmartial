@@ -205,6 +205,28 @@ div.form_field{
     display:            block;
 }
 
+
+/****************Sign menu*********************/
+ul.sign-menu, ul.sign-menu li{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+ul.sign-menu{
+    border:1px solid #08C;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+    width: 147px;
+}
+ul.sign-menu li{
+    padding: 10px 10px;
+    border-top: 1px dashed #ccc;
+}
+ul.sign-menu li:first-child{
+    border-top: none;
+}
 /****************Clubform**********************/
 .map{
     width:100%;

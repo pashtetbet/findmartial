@@ -23,6 +23,26 @@ class AcmeFindMartialExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+                $loader->load('services.yml');
+                $loader->load('security_acl_dbal.yml');
+
+
+
+        $container
+            ->getDefinition('security.acl.dbal.schema_listener')
+            ->addTag('doctrine.event_listener', array(
+                'connection' => 'default',
+                'event'      => 'postGenerateSchema',
+                'lazy'       => true
+            ))
+        ;
+
+        $container->getDefinition('security.acl.cache.doctrine')->addArgument('sf2_acl_');
+
+        $container->setParameter('security.acl.dbal.class_table_name', 'acl_classes');
+        $container->setParameter('security.acl.dbal.entry_table_name', 'acl_entries');
+        $container->setParameter('security.acl.dbal.oid_table_name', 'acl_object_identities');
+        $container->setParameter('security.acl.dbal.oid_ancestors_table_name', 'acl_object_identity_ancestors');
+        $container->setParameter('security.acl.dbal.sid_table_name', 'acl_security_identities');
     }
 }

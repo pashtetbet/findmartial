@@ -50,3 +50,8 @@ services:
         arguments: [~, Acme\FindMartialBundle\Entity\ClubPhoto, AcmeFindMartialBundle:ClubPhotoAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: Основные, label: Фотки клубов}
+
+    #fm.acl.provider:
+    #    class: Acme\FindMartialBundle\Extension\CustomAclProvider
+    #    public: false
+    #    parent: security.acl.dbal.provider

@@ -39,6 +39,30 @@ class ClubController extends Controller
         );
     }
 
+
+    /**
+     * Lists my Clubs entities.
+     *
+     * @Route("/my", name="my_clubs")
+     * @Method("GET")
+     * @Template("AcmeFindMartialBundle:Club:index.html.twig")
+     */
+    public function myClubsAction()
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $securityContext = $this->get('security.context');
+        $user = $securityContext->getToken()->getUser();
+        $client = $user->getClient();
+
+        $entities = $em->getRepository('AcmeFindMartialBundle:Club')->findByClient($client);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
     /**
      * Creates a new Club entity.
      *

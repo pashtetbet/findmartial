@@ -1,0 +1,43 @@
+parameters:
+    security.acl.dbal.provider.class: Acme\FindMartialBundle\Extension\CustomAclProvider
+    security.acl.dbal.schema.class: Symfony\Component\Security\Acl\Dbal\Schema
+    security.acl.dbal.schema_listener.class: Symfony\Bundle\SecurityBundle\EventListener\AclSchemaListener
+
+services:
+    security.acl.dbal.connection:
+        class:
+        alias:     database_connection
+
+    security.acl.dbal.provider:
+        class: %security.acl.dbal.provider.class%
+        arguments: 
+            - @security.acl.dbal.connection
+            - @security.acl.permission_granting_strategy
+            - {class_table_name: %security.acl.dbal.class_table_name%, entry_table_name: %security.acl.dbal.entry_table_name%, oid_table_name: %security.acl.dbal.oid_table_name%, oid_ancestors_table_name: %security.acl.dbal.oid_ancestors_table_name%, sid_table_name: %security.acl.dbal.sid_table_name%}
+            - @?security.acl.cache
+
+    security.acl.dbal.schema:
+        class: %security.acl.dbal.schema.class%
+        arguments: [{class_table_name: %security.acl.dbal.class_table_name%, entry_table_name: %security.acl.dbal.entry_table_name%, oid_table_name: %security.acl.dbal.oid_table_name%, oid_ancestors_table_name: %security.acl.dbal.oid_ancestors_table_name%, sid_table_name: %security.acl.dbal.sid_table_name%}, @security.acl.dbal.connection]
+
+
+    security.acl.dbal.schema_listener:
+        class: %security.acl.dbal.schema_listener.class%
+        arguments: [@service_container]
+        public: false
+
+    security.acl.provider:
+        alias: security.acl.dbal.provider
+
+    security.acl.cache.doctrine:
+        class: %security.acl.cache.doctrine.class%
+        arguments: [@security.acl.cache.doctrine.cache_impl, @security.acl.permission_granting_strategy]
+        public: false
+
+    security.acl.cache.doctrine.cache_impl:
+        alias: doctrine.orm.default_result_cache
+        public: false
+
+    security.acl.permission.map:
+        class: %security.acl.permission.map.class%
+        public: false
