@@ -17,6 +17,7 @@
                 <th>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}</th>
                 <th>{{ 'field.experience'|trans({}, 'FindMartialBundle') }}</th>
                 <th>{{ 'field.trainingexp'|trans({}, 'FindMartialBundle') }}</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +36,26 @@
                 <td>{{ entity.ischecked }}</td>
                 <td>{{ entity.experiencefull }}</td>
                 <td>{{ entity.trainingexpfull }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('master_show', { 'id': entity.id }) }}">{{ 'field.show'|trans({}, 'FindMartialBundle') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('master_edit', { 'id': entity.id }) }}">{{ 'field.edit'|trans({}, 'FindMartialBundle') }}</a>
+                    </li>
+                </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('master_new') }}">
+                {{ 'field.createnew'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+    </ul>
 {% endblock %}

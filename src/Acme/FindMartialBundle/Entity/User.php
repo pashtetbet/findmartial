@@ -69,9 +69,9 @@ class User extends BaseUser
     /**
      * @Assert\File( maxSize="20M")
      * @FileStore\UploadableField(mapping="photo")
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable = true)
      */
-    private $avatar;
+    private $avatar = null;
 
 
     /**

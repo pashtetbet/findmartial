@@ -14,6 +14,8 @@
                 <th>{{ 'field.indicprice'|trans({}, 'FindMartialBundle') }}</th>
                 <th>{{ 'field.onetrainingfree'|trans({}, 'FindMartialBundle') }}</th>
                 <th>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.visible'|trans({}, 'FindMartialBundle') }}</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,10 +27,31 @@
                 <td>{{ entity.indicpricemin }}-{{ entity.indicpricemax }}</td>
                 <td>{{ entity.onetrainingfree }}</td>
                 <td>{{ entity.ischecked }}</td>
-
+                <td>
+                    {{ entity.visible }}
+                    {{ entity.latitude }}
+                    {{ entity.longitude }}
+                </td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('club_show', { 'id': entity.id }) }}">{{ 'field.show'|trans({}, 'FindMartialBundle') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('club_edit', { 'id': entity.id }) }}">{{ 'field.edit'|trans({}, 'FindMartialBundle') }}</a>
+                    </li>
+                </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    <ul>
+        <li>
+            <a href="{{ path('club_new') }}">
+                {{ 'field.createnew'|trans({}, 'FindMartialBundle') }}
+            </a>
+        </li>
+    </ul>
     {% endblock %}
