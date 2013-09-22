@@ -1,6 +1,7 @@
 # Profile
 field:
     club: Клуб
+    citylabel: Город
     name: Имя
     family: Фамилия
     patronym: Отчество
@@ -67,11 +68,20 @@ profile:
         urmaster: Вы зарегистрированы как мастер
 master:
     index: Тренера
-    register: Регистрация мастера
+    register: Новый тренер
     my: Мои тренера
 club:
     index: Клубы
+    headercreate: Новый клуб
+    update: Редактирование
     my: Мои клубы
+    agetype:
+        children: Для детей
+        adults: Для взрослых
+        common: Без ограничений
+    sex:
+        male: муж
+        female: жен
 art:
     index: Искусства
 city:
@@ -83,6 +93,7 @@ addserv:
 client:
     index: Клиенты
     register: Регистрация клиента
+    name: Название компании
 text:
     regclient: Вы теперь клиент
     regmaster: Вы теперь мастер

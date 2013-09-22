@@ -87,10 +87,14 @@
             // получение информации о расположении и инициализация переменных
             var point = result.item.location;
 
+            //поля координат
+            putFieldsValue(point[0].toPrecision(9), point[1].toPrecision(9));
+            
             putMarkerOnMap(point[0], point[1], result.item.name, result.item.name);
 
             if(result.item.bounds)
                 myMap.setBounds(result.item.bounds, {checkZoomRange: true});
+
         }
 
         // При щелчке левой кнопкой мыши выводится
@@ -120,7 +124,7 @@
                     // получение информации о расположении и инициализация переменных
                     point = objects.get(0).geometry.getCoordinates();
                     
-                    //поля координа
+                    //поля координат
                     putFieldsValue(point[0].toPrecision(9), point[1].toPrecision(9));
 
                     putMarkerOnMap(point[0].toPrecision(9), point[1].toPrecision(9), names[0]);

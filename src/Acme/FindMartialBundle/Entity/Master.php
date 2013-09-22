@@ -28,6 +28,11 @@ class Master
     protected $clubs;
 
     /**
+     * @ORM\OneToMany(targetEntity="MasterPhoto", mappedBy="master", cascade={"persist", "remove"})
+     **/
+    private $masterPhotos;
+
+    /**
      * @ORM\OneToMany(targetEntity="Training", mappedBy="master")
      **/
     private $trainings;
@@ -53,12 +58,12 @@ class Master
     protected $id;
     
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable = false)
      */
     protected $name;
     
     /**
-     * @ORM\Column(type="string", length=100, nullable = true)
+     * @ORM\Column(type="string", length=100, nullable = false)
      */
     protected $family;
 
@@ -78,19 +83,14 @@ class Master
     protected $description;
     	
     /**
-    * @ORM\Column(type="string", columnDefinition="ENUM('male', 'female')", nullable = true)
+    * @ORM\Column(type="string", columnDefinition="ENUM('male', 'female')", nullable = false)
     */
-    protected $sex;
+    protected $sex = 'male';
 
     /**
     * @var \Date
     */
     protected $birth;
-
-    /**
-    * @ORM\Column(type="string", length=150, nullable = true)
-    */
-    protected $photo;
 
     /**
      * @ORM\Column(type="boolean", nullable = true)
@@ -118,14 +118,14 @@ class Master
     protected $is_checked = false;
 
     /**
-    * @ORM\Column(type="integer", nullable = true)
+    * @ORM\Column(type="integer", nullable = false)
     */
-    protected $experience_full;
+    protected $experience_full = 0;
 
     /**
-    * @ORM\Column(type="integer", nullable = true)
+    * @ORM\Column(type="integer", nullable = false)
     */
-    protected $training_exp_full;
+    protected $training_exp_full = 0;
 
     public function __construct()
     {
@@ -134,6 +134,7 @@ class Master
         $this->clubs          = new \Doctrine\Common\Collections\ArrayCollection();
         $this->trainings      = new \Doctrine\Common\Collections\ArrayCollection();
         $this->duplicates     = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->masterPhotos   = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     function __toString()
@@ -288,29 +289,6 @@ class Master
     public function getSex()
     {
         return $this->sex;
-    }
-
-    /**
-     * Set photo
-     *
-     * @param string $photo
-     * @return Master
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-    
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return string 
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
     }
 
     /**
@@ -653,5 +631,39 @@ class Master
     public function getCheck()
     {
         return $this->check;
+    }
+
+    /**
+     * Add masterPhotos
+     *
+     * @param \Acme\FindMartialBundle\Entity\MasterPhoto $masterPhotos
+     * @return Master
+     */
+    public function addMasterPhoto(\Acme\FindMartialBundle\Entity\MasterPhoto $masterPhotos)
+    {
+        $masterPhotos->setMaster($this);
+        $this->masterPhotos[] = $masterPhotos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove masterPhotos
+     *
+     * @param \Acme\FindMartialBundle\Entity\MasterPhoto $masterPhotos
+     */
+    public function removeMasterPhoto(\Acme\FindMartialBundle\Entity\MasterPhoto $masterPhotos)
+    {
+        $this->masterPhotos->removeElement($masterPhotos);
+    }
+
+    /**
+     * Get masterPhotos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMasterPhotos()
+    {
+        return $this->masterPhotos;
     }
 }

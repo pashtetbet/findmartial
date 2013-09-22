@@ -3,11 +3,15 @@
 
 namespace Acme\FindMartialBundle\Entity;
 
+use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fm_client")
+ * @FileStore\Uploadable
  */
 class Client
 {
@@ -89,9 +93,18 @@ class Client
     protected $social;
 
     /**
-    * @ORM\Column(type="string", length=150, nullable = true)
-    */
-    protected $logo;
+     * @var \Datetime
+     * @ORM\Column(type="datetime", nullable = true)
+     */
+    private $date;
+
+    /**
+     * @Assert\File( maxSize="20M")
+     * @FileStore\UploadableField(mapping="photo")
+     * @ORM\Column(type="array")
+     */
+    private $logo;
+
 
     /**
     * @ORM\Column(type="decimal", scale=2)
@@ -313,29 +326,6 @@ class Client
     public function getSocial()
     {
         return $this->social;
-    }
-
-    /**
-     * Set logo
-     *
-     * @param string $logo
-     * @return Client
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return string 
-     */
-    public function getLogo()
-    {
-        return $this->logo;
     }
 
     /**
@@ -596,5 +586,51 @@ class Client
     public function getCheck()
     {
         return $this->check;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Client
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param array $logo
+     * @return Client
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return array 
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 }

@@ -4,11 +4,15 @@
 namespace Acme\FindMartialBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
+use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fm_user")
+ * @FileStore\Uploadable
  */
 class User extends BaseUser
 {
@@ -32,7 +36,7 @@ class User extends BaseUser
     protected $name;
     
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable = true)
      */
     protected $family;
 
@@ -57,9 +61,18 @@ class User extends BaseUser
     protected $about;
 
     /**
-    * @ORM\Column(type="string", length=150, nullable = true)
-    */
-    protected $avatar;
+     * @var \Datetime
+     * @ORM\Column(type="datetime", nullable = true)
+     */
+    private $date;
+
+    /**
+     * @Assert\File( maxSize="20M")
+     * @FileStore\UploadableField(mapping="photo")
+     * @ORM\Column(type="array")
+     */
+    private $avatar;
+
 
     /**
     * @ORM\Column(type="boolean")
@@ -222,29 +235,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set avatar
-     *
-     * @param string $avatar
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return string 
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
      * Set authorised_comments
      *
      * @param boolean $authorisedComments
@@ -288,5 +278,51 @@ class User extends BaseUser
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return User
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param array $avatar
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return array 
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }

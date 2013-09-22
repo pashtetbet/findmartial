@@ -1,5 +1,5 @@
 <?php
-#src/Acme/FindMartialBundle/Entity/Photo.php
+#src/Acme/FindMartialBundle/Entity/MasterPhoto.php
 namespace Acme\FindMartialBundle\Entity;
 use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -8,11 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fm_club_photo")
+ * @ORM\Table(name="fm_master_photo")
  * @FileStore\Uploadable
  */
 
-class ClubPhoto
+class MasterPhoto
 {
     /**
      * @ORM\Id
@@ -22,10 +22,10 @@ class ClubPhoto
     private $id;
  
      /**
-     * @ORM\ManyToOne(targetEntity="Club", inversedBy="clubPhotos", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Master", inversedBy="masterPhotos", cascade={"persist"})
      * @ORM\JoinColumn(name="club_id", referencedColumnName="id", nullable = true)
      */
-    protected $club;
+    protected $master;
 
     /**
      * @ORM\Column(type="string", length=255, nullable = true)
@@ -53,8 +53,6 @@ class ClubPhoto
 
 
 
-    
-
     /**
      * Get id
      *
@@ -69,7 +67,7 @@ class ClubPhoto
      * Set title
      *
      * @param string $title
-     * @return ClubPhoto
+     * @return MasterPhoto
      */
     public function setTitle($title)
     {
@@ -92,7 +90,7 @@ class ClubPhoto
      * Set date
      *
      * @param \DateTime $date
-     * @return ClubPhoto
+     * @return MasterPhoto
      */
     public function setDate($date)
     {
@@ -115,7 +113,7 @@ class ClubPhoto
      * Set photo
      *
      * @param array $photo
-     * @return ClubPhoto
+     * @return MasterPhoto
      */
     public function setPhoto($photo)
     {
@@ -135,25 +133,25 @@ class ClubPhoto
     }
 
     /**
-     * Set club
+     * Set master
      *
-     * @param \Acme\FindMartialBundle\Entity\Club $club
-     * @return ClubPhoto
+     * @param \Acme\FindMartialBundle\Entity\Master $master
+     * @return MasterPhoto
      */
-    public function setClub(\Acme\FindMartialBundle\Entity\Club $club = null)
+    public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
     {
-        $this->club = $club;
+        $this->master = $master;
     
         return $this;
     }
 
     /**
-     * Get club
+     * Get master
      *
-     * @return \Acme\FindMartialBundle\Entity\Club 
+     * @return \Acme\FindMartialBundle\Entity\Master 
      */
-    public function getClub()
+    public function getMaster()
     {
-        return $this->club;
+        return $this->master;
     }
 }

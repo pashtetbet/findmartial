@@ -28,7 +28,7 @@ class DefaultController extends Controller
      /**
      * @Route("/regmaster_create", name="reg_master_create")
      * @Method("POST")
-     * @Template("AcmeFindMartialBundle:Default:regMaster.html.twig")
+     * @Template("AcmeFindMartialBundle:Master:new.html.twig")
      */
     public function createMasterAction(Request $request)
     {
@@ -68,6 +68,18 @@ class DefaultController extends Controller
             $translated = $this->get('translator')->trans('text.regmaster', array(), 'FindMartialBundle');
             $this->get('session')->getFlashBag()->add('notice', $translated);
 
+            // creating the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($entityMaster);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // retrieving the security identity of the currently logged-in user
+            $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+            // grant owner access
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
+
             return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
         }
 
@@ -87,7 +99,7 @@ class DefaultController extends Controller
      *
      * @Route("/regmaster", name="reg_master")
      * @Method("GET")
-     * @Template("AcmeFindMartialBundle:Default:regMaster.html.twig")
+     * @Template("AcmeFindMartialBundle:Master:new.html.twig")
      */
     public function newMasterAction()
     {
