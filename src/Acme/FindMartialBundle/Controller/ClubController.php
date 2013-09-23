@@ -45,7 +45,7 @@ class ClubController extends Controller
      *
      * @Route("/my", name="my_clubs")
      * @Method("GET")
-     * @Template("AcmeFindMartialBundle:Club:index.html.twig")
+     * @Template("AcmeFindMartialBundle:Club:my.html.twig")
      */
     public function myClubsAction()
     {

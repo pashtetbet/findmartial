@@ -46,7 +46,7 @@ class MasterController extends JsonResponseController
      *
      * @Route("/my", name="my_masters")
      * @Method("GET")
-     * @Template("AcmeFindMartialBundle:Master:index.html.twig")
+     * @Template("AcmeFindMartialBundle:Master:my.html.twig")
      */
     public function myMastersAction()
     {
