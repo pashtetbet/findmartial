@@ -82,7 +82,12 @@ class Club
     protected $id;
     
     /**
-     * @ORM\Column(type="string", length=255, nullable = false)
+    * @ORM\Column(type="string", length=100, nullable = false)
+    */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable = true)
      */
     protected $description;
 
@@ -155,6 +160,11 @@ class Club
     * @ORM\Column(type="boolean")
     */
     protected $is_checked = false;
+
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    protected $card_required = false;
 
     /**
     * @ORM\Column(type="boolean")
@@ -884,5 +894,51 @@ class Club
     public function getClubPhotos()
     {
         return $this->clubPhotos;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Club
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set card_required
+     *
+     * @param boolean $cardRequired
+     * @return Club
+     */
+    public function setCardRequired($cardRequired)
+    {
+        $this->card_required = $cardRequired;
+    
+        return $this;
+    }
+
+    /**
+     * Get card_required
+     *
+     * @return boolean 
+     */
+    public function getCardRequired()
+    {
+        return $this->card_required;
     }
 }

@@ -11,7 +11,8 @@ class ClubType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description', null ,array('label' => 'field.description', 'translation_domain' => 'FindMartialBundle'))
+            ->add('name', null ,array('label' => 'club.name', 'translation_domain' => 'FindMartialBundle'))
+            ->add('description', null ,array('label' => 'field.description', 'translation_domain' => 'FindMartialBundle', 'required' => false))
             ->add('address', null ,array('label' => 'field.address', 'translation_domain' => 'FindMartialBundle'))
             ->add('address_comment', null ,array('label' => 'field.addresscomment', 'translation_domain' => 'FindMartialBundle'))
             ->add('latitude', 'hidden', array('label' => 'field.latitude', 'translation_domain' => 'FindMartialBundle'))
@@ -45,6 +46,7 @@ class ClubType extends AbstractType
                                    'prototype' => true,
                                    'by_reference' => false,
                                   ))
+            ->add('card_required', null ,array('label' => 'club.cardrequired', 'translation_domain' => 'FindMartialBundle', 'required' => false))
             ->add('visible', null ,array('label' => 'field.visible', 'translation_domain' => 'FindMartialBundle', 'required' => false))
             ->add('city', null ,array('label' => 'field.city', 'empty_value' => '...', 'translation_domain' => 'FindMartialBundle', 'required' => true))
             ->add('servises', null ,array('label' => 'field.servises', 'expanded' => true, 'translation_domain' => 'FindMartialBundle', 'required' => false))

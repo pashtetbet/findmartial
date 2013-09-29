@@ -15,16 +15,11 @@
   {{ form_row (form.description) }}
   {{ form_row (form.sex) }}
 
-  {{ form_row (form.experience_full) }}
-  {{ form_row (form.training_exp_full) }}
-   
-
-
 
   <a href="#" id="add-another-art">Добавить БИ</a>
 
   {% macro artRow(masterart) %}
-    <li>{{ form_widget(masterart.art, {'widget': 'integer_widget'}) }}{{ form_widget(masterart.expirience) }}{{ form_widget(masterart.training_exp) }}</li>
+    <li>{{ form_widget(masterart.art, {'widget': 'integer_widget'}) }}{{ form_widget(masterart.expirience) }}{{ form_widget(masterart.training_exp) }}{{ form_widget(masterart.description) }}</li>
   {% endmacro %}
 
   <ul id="arts-fields-list" data-prototype="{{ _self.artRow(form.masterArts.vars.prototype) | e }}">
@@ -33,10 +28,13 @@
     {% endfor %}
   </ul>
 
-  {{ form_widget(form.arts) }}
+  {{ form_widget(form.masterArts) }}
 
 
+  {{ form_row (form.experience_full) }}
+  {{ form_row (form.training_exp_full) }}
 
+  
 
   {% macro photoRow(masterphoto) %}
     <li>{{ form_row(masterphoto.title) }}{{ form_row(masterphoto.photo) }}</li>
@@ -52,6 +50,7 @@
 
 
 
+  {{ form_widget(form.arts) }}
 
   {{ form_rest(form) }}
 

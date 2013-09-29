@@ -120,9 +120,8 @@ class MasterController extends JsonResponseController
             $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
             $aclProvider->updateAcl($acl);
 
-            return $this->createJsonSuccessResponse('your response text');
             //return $this->createJsonSuccessResponse('your response text');
-            //return $this->redirect($this->generateUrl('master_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('master_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -254,6 +253,9 @@ class MasterController extends JsonResponseController
      */
     public function deleteAction(Request $request, $id)
     {
+
+        $securityContext = $this->get('security.context');
+        
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -263,6 +265,10 @@ class MasterController extends JsonResponseController
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Master entity.');
+            }
+
+            if (false === $securityContext->isGranted('DELETE', $entity)) {
+                throw new AccessDeniedException();
             }
 
             $em->remove($entity);

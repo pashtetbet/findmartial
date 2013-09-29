@@ -150,6 +150,9 @@ class CityController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+
+        $securityContext = $this->get('security.context');
+
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -159,6 +162,10 @@ class CityController extends Controller
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find City entity.');
+            }
+
+            if (false === $securityContext->isGranted('DELETE', $entity)) {
+                throw new AccessDeniedException();
             }
 
             $em->remove($entity);

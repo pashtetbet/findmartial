@@ -56,7 +56,7 @@ field:
 profile:
     show:
         getclient: Стать клиентом
-        getmaster: Стать мастером
+        getmaster: Стать тренером
         name: Имя
         family: Фамилия
         estimateValue: Средняя оценка
@@ -82,6 +82,8 @@ club:
     sex:
         male: муж
         female: жен
+    name: Название
+    cardrequired: Требуется карта
 art:
     index: Искусства
 city:

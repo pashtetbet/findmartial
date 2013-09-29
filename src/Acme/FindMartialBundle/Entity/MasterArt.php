@@ -34,6 +34,11 @@ class MasterArt
     private $training_exp;
 
     /**
+    * @ORM\Column(type="string", length=255, nullable = true)
+    */
+    protected $description;
+
+    /**
     * @ORM\Column(type="boolean")
     */
     protected $is_checked = false;
@@ -159,5 +164,28 @@ class MasterArt
     public function getArt()
     {
         return $this->art;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return MasterArt
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

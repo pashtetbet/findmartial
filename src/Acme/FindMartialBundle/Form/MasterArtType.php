@@ -14,6 +14,7 @@ class MasterArtType extends AbstractType
             ->add('art', null ,array('label' => 'БИ'))
             ->add('expirience', null, array('label' => 'опыт личный'))
             ->add('training_exp', null, array('label' => 'опыт тренера'))
+            ->add('description', null, array('label' => 'кратко. основные достижения.'))
         ;
     }
 
