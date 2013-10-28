@@ -10,3 +10,18 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_registration }
+    acme_find_martial.master_registration.form.type:
+        class: Acme\FindMartialBundle\Form\Type\RegisterMasterType
+        arguments: [%fos_user.model.user.class%, %fos_user.model.master.class%]
+        tags:
+            - { name: form.type, alias: acme_find_martial_master_registration }
+    acme_find_martial.client_registration.form.type:
+        class: Acme\FindMartialBundle\Form\Type\RegisterClientType
+        arguments: [%fos_user.model.user.class%, %fos_user.model.client.class%]
+        tags:
+            - { name: form.type, alias: acme_find_martial_client_registration }
+    acme_find_martial.club_registration.form.type:
+        class: Acme\FindMartialBundle\Form\Type\RegisterClientType
+        arguments: [%fos_user.model.user.class%, %fos_user.model.club.class%]
+        tags:
+            - { name: form.type, alias: acme_find_martial_club_registration }

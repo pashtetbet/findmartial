@@ -4,9 +4,9 @@ namespace Acme\FindMartialBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
-use Acme\FindMartialBundle\Form\ClientType as ClientType;
+use Acme\FindMartialBundle\Form\MasterType as MasterType;
 
-class RegistrationFormType extends BaseType
+class RegistrerMasterType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,11 +17,11 @@ class RegistrationFormType extends BaseType
         $builder->add('about', null ,array('label' => 'form.about', 'translation_domain' => 'FOSUserBundle'));
         $builder->add('avatar', 'iphp_file' ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle', 'required' => false));
         //$builder->add('roles' ,'choice' ,array('multiple' => 'true', 'choices'=>array('ROLE_USER' => 'пользователь', 'ROLE_CLIENT' => 'клиент', 'ROLE_MASTER' => 'мастер')));
-        $builder->add('client', new ClientType());
+        $builder->add('master', new MasterType());
     }
 
     public function getName()
     {
-        return 'acme_find_martial_registration';
+        return 'acme_find_martial_master_registration';
     }
 }

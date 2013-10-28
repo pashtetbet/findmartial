@@ -6,7 +6,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Acme\FindMartialBundle\Form\ClientType as ClientType;
 
-class RegistrationFormType extends BaseType
+class RegistrerClientType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,6 +22,6 @@ class RegistrationFormType extends BaseType
 
     public function getName()
     {
-        return 'acme_find_martial_registration';
+        return 'acme_find_martial_client_registration';
     }
 }

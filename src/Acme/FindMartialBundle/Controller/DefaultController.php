@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Acme\FindMartialBundle\Entity\Master;
 use Acme\FindMartialBundle\Entity\Client;
-use Acme\FindMartialBundle\Form\MasterType;
+use Acme\FindMartialBundle\Form\RegisterMasterType;
 use Acme\FindMartialBundle\Form\ClientType;
 
 class DefaultController extends Controller
@@ -38,7 +38,7 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
 
         $entityMaster = new Master();
-        $form = $this->createForm(new MasterType(), $entityMaster);
+        $form = $this->createForm(new RegisterMasterType(), $entityMaster);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -109,7 +109,7 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('master_show', array('id' => $entityMaster->getId())));
 
         $entityMaster = new Master();
-        $form   = $this->createForm(new MasterType(), $entityMaster);
+        $form   = $this->createForm(new RegisterMasterType(), $entityMaster);
 
         return array(
             'entity' => $entityMaster,

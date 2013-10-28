@@ -2,8 +2,27 @@
 
 {% block title "FindMartial" %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+        '@AcmeFindMartialBundle/Resources/public/js/club_index.js'
+     %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+
 {% block content %}
-    <h1>Club list</h1>
+    <h1>{{ 'club.index'|trans({}, 'FindMartialBundle') }}</h1>
+
+    <div class="inputs">Количество меток:
+     <input type="text" size="6" id="count" value="100"> <br>
+    <input type="checkbox" id="useClusterer"> Использовать кластеризатор
+<div class="field" style="display: none;">Размер ячейки кластера в пикселях: <input type="text" size="6" id="gridSize" value="64"></div></div>
+
+<p><input type="button" value="Добавить на карту" id="addMarkers">
+    <input type="button" value="Удалить все метки" id="removeMarkers"></p>
+    <div id="map" class="map"></div>
 
     <table class="records_list">
         <thead>

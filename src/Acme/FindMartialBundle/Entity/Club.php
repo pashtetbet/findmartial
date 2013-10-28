@@ -35,6 +35,7 @@ class Club
 
     /**
      * @ORM\ManyToMany(targetEntity="Master", inversedBy="clubs", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="fm_master_club")
      **/
     protected $masters;
 
