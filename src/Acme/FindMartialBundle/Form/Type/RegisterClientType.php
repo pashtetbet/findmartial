@@ -3,10 +3,11 @@
 namespace Acme\FindMartialBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Acme\FindMartialBundle\Form\ClientType as ClientType;
 
-class RegistrerClientType extends BaseType
+class RegisterClientType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,6 +21,13 @@ class RegistrerClientType extends BaseType
         $builder->add('client', new ClientType());
     }
 
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => null
+        ));
+    }
+    
     public function getName()
     {
         return 'acme_find_martial_client_registration';

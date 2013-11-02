@@ -1,5 +1,17 @@
 parameters:
 #    acme_find_martial.example.class: Acme\FindMartialBundle\Example
+    acme_find_martial.model.client.class: Acme\FindMartialBundle\Entity\Client
+    acme_find_martial.model.master.class: Acme\FindMartialBundle\Entity\Master
+    acme_find_martial.model.club.class: Acme\FindMartialBundle\Club
+
+    acme_find_martial.registration.client_form.name: "acme_find_martial_client_registration_form"
+    acme_find_martial.registration.master_form.name: "acme_find_martial_master_registration_form"
+    acme_find_martial.registration.club_form.name: "acme_find_martial_club_registration_form"
+
+    acme_find_martial.registration.client_form.type: "acme_find_martial_client_registration"
+    acme_find_martial.registration.master_form.type: "acme_find_martial_master_registration"
+    acme_find_martial.registration.club_form.type: "acme_find_martial_club_registration"
+
 
 services:
 #    acme_find_martial.example:
@@ -10,18 +22,69 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_registration }
-    acme_find_martial.master_registration.form.type:
-        class: Acme\FindMartialBundle\Form\Type\RegisterMasterType
-        arguments: [%fos_user.model.user.class%, %fos_user.model.master.class%]
-        tags:
-            - { name: form.type, alias: acme_find_martial_master_registration }
-    acme_find_martial.client_registration.form.type:
+
+
+# Сервисы FM регистрации. Эти сервисы  надо перевести на парентс, по идее
+
+    acme_find_martial.registration.client_form:
         class: Acme\FindMartialBundle\Form\Type\RegisterClientType
-        arguments: [%fos_user.model.user.class%, %fos_user.model.client.class%]
+        factory_service:  form.factory
+        factory_method:   createNamed
+        arguments:
+            - %acme_find_martial.registration.client_form.name%
+            - %acme_find_martial.registration.client_form.type%
+            - null
+            - {validation_groups: %fos_user.registration.form.validation_groups%}
+    acme_find_martial.registration.master_form:
+        class: Acme\FindMartialBundle\Form\Type\RegisterMasterType
+        factory_service:  form.factory
+        factory_method:   createNamed
+        arguments:
+            - %acme_find_martial.registration.master_form.name%
+            - %acme_find_martial.registration.master_form.type%
+            - null
+            - {validation_groups: %fos_user.registration.form.validation_groups%}
+    acme_find_martial.registration.club_form:
+        class: Acme\FindMartialBundle\Form\Type\RegisterClubType
+        factory_service:  form.factory
+        factory_method:   createNamed
+        arguments:
+            - %acme_find_martial.registration.club_form.name%
+            - %acme_find_martial.registration.club_form.type%
+            - null
+            - {validation_groups: %fos_user.registration.form.validation_groups%}
+
+    acme_find_martial.registration.client_form.type:
+        class: Acme\FindMartialBundle\Form\Type\RegisterClientType
+        arguments: [%acme_find_martial.model.client.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_client_registration }
-    acme_find_martial.club_registration.form.type:
-        class: Acme\FindMartialBundle\Form\Type\RegisterClientType
-        arguments: [%fos_user.model.user.class%, %fos_user.model.club.class%]
+    acme_find_martial.registration.master_form.type:
+        class: Acme\FindMartialBundle\Form\Type\RegisterMasterType
+        arguments: [%acme_find_martial.model.master.class%]
+        tags:
+            - { name: form.type, alias: acme_find_martial_master_registration }
+    acme_find_martial.registration.club_form.type:
+        class: Acme\FindMartialBundle\Form\Type\RegisterClubType
+        arguments: [%acme_find_martial.model.club.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_club_registration }
+
+    acme_find_martial.registration.client_form.handler.default:
+        class: Acme\FindMartialBundle\Form\Handler\ClientRegistrationFormHandler
+        parent: fos_user.registration.form.handler.default
+        scope: request
+    acme_find_martial.registration.client_form.handler:
+        alias: acme_find_martial.registration.master_form.handler.default
+    acme_find_martial.registration.master_form.handler.default:
+        class: Acme\FindMartialBundle\Form\Handler\MasterRegistrationFormHandler
+        parent: fos_user.registration.form.handler.default
+        scope: request
+    acme_find_martial.registration.master_form.handler:
+        alias: acme_find_martial.registration.master_form.handler.default
+    acme_find_martial.registration.club_form.handler.default:
+        class: Acme\FindMartialBundle\Form\Handler\ClubRegistrationFormHandler
+        parent: fos_user.registration.form.handler.default
+        scope: request
+    acme_find_martial.registration.club_form.handler:
+        alias: acme_find_martial.registration.master_form.handler.default

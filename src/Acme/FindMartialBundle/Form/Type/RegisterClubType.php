@@ -3,10 +3,11 @@
 namespace Acme\FindMartialBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Acme\FindMartialBundle\Form\ClubType as ClubType;
 
-class RegistrerClubType extends BaseType
+class RegisterClubType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -20,6 +21,13 @@ class RegistrerClubType extends BaseType
         $builder->add('club', new ClubType());
     }
 
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => null
+        ));
+    }
+    
     public function getName()
     {
         return 'acme_find_martial_club_registration';

@@ -3,10 +3,11 @@
 namespace Acme\FindMartialBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Acme\FindMartialBundle\Form\MasterType as MasterType;
 
-class RegistrerMasterType extends BaseType
+class RegisterMasterType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,6 +19,13 @@ class RegistrerMasterType extends BaseType
         $builder->add('avatar', 'iphp_file' ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle', 'required' => false));
         //$builder->add('roles' ,'choice' ,array('multiple' => 'true', 'choices'=>array('ROLE_USER' => 'пользователь', 'ROLE_CLIENT' => 'клиент', 'ROLE_MASTER' => 'мастер')));
         $builder->add('master', new MasterType());
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => null
+        ));
     }
 
     public function getName()

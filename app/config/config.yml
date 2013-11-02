@@ -81,21 +81,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Acme\FindMartialBundle\Entity\User
-    master_class: Acme\FindMartialBundle\Entity\Master
-    client_class: Acme\FindMartialBundle\Entity\Client
-    club_class: Acme\FindMartialBundle\Entity\Club
     registration:
         form:
             type: acme_find_martial_registration
-    master_registration:
-        form:
-            type: acme_find_martial_master_registration
-    client_registration:
-        form:
-            type: acme_find_martial_client_registration
-    club_registration:
-        form:
-            type: acme_find_martial_club_registration
     group:
         group_class:    Acme\FindMartialBundle\Entity\Group
         group_manager:  fos_user.group_manager.default
