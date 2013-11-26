@@ -7,6 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Acme\FindMartialBundle\Form\MasterType as MasterType;
 
+
 class RegisterMasterType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -16,15 +17,16 @@ class RegisterMasterType extends BaseType
         $builder->add('name', null ,array('label' => 'form.name', 'translation_domain' => 'FOSUserBundle', 'required' => false));
         //$builder->add('family', null ,array('label' => 'form.family', 'translation_domain' => 'FOSUserBundle'));
         $builder->add('about', null ,array('label' => 'form.about', 'translation_domain' => 'FOSUserBundle'));
-        $builder->add('avatar', 'iphp_file' ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle', 'required' => false));
+        //$builder->add('avatar', 'iphp_file' ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle', 'required' => false));
         //$builder->add('roles' ,'choice' ,array('multiple' => 'true', 'choices'=>array('ROLE_USER' => 'пользователь', 'ROLE_CLIENT' => 'клиент', 'ROLE_MASTER' => 'мастер')));
-        $builder->add('master', new MasterType());
+        $builder->add('master', new MAsterType());
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => null
+            
+            'data_class' => 'Acme\FindMartialBundle\Entity\User'
         ));
     }
 

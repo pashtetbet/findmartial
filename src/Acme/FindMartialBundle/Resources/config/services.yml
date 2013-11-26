@@ -13,30 +13,36 @@ parameters:
     acme_find_martial.registration.club_form.type: "acme_find_martial_club_registration"
 
 
+
 services:
 #    acme_find_martial.example:
 #        class: %acme_find_martial.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+# Переопределяем стандартную форму FOS регистрации
     acme_find_martial.registration.form.type:
         class: Acme\FindMartialBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_registration }
 
+# Дополнительные формы регистрации FOS
+# Сервисы регистрации. Фабрика, сама форма, формхендлер. 
+# реализуя сервисы через наследование(parent) менеджер зависимостей следит за подключением user_listener, а иначе этот листенер не подгрузится
 
-# Сервисы FM регистрации. Эти сервисы  надо перевести на парентс, по идее
-
+# Фабрики
     acme_find_martial.registration.client_form:
-        class: Acme\FindMartialBundle\Form\Type\RegisterClientType
-        factory_service:  form.factory
-        factory_method:   createNamed
+        class: Symfony\Component\Form\Form
+        parent: fos_user.registration.form
+        #factory_service:  form.factory
+        #factory_method:   createNamed
         arguments:
             - %acme_find_martial.registration.client_form.name%
             - %acme_find_martial.registration.client_form.type%
             - null
             - {validation_groups: %fos_user.registration.form.validation_groups%}
     acme_find_martial.registration.master_form:
-        class: Acme\FindMartialBundle\Form\Type\RegisterMasterType
+        class: Symfony\Component\Form\Form
         factory_service:  form.factory
         factory_method:   createNamed
         arguments:
@@ -44,47 +50,60 @@ services:
             - %acme_find_martial.registration.master_form.type%
             - null
             - {validation_groups: %fos_user.registration.form.validation_groups%}
+        calls:
+            
     acme_find_martial.registration.club_form:
-        class: Acme\FindMartialBundle\Form\Type\RegisterClubType
-        factory_service:  form.factory
-        factory_method:   createNamed
+        class: Symfony\Component\Form\Form
+        parent: fos_user.registration.form
         arguments:
             - %acme_find_martial.registration.club_form.name%
             - %acme_find_martial.registration.club_form.type%
             - null
             - {validation_groups: %fos_user.registration.form.validation_groups%}
 
+# Формы
     acme_find_martial.registration.client_form.type:
         class: Acme\FindMartialBundle\Form\Type\RegisterClientType
+        parent: acme_find_martial.registration.form.type
         arguments: [%acme_find_martial.model.client.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_client_registration }
     acme_find_martial.registration.master_form.type:
         class: Acme\FindMartialBundle\Form\Type\RegisterMasterType
+        parent: acme_find_martial.registration.form.type
         arguments: [%acme_find_martial.model.master.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_master_registration }
     acme_find_martial.registration.club_form.type:
         class: Acme\FindMartialBundle\Form\Type\RegisterClubType
+        parent: acme_find_martial.registration.form.type
         arguments: [%acme_find_martial.model.club.class%]
         tags:
             - { name: form.type, alias: acme_find_martial_club_registration }
 
+
+# Хендлеры
+#Если сделать form.handler через парент то почему-то не подцепляется листенер Symfony\Component\Form\Extension\HttpFoundation\EventListener\BindRequestListener
+# form->getData() возвращает NULL, соответвенно ошибки валидации формы не оторбажаются после отправки.
+# Если наступит такой день, когда я пойму механизм этого процесса, то можно поставить себе галочку за этот день.
+# (Может быть arguments не переопределяются при наследовании? НО это не так)
+
+# 23112013 В этой конфигурации вобще ошибку выдает полсе аторизации
     acme_find_martial.registration.client_form.handler.default:
         class: Acme\FindMartialBundle\Form\Handler\ClientRegistrationFormHandler
-        parent: fos_user.registration.form.handler.default
+        arguments: [@acme_find_martial.registration.client_form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
         scope: request
     acme_find_martial.registration.client_form.handler:
         alias: acme_find_martial.registration.master_form.handler.default
     acme_find_martial.registration.master_form.handler.default:
         class: Acme\FindMartialBundle\Form\Handler\MasterRegistrationFormHandler
-        parent: fos_user.registration.form.handler.default
+        arguments: [@acme_find_martial.registration.master_form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
         scope: request
     acme_find_martial.registration.master_form.handler:
         alias: acme_find_martial.registration.master_form.handler.default
     acme_find_martial.registration.club_form.handler.default:
         class: Acme\FindMartialBundle\Form\Handler\ClubRegistrationFormHandler
-        parent: fos_user.registration.form.handler.default
+        arguments: [@acme_find_martial.registration.club_form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
         scope: request
     acme_find_martial.registration.club_form.handler:
         alias: acme_find_martial.registration.master_form.handler.default

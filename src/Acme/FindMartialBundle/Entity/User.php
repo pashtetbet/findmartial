@@ -18,7 +18,7 @@ class User extends BaseUser
 {
 
     /**
-     * @ORM\OneToOne(targetEntity="Client", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="Client", inversedBy="user", cascade={"persist"})
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     protected $client;
@@ -279,6 +279,40 @@ class User extends BaseUser
     {
         return $this->client;
     }
+
+
+
+    /*
+    *   Присваивание мастера клиенту. Используется при регистрации мастера
+    *
+    *
+    */
+        /**
+     * Set master
+     *
+     * @param \Acme\FindMartialBundle\Entity\Master $master
+     * @return User
+     */
+    public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
+    {
+        $this->client->setMaster($master);
+
+        return $this;
+    }
+
+    /**
+     * Get master
+     *
+     * @return \Acme\FindMartialBundle\Entity\Master 
+     */
+    public function getMaster()
+    {
+        return $this->client->master;
+    }
+
+
+
+
 
     /**
      * Set date

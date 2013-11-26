@@ -16,13 +16,15 @@ class MasterRegistrationFormHandler extends RegistrationFormHandler
         $this->form->setData($user);
 
         if ('POST' === $this->request->getMethod()) {
-            $this->form->bind($this->request);
+
+            $this->form->submit($this->request);
 
             if ($this->form->isValid()) {
                 $this->onSuccess($user, $confirmation);
 
                 return true;
             }
+
         }
 
         return false;

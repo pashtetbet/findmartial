@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 use FOS\UserBundle\Controller\RegistrationController;
 
 
@@ -19,19 +21,22 @@ class FMRegistrationController extends RegistrationController
 
     /**
      * @Route("/{type}", requirements={"type" = "client|master|club"}, name="reg_master")
+     * @Template("AcmeFindMartialBundle:FMRegistration:master.html.twig")
      */
     public function registerAction($type)
     {
 
+
         $form = $this->container->get('acme_find_martial.registration.'.$type.'_form');
         $formHandler = $this->container->get('acme_find_martial.registration.'.$type.'_form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
-
         
 
-       $process = $formHandler->process($confirmationEnabled);
+        $process = $formHandler->process($confirmationEnabled);
+
         if ($process) {
             $user = $form->getData();
+
 
             $authUser = false;
             if ($confirmationEnabled) {
@@ -53,8 +58,12 @@ class FMRegistrationController extends RegistrationController
             return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
+        /*return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
             'form' => $form->createView(),
-        ));
+        ));*/
+        
+        return array(
+            'form'   => $form->createView(),
+        );
     }
 }
