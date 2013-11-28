@@ -295,7 +295,8 @@ class User extends BaseUser
      */
     public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
     {
-        $this->client->setMaster($master);
+        if($this->client instanceof \Acme\FindMartialBundle\Entity\Client)
+            $this->client->setMaster($master);
 
         return $this;
     }
@@ -307,7 +308,9 @@ class User extends BaseUser
      */
     public function getMaster()
     {
-        return $this->client->master;
+        if($this->client instanceof \Acme\FindMartialBundle\Entity\Client)
+            return $this->client->master;
+        return null;
     }
 
 
