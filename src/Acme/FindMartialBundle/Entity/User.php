@@ -6,6 +6,8 @@ namespace Acme\FindMartialBundle\Entity;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
+use Acme\FindMartialBundle\Entity\Client;
+use Acme\FindMartialBundle\Entity\Master;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -84,6 +86,41 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+
+
+
+    /*
+    *   Присваивание мастера клиенту. Используется при регистрации мастера
+    *
+    *
+    */
+        /**
+     * Set master
+     *
+     * @param \Acme\FindMartialBundle\Entity\Master $master
+     * @return User
+     */
+    public function setMaster(Master $master = null)
+    {
+        if($this->client instanceof Client)
+            $this->client->setMaster($master);
+
+        return $this;
+    }
+
+    /**
+     * Get master
+     *
+     * @return \Acme\FindMartialBundle\Entity\Master 
+     */
+    public function getMaster()
+    {
+        if($this->client instanceof Client)
+            return $this->client->getMaster();
+        return null;
+    }
+
+
 
 
     /**
@@ -279,43 +316,6 @@ class User extends BaseUser
     {
         return $this->client;
     }
-
-
-
-    /*
-    *   Присваивание мастера клиенту. Используется при регистрации мастера
-    *
-    *
-    */
-        /**
-     * Set master
-     *
-     * @param \Acme\FindMartialBundle\Entity\Master $master
-     * @return User
-     */
-    public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
-    {
-        if($this->client instanceof \Acme\FindMartialBundle\Entity\Client)
-            $this->client->setMaster($master);
-
-        return $this;
-    }
-
-    /**
-     * Get master
-     *
-     * @return \Acme\FindMartialBundle\Entity\Master 
-     */
-    public function getMaster()
-    {
-        if($this->client instanceof \Acme\FindMartialBundle\Entity\Client)
-            return $this->client->master;
-        return null;
-    }
-
-
-
-
 
     /**
      * Set date

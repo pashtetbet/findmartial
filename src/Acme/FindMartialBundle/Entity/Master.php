@@ -4,6 +4,8 @@
 namespace Acme\FindMartialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Acme\FindMartialBundle\Entity\Client;
+use Acme\FindMartialBundle\Entity\User;
 
 /**
  * @ORM\Entity
@@ -141,6 +143,36 @@ class Master
     {
         return (string)$this->getName();
     }
+
+
+
+    /** Зашлушка, чтобы форма не ругалась
+     * Set user
+     *
+     * @param boolean $user
+     * @return User
+     */
+    public function setUser(User $user)
+    {
+        if($this->client instanceof Client)
+            return $this->client->setUser($user);
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return boolean 
+     */
+    public function getUser()
+    {
+        if($this->client instanceof Client)
+            return $this->client->getUser();
+        return null;
+    }
+
+
+
 
 
     /**

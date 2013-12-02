@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use FOS\UserBundle\Controller\RegistrationController;
+use Symfony\Component\Debug\Debug;
 
 
 /**
@@ -20,13 +21,13 @@ class FMRegistrationController extends RegistrationController
 {
 
     /**
-     * @Route("/{type}", requirements={"type" = "client|master|club"}, name="reg_master")
+     * @Route("/{type}", requirements={"type" = "client|master|club"}, name="reg_user")
      * @Template("AcmeFindMartialBundle:FMRegistration:master.html.twig")
      */
     public function registerAction($type)
     {
 
-
+Debug::enable();
         $form = $this->container->get('acme_find_martial.registration.'.$type.'_form');
         $formHandler = $this->container->get('acme_find_martial.registration.'.$type.'_form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');

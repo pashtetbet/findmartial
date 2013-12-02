@@ -6,6 +6,7 @@ namespace Acme\FindMartialBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
+use Acme\FindMartialBundle\Entity\Client;
 
 /**
  * @ORM\Entity
@@ -184,7 +185,32 @@ class Club
         $this->duplicates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /** Зашлушка, чтобы форма не ругалась
+     * Set user
+     *
+     * @param boolean $user
+     * @return User
+     */
+    public function setUser(User $user)
+    {
+        if($this->client instanceof Client)
+            return $this->client->setUser($user);
+        return $this;
+    }
 
+    /**
+     * Get user
+     *
+     * @return boolean 
+     */
+    public function getUser()
+    {
+        if($this->client instanceof Client)
+            return $this->client->getUser();
+        return null;
+    }
+
+    
     /**
      * Get id
      *

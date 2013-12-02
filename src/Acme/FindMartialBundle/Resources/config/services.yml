@@ -26,6 +26,18 @@ services:
         tags:
             - { name: form.type, alias: acme_find_martial_registration }
 
+
+
+
+
+#переопределяем UserManager
+    acme_find_martial.user_manager.default:
+        class: Acme\FindMartialBundle\Doctrine\UserManager
+        parent: fos_user.user_manager.default
+    acme_find_martial.user_manager:
+        alias: acme_find_martial.user_manager.default
+
+
 # Дополнительные формы регистрации FOS
 # Сервисы регистрации. Фабрика, сама форма, формхендлер. 
 # реализуя сервисы через наследование(parent) менеджер зависимостей следит за подключением user_listener, а иначе этот листенер не подгрузится
@@ -91,19 +103,19 @@ services:
 # 23112013 В этой конфигурации вобще ошибку выдает полсе аторизации
     acme_find_martial.registration.client_form.handler.default:
         class: Acme\FindMartialBundle\Form\Handler\ClientRegistrationFormHandler
-        arguments: [@acme_find_martial.registration.client_form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
+        arguments: [@acme_find_martial.registration.client_form, @request, @acme_find_martial.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
         scope: request
     acme_find_martial.registration.client_form.handler:
         alias: acme_find_martial.registration.master_form.handler.default
     acme_find_martial.registration.master_form.handler.default:
         class: Acme\FindMartialBundle\Form\Handler\MasterRegistrationFormHandler
-        arguments: [@acme_find_martial.registration.master_form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
+        arguments: [@acme_find_martial.registration.master_form, @request, @acme_find_martial.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
         scope: request
     acme_find_martial.registration.master_form.handler:
         alias: acme_find_martial.registration.master_form.handler.default
     acme_find_martial.registration.club_form.handler.default:
         class: Acme\FindMartialBundle\Form\Handler\ClubRegistrationFormHandler
-        arguments: [@acme_find_martial.registration.club_form, @request, @fos_user.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
+        arguments: [@acme_find_martial.registration.club_form, @request, @acme_find_martial.user_manager, @fos_user.mailer, @fos_user.util.token_generator]
         scope: request
     acme_find_martial.registration.club_form.handler:
         alias: acme_find_martial.registration.master_form.handler.default

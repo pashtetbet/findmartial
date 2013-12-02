@@ -19,7 +19,11 @@ class RegisterMasterType extends BaseType
         $builder->add('about', null ,array('label' => 'form.about', 'translation_domain' => 'FOSUserBundle'));
         //$builder->add('avatar', 'iphp_file' ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle', 'required' => false));
         //$builder->add('roles' ,'choice' ,array('multiple' => 'true', 'choices'=>array('ROLE_USER' => 'пользователь', 'ROLE_CLIENT' => 'клиент', 'ROLE_MASTER' => 'мастер')));
-        $builder->add('master', new MAsterType());
+        $builder->add('master', new MasterType(), array('label' => ''));
+
+
+
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

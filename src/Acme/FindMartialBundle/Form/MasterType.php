@@ -38,7 +38,7 @@ class MasterType extends AbstractType
            // ->add('slave', null ,array('label' => 'field.slave', 'translation_domain' => 'FindMartialBundle', 'required' => false))
             ->add('experience_full', null ,array('label' => 'field.experience', 'translation_domain' => 'FindMartialBundle', 'required' => true))
             ->add('training_exp_full', null ,array('label' => 'field.trainingexp', 'translation_domain' => 'FindMartialBundle', 'required' => true))
-            ->add('masterArts', 'collection', array(
+           /* ->add('masterArts', 'collection', array(
                                                'label' => 'field.arts',
                                                'translation_domain' => 'FindMartialBundle',
                                                'type' => new MasterArtType(),
@@ -53,7 +53,7 @@ class MasterType extends AbstractType
                                                'multiple' => true,
                                                'label' => 'Боевые искусства',
                                                'mapped' => false,
-                                              ))
+                                              ))*/
         ;
     }
 

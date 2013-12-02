@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ 'master.register'|trans({}, 'FindMartialBundle') }}</h1>
 
-    <form action="{{ path('reg_master',{'type': 'master'}) }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('reg_user',{'type': 'master'}) }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
             <button type="submit">{{ 'field.create'|trans({}, 'FindMartialBundle') }}</button>
