@@ -8,22 +8,26 @@ use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
 use Acme\FindMartialBundle\Entity\Client;
 use Acme\FindMartialBundle\Entity\Master;
+use Acme\FindMartialBundle\Entity\MasterClient;
 use Acme\FindMartialBundle\Entity\Club;
 
 
 class UserManager extends BaseUserManager
 {
 
-    public function updateMasterUser(UserInterface $user, Client $client, Master $master, $andFlush = true)
+    public function updateMasterUser(UserInterface $user, Client $client, Master $master, MasterClient $masterClient, $andFlush = true)
     {
 
         $this->updateCanonicalFields($user);
         $this->updatePassword($user);
 
         $this->objectManager->persist($user);
-        $this->objectManager->persist($client);
         $this->objectManager->persist($master);
+        $this->objectManager->persist($client);
+
         if ($andFlush) {
+            $this->objectManager->flush();
+            $this->objectManager->persist($masterClient);
             $this->objectManager->flush();
         }
     }
@@ -34,8 +38,12 @@ class UserManager extends BaseUserManager
         $this->updatePassword($user);
 
         $this->objectManager->persist($user);
+        $this->objectManager->persist($club);
+        $this->objectManager->persist($client);
+
         if ($andFlush) {
             $this->objectManager->flush();
         }
     }
+
 }

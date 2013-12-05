@@ -15,9 +15,10 @@ class Master
 {
 
     /**
-     * @ORM\OneToOne(targetEntity="Client", mappedBy="master")
+     * @ORM\OneToOne(targetEntity="Client", inversedBy="selfMaster")
+     * @ORM\JoinColumn(name="self_client_id", referencedColumnName="id")
      */
-    protected $client;
+    protected $selfClient;
 
     /**
      * @ORM\OneToMany(targetEntity="MasterArt", mappedBy="master", cascade={"persist", "remove"})
@@ -484,28 +485,6 @@ class Master
         return $this->training_exp_full;
     }
 
-    /**
-     * Set client
-     *
-     * @param \Acme\FindMartialBundle\Entity\Client $client
-     * @return Master
-     */
-    public function setClient(\Acme\FindMartialBundle\Entity\Client $client = null)
-    {
-        $this->client = $client;
-    
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \Acme\FindMartialBundle\Entity\Client 
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
 
     /**
      * Add masterArts
@@ -697,5 +676,28 @@ class Master
     public function getMasterPhotos()
     {
         return $this->masterPhotos;
+    }
+
+    /**
+     * Set selfClient
+     *
+     * @param \Acme\FindMartialBundle\Entity\Client $selfClient
+     * @return Master
+     */
+    public function setSelfClient(\Acme\FindMartialBundle\Entity\Client $selfClient = null)
+    {
+        $this->selfClient = $selfClient;
+    
+        return $this;
+    }
+
+    /**
+     * Get selfClient
+     *
+     * @return \Acme\FindMartialBundle\Entity\Client 
+     */
+    public function getSelfClient()
+    {
+        return $this->selfClient;
     }
 }

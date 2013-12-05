@@ -13,13 +13,13 @@ class MasterClient
 {
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Master")
+     * @ORM\ManyToOne(targetEntity="Master", cascade={"persist"})
      */
     protected $master;
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\ManyToOne(targetEntity="Client", cascade={"persist"})
      */
     protected $client;
 

@@ -8,6 +8,7 @@ use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
 use Acme\FindMartialBundle\Entity\Client;
 use Acme\FindMartialBundle\Entity\Master;
+use Acme\FindMartialBundle\Entity\Club;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -91,32 +92,36 @@ class User extends BaseUser
 
     /*
     *   Присваивание мастера клиенту. Используется при регистрации мастера
-    *
-    *
     */
-        /**
-     * Set master
-     *
-     * @param \Acme\FindMartialBundle\Entity\Master $master
-     * @return User
-     */
     public function setMaster(Master $master = null)
     {
         if($this->client instanceof Client)
-            $this->client->setMaster($master);
+            $this->client->setSelfMaster($master);
 
         return $this;
     }
-
-    /**
-     * Get master
-     *
-     * @return \Acme\FindMartialBundle\Entity\Master 
-     */
     public function getMaster()
     {
         if($this->client instanceof Client)
-            return $this->client->getMaster();
+            return $this->client->getSelfMaster();
+        return null;
+    }
+
+
+    /*
+    *   Присваивание клуба клиенту. Используется при регистрации клуба
+    */
+    public function setClub(Club $club = null)
+    {
+        if($this->client instanceof Client)
+            $this->client->setSelfClub($club);
+
+        return $this;
+    }
+    public function getClub()
+    {
+        if($this->client instanceof Client)
+            return $this->client->getSelfClub();
         return null;
     }
 

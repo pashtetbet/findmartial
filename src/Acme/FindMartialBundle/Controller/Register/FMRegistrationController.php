@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use FOS\UserBundle\Controller\RegistrationController;
 use Symfony\Component\Debug\Debug;
 
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+
 
 /**
  * @Route("/register")
@@ -22,7 +26,6 @@ class FMRegistrationController extends RegistrationController
 
     /**
      * @Route("/{type}", requirements={"type" = "client|master|club"}, name="reg_user")
-     * @Template("AcmeFindMartialBundle:FMRegistration:master.html.twig")
      */
     public function registerAction($type)
     {
@@ -37,6 +40,24 @@ Debug::enable();
 
         if ($process) {
             $user = $form->getData();
+
+
+            $method = 'get'.ucfirst($type);
+            if(method_exists($user, $method) && $method != 'getClient'){
+                $entity = call_user_func_array(array($user, $method), array());
+
+                // creating the ACL
+                $aclProvider = $this->container->get('security.acl.provider');
+                $objectIdentity = ObjectIdentity::fromDomainObject($entity);
+                $acl = $aclProvider->createAcl($objectIdentity);
+
+                // retrieving the security identity of the currently logged-in user
+                $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+                // grant owner access
+                $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+                $aclProvider->updateAcl($acl);
+            }
 
 
             $authUser = false;
@@ -59,12 +80,12 @@ Debug::enable();
             return $response;
         }
 
-        /*return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse('AcmeFindMartialBundle:FMRegistration:'.$type.'.html.'.$this->getEngine(), array(
             'form' => $form->createView(),
-        ));*/
+        ));
         
-        return array(
+        /*return array(
             'form'   => $form->createView(),
-        );
+        );*/
     }
 }

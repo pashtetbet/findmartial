@@ -6,6 +6,7 @@ use FOS\UserBundle\Form\Handler\RegistrationFormHandler;
 use FOS\UserBundle\Model\UserInterface;
 use Acme\FindMartialBundle\Entity\Client;
 use Acme\FindMartialBundle\Entity\Master;
+use Acme\FindMartialBundle\Entity\MasterClient;
 
 class MasterRegistrationFormHandler extends RegistrationFormHandler
 {
@@ -15,9 +16,12 @@ class MasterRegistrationFormHandler extends RegistrationFormHandler
     public function process($confirmation = false)
     {
         $user = $this->createUser();
-        $clientEntity = new Client();
-        $masterEntity = new Master();
+        $clientEntity           = new Client();
+        $masterEntity           = new Master();
+        $masterClientEntity     = new MasterClient($masterEntity, $clientEntity);
 
+        //Установим мастеру пользовательский признак
+        $masterEntity->setSelfClient($clientEntity);
         $user->setClient($clientEntity);
         $user->setMaster($masterEntity);
 
@@ -29,7 +33,7 @@ class MasterRegistrationFormHandler extends RegistrationFormHandler
 
             if ($this->form->isValid()) {
 
-                $this->onMasterSuccess($user, $clientEntity, $masterEntity, $confirmation);
+                $this->onMasterSuccess($user, $clientEntity, $masterEntity, $masterClientEntity, $confirmation);
 
                 return true;
             }
@@ -40,7 +44,7 @@ class MasterRegistrationFormHandler extends RegistrationFormHandler
     }
 
 
-    protected function onMasterSuccess(UserInterface $user, Client $client, Master $master, $confirmation)
+    protected function onMasterSuccess(UserInterface $user, Client $client, Master $master, MasterClient $masterClient, $confirmation)
     {
         if ($confirmation) {
             $user->setEnabled(false);
@@ -53,8 +57,10 @@ class MasterRegistrationFormHandler extends RegistrationFormHandler
             $user->setEnabled(true);
         }
 
-        $client->setName($user->getName());
+        $user->setName($master->getName());
+        $user->setFamily($master->getFamily());
+        $client->setName($master->getName().' '.$master->getFamily().' '.$master->getPatronym());
 
-        $this->userManager->updateMasterUser($user, $client, $master);
+        $this->userManager->updateMasterUser($user, $client, $master, $masterClient);
     }
 }

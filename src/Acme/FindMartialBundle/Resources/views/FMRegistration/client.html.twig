@@ -3,16 +3,16 @@
 {% block title "FindMartial" %}
 
 {% block content %}
-    <h1>{{ 'master.register'|trans({}, 'FindMartialBundle') }}</h1>
+    <h1>{{ 'client.register'|trans({}, 'FindMartialBundle') }}</h1>
 
-    <form action="{{ path('reg_user',{'type': 'master'}) }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('reg_user',{'type': 'client'}) }}" method="post" {{ form_enctype(form) }}>
 
 		{{ form_row (form.username) }}
 		{{ form_row (form.email) }}
 		{{ form_row (form.plainPassword) }}
 
 
-        {{ form_widget(form.master) }}
+        {{ form_widget(form.client) }}
 
 		{{ form_rest(form) }}
 

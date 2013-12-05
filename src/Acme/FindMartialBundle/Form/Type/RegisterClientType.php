@@ -5,26 +5,20 @@ namespace Acme\FindMartialBundle\Form\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
-use Acme\FindMartialBundle\Form\ClientType as ClientType;
+use Acme\FindMartialBundle\Form\Register\ClientType as ClientType;
 
 class RegisterClientType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-
-        $builder->add('name', null ,array('label' => 'form.name', 'translation_domain' => 'FOSUserBundle', 'required' => false));
-        //$builder->add('family', null ,array('label' => 'form.family', 'translation_domain' => 'FOSUserBundle'));
-        $builder->add('about', null ,array('label' => 'form.about', 'translation_domain' => 'FOSUserBundle'));
-        $builder->add('avatar', 'iphp_file' ,array('label' => 'form.avatar', 'translation_domain' => 'FOSUserBundle', 'required' => false));
-        //$builder->add('roles' ,'choice' ,array('multiple' => 'true', 'choices'=>array('ROLE_USER' => 'пользователь', 'ROLE_CLIENT' => 'клиент', 'ROLE_MASTER' => 'мастер')));
-        $builder->add('client', new ClientType());
+        $builder->add('client', new ClientType(), array('label' => ''));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => null
+            'data_class' => 'Acme\FindMartialBundle\Entity\User'
         ));
     }
     

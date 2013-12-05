@@ -22,10 +22,14 @@ class Client
     protected $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Master", inversedBy="client")
-     * @ORM\JoinColumn(name="master_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Master", mappedBy="selfClient", cascade={"persist"})
      */
-    protected $master;
+    protected $selfMaster;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Club", mappedBy="selfClient", cascade={"persist"})
+     */
+    protected $selfClub;
 
     /**
      * @ORM\OneToMany(targetEntity="Club", mappedBy="client")
@@ -443,28 +447,6 @@ class Client
         return $this->user;
     }
 
-    /**
-     * Set master
-     *
-     * @param \Acme\FindMartialBundle\Entity\Master $master
-     * @return Client
-     */
-    public function setMaster(\Acme\FindMartialBundle\Entity\Master $master = null)
-    {
-        $this->master = $master;
-
-        return $this;
-    }
-
-    /**
-     * Get master
-     *
-     * @return \Acme\FindMartialBundle\Entity\Master 
-     */
-    public function getMaster()
-    {
-        return $this->master;
-    }
 
     /**
      * Add masters
@@ -632,5 +614,51 @@ class Client
     public function getLogo()
     {
         return $this->logo;
+    }
+
+    /**
+     * Set selfMaster
+     *
+     * @param \Acme\FindMartialBundle\Entity\Master $selfMaster
+     * @return Client
+     */
+    public function setSelfMaster(\Acme\FindMartialBundle\Entity\Master $selfMaster = null)
+    {
+        $this->selfMaster = $selfMaster;
+    
+        return $this;
+    }
+
+    /**
+     * Get selfMaster
+     *
+     * @return \Acme\FindMartialBundle\Entity\Master 
+     */
+    public function getSelfMaster()
+    {
+        return $this->selfMaster;
+    }
+
+    /**
+     * Set selfClub
+     *
+     * @param \Acme\FindMartialBundle\Entity\Club $selfClub
+     * @return Client
+     */
+    public function setSelfClub(\Acme\FindMartialBundle\Entity\Club $selfClub = null)
+    {
+        $this->selfClub = $selfClub;
+    
+        return $this;
+    }
+
+    /**
+     * Get selfClub
+     *
+     * @return \Acme\FindMartialBundle\Entity\Club 
+     */
+    public function getSelfClub()
+    {
+        return $this->selfClub;
     }
 }

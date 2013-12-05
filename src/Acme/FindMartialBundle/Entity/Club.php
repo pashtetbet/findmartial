@@ -23,6 +23,12 @@ class Club
     protected $client;
 
     /**
+     * @ORM\OneToOne(targetEntity="Client", inversedBy="selfClub")
+     * @ORM\JoinColumn(name="self_client_id", referencedColumnName="id")
+     */
+    protected $selfClient;
+
+    /**
      * @ORM\ManyToOne(targetEntity="City")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id", nullable = true)
      */
@@ -967,5 +973,28 @@ class Club
     public function getCardRequired()
     {
         return $this->card_required;
+    }
+
+    /**
+     * Set selfClient
+     *
+     * @param \Acme\FindMartialBundle\Entity\Client $selfClient
+     * @return Club
+     */
+    public function setSelfClient(\Acme\FindMartialBundle\Entity\Client $selfClient = null)
+    {
+        $this->selfClient = $selfClient;
+    
+        return $this;
+    }
+
+    /**
+     * Get selfClient
+     *
+     * @return \Acme\FindMartialBundle\Entity\Client 
+     */
+    public function getSelfClient()
+    {
+        return $this->selfClient;
     }
 }
