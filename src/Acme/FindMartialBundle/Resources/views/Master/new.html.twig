@@ -2,16 +2,35 @@
 
 {% block title "FindMartial" %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@AcmeFindMartialBundle/Resources/public/js/masterForm.js'
+     %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
 {% block content %}
     <h1>{{ 'master.register'|trans({}, 'FindMartialBundle') }}</h1>
 
-    {% include 'AcmeFindMartialBundle:Master:form.html.twig' %}
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('master') }}">
-                {{ 'field.backtolist'|trans({}, 'FindMartialBundle') }}
-            </a>
-        </li>
+    <ul class="switcher">
+    	<li class="enabled active"><a href="#" class="switcher_button block1">Профиль</a></li>
+    	<li class="enabled"><a href="#" class="switcher_button block2">Опыт</a></li>
+    	<li class="enabled"><a href="#" class="switcher_button block3">Фото</a></li>
     </ul>
+
+    <div class = "switcher_area">
+	    <div class = "switcher_block block1 active_block">
+	    	{% include 'AcmeFindMartialBundle:Master:form.html.twig' %}
+	    </div>
+	    <div class = "switcher_block block2">
+	    	{% include 'AcmeFindMartialBundle:Master:formArtsBlock.html.twig' %}
+	    </div>
+	    <div class = "switcher_block block3">
+	    	{% include 'AcmeFindMartialBundle:Master:formPhotosBlock.html.twig' %}
+	    </div>
+    </div>
+
 {% endblock %}

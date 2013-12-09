@@ -8,13 +8,19 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Acme\FindMartialBundle\Entity\Master;
 use Acme\FindMartialBundle\Form\MasterType;
+use Acme\FindMartialBundle\Form\MasterArtsBlockType;
+use Acme\FindMartialBundle\Form\MasterPhotosBlockType;
+
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 use Xi\Bundle\AjaxBundle\Controller\JsonResponseController;
+
+use Symfony\Component\Debug\Debug;
 
 /**
  * Master controller.
@@ -89,6 +95,14 @@ class MasterController extends JsonResponseController
     {
         return $this->createJsonSuccessResponse('your response text');
     }
+    public function saveArtsAction(Request $request)
+    {
+        return $this->createJsonSuccessResponse('your response text');
+    }
+    public function savePhotosAction(Request $request)
+    {
+        return $this->createJsonSuccessResponse('your response text');
+    }
     /**
      * Creates a new Master entity.
      *
@@ -99,7 +113,11 @@ class MasterController extends JsonResponseController
     public function createAction(Request $request)
     {
         $entity  = new Master();
-        $form = $this->createForm(new MasterType(), $entity);
+
+        $form           = $this->createForm(new MasterType(), $entity);
+        $formArts       = $this->createForm(new MasterArtsBlockType(), $entity);
+        $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
+
         $form->bind($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -126,7 +144,9 @@ class MasterController extends JsonResponseController
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form'          => $form->createView(),
+            'formArts'      => $formArts->createView(),
+            'formPhotos'    => $formPhotos->createView(),
         );
 
 
@@ -141,12 +161,17 @@ class MasterController extends JsonResponseController
      */
     public function newAction()
     {
+        Debug::enable();
         $entity = new Master();
-        $form   = $this->createForm(new MasterType(), $entity);
+        $form           = $this->createForm(new MasterType(), $entity);
+        $formArts       = $this->createForm(new MasterArtsBlockType(), $entity);
+        $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
 
         return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+            'entity'        => $entity,
+            'form'          => $form->createView(),
+            'formArts'      => $formArts->createView(),
+            'formPhotos'    => $formPhotos->createView(),
         );
     }
 

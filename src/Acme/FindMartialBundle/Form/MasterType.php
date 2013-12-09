@@ -24,36 +24,7 @@ class MasterType extends AbstractType
                                                   'empty_value' => '...', 
                                                   'required' => true
                                                 ))
-            //->add('photo', null ,array('label' => 'field.photo', 'translation_domain' => 'FindMartialBundle'))
-            ->add('masterPhotos', 'collection', array(
-                                   'label' => '',
-                                   'translation_domain' => 'FindMartialBundle',
-                                   'type' => new MasterPhotoType(),
-                                   'allow_add' => true,
-                                   'allow_delete' => true,
-                                   'prototype' => true,
-                                   'by_reference' => false,
-                                  ))
-
             ->add('slave', null ,array('label' => 'field.slave', 'translation_domain' => 'FindMartialBundle', 'required' => false))
-            /*->add('experience_full', null ,array('label' => 'field.experience', 'translation_domain' => 'FindMartialBundle', 'required' => true))
-            ->add('training_exp_full', null ,array('label' => 'field.trainingexp', 'translation_domain' => 'FindMartialBundle', 'required' => true))
-            ->add('masterArts', 'collection', array(
-                                               'label' => 'field.arts',
-                                               'translation_domain' => 'FindMartialBundle',
-                                               'type' => new MasterArtType(),
-                                               'allow_add' => true,
-                                               'allow_delete' => true,
-                                               'prototype' => true,
-                                               'by_reference' => false,
-                                              ))
-            ->add('arts', 'entity', array(
-                                               'class' => 'AcmeFindMartialBundle:Art',
-                                               'expanded' => true,
-                                               'multiple' => true,
-                                               'label' => 'Боевые искусства',
-                                               'mapped' => false,
-                                              ))*/
         ;
     }
 

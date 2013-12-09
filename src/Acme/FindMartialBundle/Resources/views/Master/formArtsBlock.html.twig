@@ -1,0 +1,33 @@
+{% form_theme formArts _self %}
+
+<form class="ajax-form_" action="" method="post" {{ form_enctype(formArts) }}>
+  
+  <input type="hidden" name="_method" value="PUT" />
+  
+  {{ form_errors(formArts) }}
+
+  {{ form_widget(formArts.masterArt) }}
+
+  <a href="#" id="addArt">Добавить БИ</a>
+
+  {% macro artRow(masterart) %}
+    <li>{{ form_widget(masterart.art, {'widget': 'integer_widget'}) }}{{ form_widget(masterart.expirience) }}{{ form_widget(masterart.training_exp) }}{{ form_widget(masterart.description) }}</li>
+  {% endmacro %}
+
+  <ul id="arts-fields-list" data-prototype="{{ _self.artRow(formArts.masterArts.vars.prototype) | e }}">
+    {% for artField in formArts.masterArts %}
+      {{ _self.artRow(artField) }}
+    {% endfor %}
+  </ul>
+
+  {{ form_widget(formArts.masterArts) }}
+
+
+  {{ form_row (formArts.experience_full) }}
+  {{ form_row (formArts.training_exp_full) }}
+
+  {{ form_rest(formArts) }}
+
+  <div><button type="submit">Сохранить</button><div id="container"></div></div>
+
+</form>
