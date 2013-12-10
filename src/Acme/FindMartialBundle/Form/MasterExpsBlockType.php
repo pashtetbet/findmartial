@@ -6,12 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MasterArtsBlockType extends AbstractType
+class MasterExpsBlockType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('masterArt', new MasterArtType(), array('label' => '', 'mapped'=> false))
             ->add('experience_full', null ,array('label' => 'field.experience', 'translation_domain' => 'FindMartialBundle', 'required' => true))
             ->add('training_exp_full', null ,array('label' => 'field.trainingexp', 'translation_domain' => 'FindMartialBundle', 'required' => true))
             ->add('masterArts', 'collection', array(
@@ -35,6 +34,6 @@ class MasterArtsBlockType extends AbstractType
 
     public function getName()
     {
-        return 'acme_findmartialbundle_masterartsblocktype';
+        return 'acme_findmartialbundle_masterexpsblocktype';
     }
 }
