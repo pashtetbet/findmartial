@@ -14,15 +14,6 @@ class MasterArtsBlockType extends AbstractType
             ->add('masterArt', new MasterArtType(), array('label' => '', 'mapped'=> false))
             ->add('experience_full', null ,array('label' => 'field.experience', 'translation_domain' => 'FindMartialBundle', 'required' => true))
             ->add('training_exp_full', null ,array('label' => 'field.trainingexp', 'translation_domain' => 'FindMartialBundle', 'required' => true))
-            ->add('masterArts', 'collection', array(
-                                               'label' => 'field.arts',
-                                               'translation_domain' => 'FindMartialBundle',
-                                               'type' => new MasterArtType(),
-                                               'allow_add' => true,
-                                               'allow_delete' => true,
-                                               'prototype' => true,
-                                               'by_reference' => false,
-                                              ))
         ;
     }
 

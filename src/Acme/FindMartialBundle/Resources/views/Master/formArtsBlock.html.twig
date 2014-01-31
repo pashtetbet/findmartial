@@ -1,41 +1,125 @@
+{% form_theme form _self %}
 {% form_theme formArt _self %}
 {% form_theme formExps _self %}
 
-<form class="ajax-form_" action="" method="post" {{ form_enctype(formArt) }}>
-  {{ form_errors(formArt) }}
-  {{ form_row(formArt.art) }}
-  {{ form_row(formArt.expirience) }}
-  {{ form_row(formArt.training_exp) }}
-  {{ form_row(formArt.description) }}
-  {{ form_rest(formArt) }}
-
-  <div><button type="submit">Сохранить</button><div id="container"></div></div>
-</form>
-
-<form class="ajax-form_" action="" method="post" {{ form_enctype(formArt) }}>
-  
-  <input type="hidden" name="_method" value="PUT" />
-  
-  {{ form_errors(formExps) }}
-
-  {% macro artRow(masterart) %}
-    <li>{{ form_widget(masterart.art, {'widget': 'integer_widget'}) }}{{ form_widget(masterart.expirience) }}{{ form_widget(masterart.training_exp) }}{{ form_widget(masterart.description) }}</li>
-  {% endmacro %}
-
-  <ul id="arts-fields-list" data-prototype="{{ _self.artRow(formExps.masterArts.vars.prototype) | e }}">
-    {% for artField in formExps.masterArts %}
-      {{ _self.artRow(artField) }}
-    {% endfor %}
-  </ul>
-
-  {{ form_widget(formExps.masterArts) }}
 
 
-  {{ form_row (formExps.experience_full) }}
-  {{ form_row (formExps.training_exp_full) }}
+    {% macro artForm(masterart) %}
+      <form class="ajax-form" action="{{ path('masterart_put') }}" method="post" {{ form_enctype(masterart) }}>
+        <input type="hidden" name="_method" value="PUT" />   
+        <div class="artCol"><span class = "artListItemAcc">{{ form_widget(masterart.art) }}</span></div>
+        <div class="expirienceCol"><span class = "artListItemAcc">{{ form_widget(masterart.expirience ) }}</span></div>
+        <div class="trainingExpCol"><span class = "artListItemAcc">{{ form_widget(masterart.training_exp) }}</span></div>
+        <div class="descriptionCol"><span class = "artListItemAcc">{{ form_widget(masterart.description) }}</span></div>
+        <div class="toolsCol">
+          <span class = "artListItemAcc">
+            <a href="#" class="buttonAdd" id="addMasterArt">
+              <i class="fa fa-plus fa-fw"></i>
+            </a>
+          </span>
+        </div>
+        <div class="masterIdblock">
+          {{ form_rest(masterart) }}
+        </div>
+      </form>
+    {% endmacro %}
 
-  {{ form_rest(formExps) }}
+    {% macro artItem(masterart) %}
+      <li class="masterArtListBlock">
+        <div class="artCol"><span class = "artListItemAcc">{{ masterart.art }}</span></div>
 
-  <div><button type="submit">Сохранить</button><div id="container"></div></div>
+        <div class="masterArtListItem">
+          <div class="expirienceCol"><span class = "artListItemAcc">{{ masterart.expirience }}</span></div>
+          <div class="trainingExpCol"><span class = "artListItemAcc">{{ masterart.training_exp }}</span></div>
+          <div class="descriptionCol"><span class = "artListItemAcc">{{ masterart.description }}</span></div>
+          <div class="toolsCol">
+            <span class="artListItemAcc">
+              <a class="buttonEdit" href="#"><i class="fa fa-edit fa-fw"></i></a>
+              &nbsp;
+              <a class="buttonDelete" href="#"><i class="fa fa-trash-o fa-fw"></i></a>
+            </span>
+          </div>
+        </div>
 
-</form>
+        <div class="masterArtListForm" style="display:none;">
+          <form class="ajax-form" action="" method="post" {{ form_enctype(masterart) }}>
+            <div class="expirienceCol"><span class = "artListItemAcc">{{ form_widget(masterart.expirience) }}</span></div>
+            <div class="trainingExpCol"><span class = "artListItemAcc">{{ form_widget(masterart.training_exp) }}</span></div>
+            <div class="descriptionCol"><span class = "artListItemAcc">{{ form_widget(masterart.description) }}</span></div>
+            <div class="toolsCol">
+              <span class="artListItemAcc">
+                <a class="buttonSave" href="#"><i class="fa fa-check fa-fw"></i></a>
+                &nbsp;
+                <a class="buttonClose" href="#"><i class="fa fa-times fa-fw"></i></a>
+              </span>
+            </div>
+            {{ form_rest(form) }}
+          </form>
+        </div>
+
+      </li>
+    {% endmacro %}
+
+
+    <div class="masterArtListBlock">
+
+      <div class = "listHeader">
+        <div class="artCol"><span class = "artListItemAcc">{{ 'art.art'|trans({}, 'FindMartialBundle') }}</span></div>
+        <div class="expirienceCol"><span class = "artListItemAcc">{{ 'art.expirience'|trans({}, 'FindMartialBundle') }}</span></div>
+        <div class="trainingExpCol"><span class = "artListItemAcc">{{ 'art.trainingexp'|trans({}, 'FindMartialBundle') }}</span></div>
+        <div class="descriptionCol"><span class = "artListItemAcc">{{ 'art.description'|trans({}, 'FindMartialBundle') }}</span></div>
+        <div class="toolsCol"><span class = "artListItemAcc"></span></div>
+      </div>
+
+      <div class = "listForm">
+       {{ _self.artForm(formArt) }}
+      </div>
+
+      <ul class="masterArtListHtml">
+        {% if (entity.masterArts.count > 0) %}
+          {% for artField in entity.masterArts %}
+            {{ _self.artItem(artField) }}
+          {% endfor %}
+        {% else %}
+          <li>{{ 'art.emptylist'|trans({}, 'FindMartialBundle') }}</li>
+        {% endif %}
+
+      </ul>
+
+      <div class = "listFooter">
+
+        <div class="listFooterItem">
+          <div class="artCol"><span class = "artListItemAcc">{{ 'art.total'|trans({}, 'FindMartialBundle') }}</span></div>
+          <div class="expirienceCol"><span class = "artListItemAcc">{{ formExps.experience_full.vars.value }}</span></div>
+          <div class="trainingExpCol"><span class = "artListItemAcc">{{ formExps.training_exp_full.vars.value }}</span></div>
+          <div class="descriptionCol"><span class = "artListItemAcc"></span></div>
+          <div class="toolsCol">
+            <span class = "artListItemAcc">
+              <a href="#" class="buttonEdit" id="editMasterArtTotals">изменить</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="listFooterForm" style="display: none;">
+          <form class="ajax-form" action="" method="post" {{ form_enctype(formExps) }}>
+            <input type="hidden" name="_method" value="PUT" /> 
+            <div class="artCol"><span class = "artListItemAcc">{{ 'art.total'|trans({}, 'FindMartialBundle') }}</span></div>
+            <div class="expirienceCol"><span class = "artListItemAcc">{{ form_widget(formExps.experience_full) }}</span></div>
+            <div class="trainingExpCol"><span class = "artListItemAcc">{{ form_widget(formExps.training_exp_full) }}</span></div>
+            <div class="descriptionCol"><span class = "artListItemAcc"></span></div>
+
+            <div class="toolsCol">
+              <span class="artListItemAcc">
+                <a class="buttonSave" href="#"><i class="fa fa-check fa-fw"></i></a>
+                &nbsp;
+                <a class="buttonClose" href="#"><i class="fa fa-times fa-fw"></i></a>
+              </span>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+

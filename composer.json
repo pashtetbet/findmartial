@@ -32,9 +32,11 @@
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "sonata-project/intl-bundle": "dev-master",
         "sonata-project/cache-bundle": "dev-master",
+        "sonata-project/core-bundle": "~2.2@dev",
         "knplabs/knp-menu-bundle": "1.1.x-dev",
         "knplabs/knp-menu": "@dev",
-        "iphp/filestore-bundle":"dev-master"
+        "iphp/filestore-bundle":"dev-master",
+        "jms/serializer-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

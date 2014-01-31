@@ -134,6 +134,8 @@ class MasterController extends JsonResponseController
             $em->persist($entity);
             $em->flush();
 
+
+
             // creating the ACL
             $aclProvider = $this->get('security.acl.provider');
             $objectIdentity = ObjectIdentity::fromDomainObject($entity);
@@ -149,7 +151,14 @@ class MasterController extends JsonResponseController
             $aclProvider->updateAcl($acl);
 
             //return $this->createJsonSuccessResponse('your response text');
-            return $this->redirect($this->generateUrl('master_show', array('id' => $entity->getId())));
+
+
+            $response = array('master' => $entity->getId());
+            return $this->createJsonSuccessWithContent(
+                    json_encode($response),
+                    'enableArtsForm'
+                );
+            //return $this->redirect($this->generateUrl('master_show', array('id' => $entity->getId())));
         }
 
         return array(

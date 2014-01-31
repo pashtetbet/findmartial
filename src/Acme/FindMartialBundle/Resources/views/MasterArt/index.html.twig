@@ -1,0 +1,42 @@
+{% extends "AcmeFindMartialBundle::layout.html.twig" %}
+
+{% block title "FindMartial" %}
+
+{% block content %}
+    <h1>Master list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{{ 'field.fio'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.hightlights'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.description'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.sex'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.slave'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.visible'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.ischecked'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.experience'|trans({}, 'FindMartialBundle') }}</th>
+                <th>{{ 'field.trainingexp'|trans({}, 'FindMartialBundle') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>
+                    <a href="{{ path('master_show', { 'id': entity.id }) }}">
+                        {{ entity.family }}&nbsp;{{ entity.name }}&nbsp;{{ entity.patronym }}
+                    </a>
+                </td>
+                <td>{{ entity.hightlights }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.sex }}</td>
+                <td>{{ entity.slave }}</td>
+                <td>{{ entity.visible }}</td>
+                <td>{{ entity.ischecked }}</td>
+                <td>{{ entity.experiencefull }}</td>
+                <td>{{ entity.trainingexpfull }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

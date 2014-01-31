@@ -86,6 +86,12 @@ club:
     cardrequired: Требуется карта
 art:
     index: Искусства
+    art: Единоборство
+    expirience: Опыт личный(лет)
+    trainingexp: Опыт тренера(лет)
+    description: Описание
+    total: Общий опыт
+    emptylist: Добавьте единоборства или заполните ваш общий опыт
 city:
     index: Города
 client:

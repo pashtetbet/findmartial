@@ -1,0 +1,24 @@
+{% form_theme formPhotos _self %}
+
+<form class="ajax-form_" action="" method="post" {{ form_enctype(formPhotos) }}>
+
+  <input type="hidden" name="_method" value="PUT" />
+
+  {% macro photoRow(masterphoto) %}
+    <li>{{ form_row(masterphoto.title) }}{{ form_row(masterphoto.photo) }}</li>
+  {% endmacro %}
+
+  <ul id="photos-fields-list" class="photos" data-prototype="{{ _self.photoRow(formPhotos.masterPhotos.vars.prototype) | e }}">
+    {% for photoField in formPhotos.masterPhotos %}
+      {{ _self.photoRow(photoField) }}
+    {% endfor %}
+  </ul>
+
+  {{ form_widget(formPhotos.masterPhotos) }}
+
+
+  {{ form_rest(formPhotos) }}
+
+  <div><button type="submit">Сохранить</button><div id="container"></div></div>
+
+</form>

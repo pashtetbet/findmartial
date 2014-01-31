@@ -34,9 +34,9 @@
           $('.switcher_button.'+blockForm).addClass('active');
 
           $('.switcher_block').not('.switcher_block.active_block').hide(); 
-          $('.switcher_block.active_block').not('.switcher_block.'+blockForm).hide('drop', {}, 200, function(){
+          $('.switcher_block.active_block').not('.switcher_block.'+blockForm).hide('drop', {}, 5000, function(){
             $(this).removeClass('active_block');
-            $('.switcher_block.'+blockForm).show('drop', {direction: 'right'}, 200, function(){ $(this).addClass('active_block');});
+            $('.switcher_block.'+blockForm).show('drop', {direction: 'right'}, 5000, function(){ console.log('bshdb'); $(this).addClass('active_block');});
           }); 
     }
 
@@ -92,34 +92,6 @@
       $('.masterArtListBlock').on('click', '.buttondelete', function(){
         //send request
         console.log('delete');
-        return false;
-      });
-
-      // Редактировать общее
-      $('.listFooter').on('click', '.buttonEdit', function(){
-        listFooterItem = $(this).parents('.listFooterItem');
-        listFooterForm = listFooterItem.next();
-        listFooterItem.hide();
-        listFooterForm.show();
-        return false;
-      });
-
-      // Сохранить общее
-      $('.listFooter').on('click', '.buttonSave', function(){
-        console.log('save');
-        listFooterForm = $(this).parents('.listFooterForm');
-        listFooterItem = listFooterForm.prev();
-        listFooterForm.hide();
-        listFooterItem.show();
-        return false;
-      });
-
-      // Закрыть редактирование общего
-      $('.listFooter').on('click', '.buttonClose', function(){
-        listFooterForm = $(this).parents('.listFooterForm');
-        listFooterItem = listFooterForm.prev();
-        listFooterForm.hide();
-        listFooterItem.show();
         return false;
       });
 

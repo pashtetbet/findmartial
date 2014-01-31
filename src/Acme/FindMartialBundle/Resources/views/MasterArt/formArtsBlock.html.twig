@@ -1,0 +1,41 @@
+{% form_theme formArt _self %}
+{% form_theme formExps _self %}
+
+<form class="ajax-form_" action="" method="post" {{ form_enctype(formArt) }}>
+  {{ form_errors(formArt) }}
+  {{ form_row(formArt.art) }}
+  {{ form_row(formArt.expirience) }}
+  {{ form_row(formArt.training_exp) }}
+  {{ form_row(formArt.description) }}
+  {{ form_rest(formArt) }}
+
+  <div><button type="submit">Сохранить</button><div id="container"></div></div>
+</form>
+
+<form class="ajax-form_" action="" method="post" {{ form_enctype(formArt) }}>
+  
+  <input type="hidden" name="_method" value="PUT" />
+  
+  {{ form_errors(formExps) }}
+
+  {% macro artRow(masterart) %}
+    <li>{{ form_widget(masterart.art, {'widget': 'integer_widget'}) }}{{ form_widget(masterart.expirience) }}{{ form_widget(masterart.training_exp) }}{{ form_widget(masterart.description) }}</li>
+  {% endmacro %}
+
+  <ul id="arts-fields-list" data-prototype="{{ _self.artRow(formExps.masterArts.vars.prototype) | e }}">
+    {% for artField in formExps.masterArts %}
+      {{ _self.artRow(artField) }}
+    {% endfor %}
+  </ul>
+
+  {{ form_widget(formExps.masterArts) }}
+
+
+  {{ form_row (formExps.experience_full) }}
+  {{ form_row (formExps.training_exp_full) }}
+
+  {{ form_rest(formExps) }}
+
+  <div><button type="submit">Сохранить</button><div id="container"></div></div>
+
+</form>

@@ -11,6 +11,7 @@ class MasterArtType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('master', null, array('label' => '', 'read_only' => false))
             ->add('art', null ,array('label' => 'БИ'))
             ->add('expirience', null, array('label' => 'опыт личный'))
             ->add('training_exp', null, array('label' => 'опыт тренера'))

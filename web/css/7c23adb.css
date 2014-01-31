@@ -1,0 +1,182 @@
+/***************MasterForm*************/
+ul.switcher,ul.switcher li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height:0;
+    font-size:0;
+}
+ul.switcher li{
+    display:inline-block;
+}
+
+ul.switcher {
+    margin: 10px auto 0px;
+    text-align: center;
+    text-transform: uppercase;
+    border-top: 1px solid #08C;
+    border-bottom: 1px solid #08C;
+
+}
+
+
+div.switcher_area{
+    margin-top:30px;
+    overflow:hidden;
+    height:500px;
+}
+.switcher a.switcher_button, .switcher a.switcher_button:hover{
+    display:block;
+    padding: 2px 10px;
+    text-decoration: none;
+    line-height:14px;
+    font-size:14px;
+}
+.switcher_button.active, .switcher_button.active:hover{
+    color:#fff;
+    background-color: #08C;
+}
+.switcher_block{
+    width:100%;
+    height:100%;
+}
+
+
+
+
+/************** dinamic AJAX LIST ***************/
+.masterArtListBlock{
+    text-align: center;
+}
+
+.masterArtListHtml, .masterArtListHtml .masterArtListBlock{
+    list-style: none;
+    margin:0;
+    padding:0;  
+}
+
+.masterArtListHtml .masterArtListBlock{
+    border-bottom: 1px solid #eee;
+}
+
+.masterArtListBlock, .listHeader, .listFooter, .listForm{
+    text-align: center;
+    font-size: 0px;
+    line-height: 0px;
+}
+
+.masterArtListBlock .artCol,  .masterArtListBlock .masterArtListItem, .masterArtListBlock .masterArtListForm{
+    display:inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+.masterArtListBlock .artCol{
+    width: 23%;
+    text-align: left;
+}
+
+.masterArtListBlock .masterArtListItem, .masterArtListBlock .masterArtListForm{
+    width: 77%;
+}
+
+.masterArtListBlock .expirienceCol, .masterArtListBlock .trainingExpCol, .masterArtListBlock .descriptionCol, .masterArtListBlock .toolsCol{
+    width: 30%;
+    display:inline-block;
+    text-align: left;
+    zoom: 1;
+    *display: inline;
+}
+
+.masterArtListBlock .toolsCol{
+    width: 10%;
+}
+
+.masterArtListBlock .artListItemAcc{
+    display:block;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 24px;
+}
+.masterArtListBlock .masterArtListForm .toolsCol .artListItemAcc{
+    padding: 0 8px;
+}
+
+
+.masterArtListBlock .artListItemAcc select, .masterArtListBlock .artListItemAcc  input{
+    width: 100%;
+}
+
+.listHeader .artCol, .listHeader .expirienceCol, .listHeader .trainingExpCol, .listHeader .descriptionCol, .listHeader .toolsCol{
+    width: 23%;
+    display:inline-block;
+    text-align: left;
+    zoom: 1;
+    *display: inline;
+}
+.listForm .artCol, .listForm .expirienceCol, .listForm .trainingExpCol, .listForm .descriptionCol, .listForm .toolsCol{
+    width: 23%;
+    display:inline-block;
+    text-align: left;
+    zoom: 1;
+    *display: inline;
+}
+.listFooter .artCol, .listFooter .expirienceCol, .listFooter .trainingExpCol, .listFooter .descriptionCol, .listFooter .toolsCol{
+    width: 23%;
+    display:inline-block;
+    text-align: left;
+    zoom: 1;
+    *display: inline;
+}
+.listHeader .toolsCol, .listForm .toolsCol, .listFooter .toolsCol{
+    width: 8%;
+}
+.listFooter .toolsCol .artListItemAcc{
+    padding: 0;
+}
+
+
+/*временный блок для дебага*/
+#content .masterIdblock{
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.listForm{
+    margin: 5px 0;
+}
+
+.listHeader, .listFooter{
+    background-color: #eee;
+    text-shadow: 1px 1px 2px #fff;
+    margin-top:5px;
+    padding: 5px;
+}
+.listHeader .artListItemAcc, .listFooter .artListItemAcc{
+    font-size:14px;
+}
+
+
+
+
+.masterArtListHtml .masterArtListForm {
+    margin-top:-4px;
+    margin-bottom:-4px;
+    padding: 3px 0;
+}
+.masterArtListBlock .masterArtListItem, .masterArtListBlock .masterArtListForm{
+    margin-right:-1px;
+}
+
+.masterArtListBlock .masterArtListForm{
+    border-top: 1px solid #66AFE9;
+    border-bottom: 1px solid #66AFE9;
+    border-left: 1px solid #66AFE9;
+
+    -moz-border-radius-bottomleft: 3px 3px;
+    border-bottom-left-radius: 3px 3px;
+    -moz-border-radius-topleft: 3px 3px;
+    border-top-left-radius: 3px 3px;
+
+    box-shadow: 0px 0px 10px #66AFE9;
+}
