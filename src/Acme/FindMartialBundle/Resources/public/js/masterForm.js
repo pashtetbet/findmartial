@@ -28,6 +28,7 @@
     }
 
 
+    // switcher
     function showBlockForm(blockForm) {
           $('.switcher_block').stop(true,true);
           $('.switcher_button').not('.switcher_button.'+blockForm).each(function(){$(this).removeClass('active');});
@@ -39,6 +40,19 @@
             $('.switcher_block.'+blockForm).show('drop', {direction: 'right'}, 200, function(){ $(this).addClass('active_block');});
           }); 
     }
+
+    // При редактировании в списке, задать значения полей формы
+    function fillFieldsVal(masterArtListItem, masterArtListForm) {
+        masterArtListItem.children(':not(.toolsCol)').each(function(){
+
+          filedName = $(this).attr('class');
+          filedVal = $.trim($(this).children('span').text());
+          real = masterArtListForm.children('.'+filedName).children('span').children().val(filedVal);
+
+
+        });
+    }
+
 
 
     $(document).ready(function() {
@@ -64,6 +78,9 @@
         masterArtListItem = $(this).parents('.masterArtListItem');
         masterArtListForm = masterArtListItem.next();
         masterArtListItem.hide();
+
+        fillFieldsVal(masterArtListItem, masterArtListForm);
+
         masterArtListForm.show();
         return false;
       });

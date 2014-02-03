@@ -12,6 +12,8 @@ class App.AjaxForm.Customized extends App.AjaxForm.Default
 		$('.masterArtListBlock .masterArtListHtml').replaceWith list
 
 	artAppend: (@list, art) ->
+
+		formName		= $('#masterartForm').attr('name')
 		liBlock 		= $('<li />', {class : 'masterArtListBlock'})
 		liItem 			= $('<div />', {class : 'masterArtListItem'})
 		liForm			= $('<div />', {class : 'masterArtListForm', style: 'display:none;'})
@@ -62,15 +64,15 @@ class App.AjaxForm.Customized extends App.AjaxForm.Default
 		liForm
 			.append $('<div />', {class : 'expirienceCol'})
 			.append $('<span />', {class : 'artListItemAcc'})
-			.append $('<input />', {type : 'number'})
+			.append $('<input />', {type : 'number', name: formName+'[expirience]'})
 		liForm
 			.append $('<div />', {class : 'trainingExpCol'})
 			.append $('<span />', {class : 'artListItemAcc'})
-			.append $('<input />', {type : 'number'})
+			.append $('<input />', {type : 'number', name: formName+'[training_exp]'})
 		liForm
 			.append $('<div />', {class : 'descriptionCol'})
 			.append $('<span />', {class : 'artListItemAcc'})
-			.append $('<input />', {type : 'text'})
+			.append $('<input />', {type : 'text', name: formName+'[description]'})
 		liForm
 			.append $('<div />', {class : 'toolsCol'})
 			.append spanFormTools

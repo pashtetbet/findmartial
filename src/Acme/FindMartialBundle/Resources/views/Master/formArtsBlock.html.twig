@@ -5,7 +5,7 @@
 
 
     {% macro artForm(masterart) %}
-      <form class="ajax-form" action="{{ path('masterart_put') }}" method="post" {{ form_enctype(masterart) }}>
+      <form class="ajax-form" id="masterartForm" name={{ masterart.vars.id }} action="{{ path('masterart_put') }}" method="post" {{ form_enctype(masterart) }}>
         <input type="hidden" name="_method" value="PUT" />   
         <div class="artCol"><span class = "artListItemAcc">{{ form_widget(masterart.art) }}</span></div>
         <div class="expirienceCol"><span class = "artListItemAcc">{{ form_widget(masterart.expirience ) }}</span></div>
