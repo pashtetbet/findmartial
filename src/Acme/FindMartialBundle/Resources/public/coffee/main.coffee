@@ -28,7 +28,7 @@ class App.AjaxForm.Customized extends App.AjaxForm.Default
 		iconCancel 		= $('<i />', {class: 'fa fa-times fa-fw'})
 
 		buttonEdit 		= $('<a />', {class : 'buttonEdit', href: '#'}).append iconEdit.clone false
-		buttonDelete 	= $('<a />', {class : 'buttonDelete', href: '#'}).append iconDel.clone false
+		buttonDelete 	= $('<a />', {class : 'buttonDelete', action: '/'}).append iconDel.clone false
 		spanTools 		= $('<span />', {class : 'artListItemAcc'})
 		spanTools.append buttonEdit
 		spanTools.append '&nbsp;'

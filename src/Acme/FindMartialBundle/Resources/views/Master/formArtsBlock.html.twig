@@ -1,8 +1,15 @@
 {% form_theme form _self %}
 {% form_theme formArt _self %}
 {% form_theme formExps _self %}
+{% form_theme formDelArt _self %}
 
 
+    {% macro delForm(masterart) %}
+      <form class="ajax-form" name={{ masterart.vars.id }} action="" method="post" {{ form_enctype(masterart) }}>
+        <input type="hidden" name="_method" value="DELETE" />   
+        {{ form_rest(masterart) }}
+      </form>
+    {% endmacro %}
 
     {% macro artForm(masterart) %}
       <form class="ajax-form" id="masterartForm" name={{ masterart.vars.id }} action="{{ path('masterart_put') }}" method="post" {{ form_enctype(masterart) }}>
@@ -59,6 +66,10 @@
 
       </li>
     {% endmacro %}
+
+
+
+{{ _self.delForm(formDelArt) | e }}
 
 
     <div class="masterArtListBlock">

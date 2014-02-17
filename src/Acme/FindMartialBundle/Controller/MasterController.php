@@ -124,9 +124,24 @@ class MasterController extends JsonResponseController
         $masterArtEntity = new MasterArt();
 
         $form           = $this->createForm(new MasterType(), $entity);
+
         $formArt        = $this->createForm(new MasterArtType(), $masterArtEntity);
         $formExps       = $this->createForm(new MasterExpsBlockType(), $entity);
         $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
+
+
+        $formDelArt = $this->createFormBuilder($masterArtEntity)
+            ->add('save', 'submit')
+            ->getForm()
+        ;
+
+        return $this->render('AcmeTaskBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+
+
+
 
         $form->bind($request);
         if ($form->isValid()) {
@@ -190,6 +205,10 @@ class MasterController extends JsonResponseController
         $formArt        = $this->createForm(new MasterArtType(), $masterArtEntity);
         $formExps       = $this->createForm(new MasterExpsBlockType(), $entity);
         $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
+        $formDelArt = $this->createFormBuilder($masterArtEntity)
+            ->add('save', 'submit')
+            ->getForm()
+        ;
 
         return array(
             'entity'        => $entity,
@@ -197,6 +216,7 @@ class MasterController extends JsonResponseController
             'formArt'       => $formArt->createView(),
             'formExps'      => $formExps->createView(),
             'formPhotos'    => $formPhotos->createView(),
+            'formDelArt'    => $formDelArt->createView(),
         );
     }
 
