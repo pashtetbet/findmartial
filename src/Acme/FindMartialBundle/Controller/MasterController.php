@@ -120,6 +120,13 @@ class MasterController extends JsonResponseController
      */
     public function createAction(Request $request)
     {
+
+
+        return $this->createJsonFailureResponse('Some parameter was false...');
+
+
+
+
         $entity  = new Master();
         $masterArtEntity = new MasterArt();
 
@@ -130,8 +137,9 @@ class MasterController extends JsonResponseController
         $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
 
 
-        $formDelArt = $this->createFormBuilder($masterArtEntity)
-            ->add('save', 'submit')
+         $formDelArt = $this->get('form.factory')->createNamedBuilder('form_del_art', 'form',  null, array())
+            ->add('master', 'text')
+            ->add('art', 'text')
             ->getForm()
         ;
 
@@ -205,8 +213,8 @@ class MasterController extends JsonResponseController
         $formArt        = $this->createForm(new MasterArtType(), $masterArtEntity);
         $formExps       = $this->createForm(new MasterExpsBlockType(), $entity);
         $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
-        $formDelArt = $this->createFormBuilder($masterArtEntity)
-            ->add('save', 'submit')
+
+        $formDelArt = $this->get('form.factory')->createNamedBuilder('form_del_art', 'form',  null, array())
             ->getForm()
         ;
 

@@ -128,3 +128,20 @@ iphp_file_store:
                date:
                   params: { field : date, depth : month }
            namer: ~
+
+hwi_oauth:
+    firewall_name: secured_area
+    connect:
+        confirmation: true
+    resource_owners:
+        vkontakte:
+            type:                vkontakte
+            client_id:           4620811
+            client_secret:       d6jFMY9xSeGPMrqZzEUG
+    fosub:
+        # try 30 times to check if a username is available (foo, foo1, foo2 etc)
+        username_iterations: 30
+
+        # mapping between resource owners (see below) and properties
+        properties:
+            vkontakte: vkId

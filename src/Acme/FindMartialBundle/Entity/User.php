@@ -34,6 +34,13 @@ class User extends BaseUser
     protected $id;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="vk_id", type="string", nullable=true)
+     */
+    private $vkId;
+
+    /**
      * @ORM\Column(type="string", length=100, nullable = true)
      */
     protected $name;
@@ -366,5 +373,28 @@ class User extends BaseUser
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * Set vkId
+     *
+     * @param string $vkId
+     * @return User
+     */
+    public function setVkId($vkId)
+    {
+        $this->vkId = $vkId;
+    
+        return $this;
+    }
+
+    /**
+     * Get vkId
+     *
+     * @return string 
+     */
+    public function getVkId()
+    {
+        return $this->vkId;
     }
 }

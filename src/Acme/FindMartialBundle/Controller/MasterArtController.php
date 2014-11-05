@@ -88,7 +88,9 @@ class MasterArtController extends JsonResponseController
             $normArray = array();
             foreach($masterArts as $masterArt){
                 $normArray[] = array(
-                    'art' => $masterArt->getArt()->getName(),
+                    'art_id'        => $masterArt->getArt()->getId(),
+                    'master_id'     => $masterArt->getMaster()->getId(),
+                    'art'           => $masterArt->getArt()->getName(),
                     'training_exp'  => $masterArt->getTrainingExp(),
                     'expirience'    => $masterArt->getExpirience(),
                     'description'   => $masterArt->getDescription(),
@@ -106,19 +108,19 @@ class MasterArtController extends JsonResponseController
 
 
 
-        $this->createJsonFailureResponse('something went wrong...');
+        return $this->createJsonFailureResponse('something went wrong...');
 
     }
 
     /**
      * Deletes a Master entity.
      *
-     * @Route("/{id}", name="masterart_delete")
+     * @Route("/{master_id}/{art_id}", name="masterart_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $masterId, $artId)
+    public function deleteAction(Request $request, $master_id, $art_id)
     {
-
+/*
         $securityContext = $this->get('security.context');
         
         $form = $this->createDeleteForm($masterId, $artId);
@@ -147,9 +149,9 @@ class MasterArtController extends JsonResponseController
                     'artsList',
                     'enableArtsForm'
             );
-        }
+        }*/
 
-        $this->createJsonFailureResponse('something went wrong...');
+        return $this->createJsonFailureResponse('something went wrong...');
     }
 
     /**

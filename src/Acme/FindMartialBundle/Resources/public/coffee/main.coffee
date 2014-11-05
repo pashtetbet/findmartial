@@ -1,5 +1,11 @@
 class App.AjaxForm.Customized extends App.AjaxForm.Default
 
+    bindSubmitClickHandler: () ->
+        $ -> 
+        	$('.buttonAdd').click ->
+        		console.log('hi')
+        		return false
+
 	enableArtsForm: (content) ->
 		master = JSON.parse content
 		$('#acme_findmartialbundle_masterarttype_master').val master.master
@@ -30,7 +36,7 @@ class App.AjaxForm.Customized extends App.AjaxForm.Default
 		buttonEdit 		= $('<a />', {class : 'buttonEdit', href: '#'}).append iconEdit.clone false
 
 
-		buttonDelete 	= $('<a />', {class : 'buttonDelete', href: '#'}).append iconDel.clone false
+		buttonDelete 	= $('<a />', {class : 'buttonDelete', href: '#', rel: art.master_id+'/'+art.art_id}).append iconDel.clone false
 		formDelete		= $('<form />', {class : 'buttonDelete', href: '#'})
 
 
@@ -65,6 +71,10 @@ class App.AjaxForm.Customized extends App.AjaxForm.Default
 		liItem
 			.append $('<div />', {class : 'toolsCol'})
 			.append spanTools
+		liItem
+			.append $('<span />', {class : 'tt', html: art.master_id})
+		liItem
+			.append $('<span />', {class : 'ttt', html: art.art_id})
 
 
 		liForm

@@ -66,10 +66,10 @@
 
       // блок с боевыми искуссвами
       // кнопка "Добавить искусство"
-      $('#addMasterArt').on('click', function(){
+      /*$('#addMasterArt').on('click', function(){
         $(this).parents('form').submit();
         return false;
-      });
+      });*/
 
       // редактировать в списке
       $('.masterArtListBlock').on('click', '.buttonEdit', function(){
@@ -106,11 +106,20 @@
       });
 
       // Удалить элемент
-      $('.masterArtListBlock').on('click', '.buttondelete', function(){
-        //send request
-        console.log('delete');
+      /*
+      $('.masterArtListBlock').on('click', '.buttonDelete', function(){
+        var form = $('#masterartFormDel').clone();
+        var action = $('#masterartFormDel').attr('action');
+
+        action = action.replace('paramMasteId/paramArtId', $(this).attr('rel'));
+        form.attr('action', action);
+
+        form.submit();
+        form.remove();
+        
         return false;
       });
+      */
 
       // Редактировать общее
       $('.listFooter').on('click', '.buttonEdit', function(){
