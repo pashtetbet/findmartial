@@ -36,7 +36,7 @@
         
 						<div class="login_block">
 								{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-										<a href="{{ path('fos_user_profile_show') }}">
+										<a href="{{ path('master_new') }}">
 											{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
 										</a>
 										<a href="#" class="sign-menu-narrow">&#8744;</a>

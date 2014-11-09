@@ -1,10 +1,10 @@
 class App.AjaxForm.Customized extends App.AjaxForm.Default
 
-    bindSubmitClickHandler: () ->
-        $ -> 
-        	$('.buttonAdd').click ->
-        		console.log('hi')
-        		return false
+	bindSubmitClickHandler: () ->
+		$ -> 
+			$('.buttonAdd').click ->
+				$form = $(this).closest('form').submit()
+				return false
 
 	enableArtsForm: (content) ->
 		master = JSON.parse content

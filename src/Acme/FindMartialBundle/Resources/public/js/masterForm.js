@@ -65,12 +65,6 @@
       });
 
       // блок с боевыми искуссвами
-      // кнопка "Добавить искусство"
-      /*$('#addMasterArt').on('click', function(){
-        $(this).parents('form').submit();
-        return false;
-      });*/
-
       // редактировать в списке
       $('.masterArtListBlock').on('click', '.buttonEdit', function(){
         $('.masterArtListForm').hide();

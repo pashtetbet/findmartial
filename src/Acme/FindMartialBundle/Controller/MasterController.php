@@ -122,33 +122,10 @@ class MasterController extends JsonResponseController
     {
 
 
-        return $this->createJsonFailureResponse('Some parameter was false...');
-
-
-
-
         $entity  = new Master();
         $masterArtEntity = new MasterArt();
 
         $form           = $this->createForm(new MasterType(), $entity);
-
-        $formArt        = $this->createForm(new MasterArtType(), $masterArtEntity);
-        $formExps       = $this->createForm(new MasterExpsBlockType(), $entity);
-        $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
-
-
-         $formDelArt = $this->get('form.factory')->createNamedBuilder('form_del_art', 'form',  null, array())
-            ->add('master', 'text')
-            ->add('art', 'text')
-            ->getForm()
-        ;
-
-        return $this->render('AcmeTaskBundle:Default:new.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-
-
 
 
         $form->bind($request);
@@ -156,8 +133,6 @@ class MasterController extends JsonResponseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-
 
             // creating the ACL
             $aclProvider = $this->get('security.acl.provider');
@@ -172,9 +147,6 @@ class MasterController extends JsonResponseController
             // grant owner access
             $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
             $aclProvider->updateAcl($acl);
-
-            //return $this->createJsonSuccessResponse('your response text');
-
 
             $response = array('master' => $entity->getId());
             return $this->createJsonSuccessWithContent(
@@ -287,6 +259,68 @@ class MasterController extends JsonResponseController
             'delete_form' => $deleteForm->createView(),
         );
     }
+
+
+    /**
+     * Displays a form to edit an existing Master entity.
+     *
+     * @Route("/spec/profile", name="master_profile_edit")
+     * @Method("GET")
+     * @Template()
+     */
+    /*public function profileAction()
+    {
+        $securityContext = $this->get('security.context');
+
+        $token = $securityContext->getToken();
+        $user = $token->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $clientId = $user->getClient();
+
+
+        if(isset($clientId))
+
+
+        var_dump($masterId);
+        die;
+
+        $entity = $em->getRepository('AcmeFindMartialBundle:Master')->find($user->getMaster());
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Master entity.');
+        }
+
+        
+        // check for edit access
+        if (false === $securityContext->isGranted('EDIT', $entity)) {
+            throw new AccessDeniedException();
+        }
+
+        $form           = $this->createForm(new MasterType(), $entity);
+        $formArt        = $this->createForm(new MasterArtType(), $masterArtEntity);
+        $formExps       = $this->createForm(new MasterExpsBlockType(), $entity);
+        $formPhotos     = $this->createForm(new MasterPhotosBlockType(), $entity);
+        $formDelArt = $this->get('form.factory')->createNamedBuilder('form_del_art', 'form',  null, array())
+            ->getForm()
+        ;
+
+        //$deleteForm = $this->createDeleteForm($id);
+
+        return array(
+            'entity'        => $entity,
+            'form'          => $form->createView(),
+            'formArt'       => $formArt->createView(),
+            'formExps'      => $formExps->createView(),
+            'formPhotos'    => $formPhotos->createView(),
+            'formDelArt'    => $formDelArt->createView(),
+        );
+
+    }*/
+
+
+
 
     /**
      * Edits an existing Master entity.
